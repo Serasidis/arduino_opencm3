@@ -15,5 +15,8 @@
 #include "WProgram.h"
 #endif
 
+#include <libopencm3/stm32/rcc.h>
+#include <libopencm3/stm32/gpio.h>
+
 #include "variant.h"
 #include "Tone.h"

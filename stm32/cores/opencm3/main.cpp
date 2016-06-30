@@ -34,6 +34,8 @@
 //#include "usbd_cdc_if.h"
 //#include "io.h"
 
+#include <libopencm3/stm32/rcc.h>
+
 extern void setup(void);
 extern void loop(void);
 //extern void init(void);
@@ -49,7 +51,10 @@ extern void loop(void);
 //}
 
 int main(void) {
+  //Set the Clock 72Hz from HSE 8MHz
+  rcc_clock_setup_in_hse_8mhz_out_72mhz();    
 
+  rcc_periph_clock_enable(RCC_GPIOC);
 	/* Initialize USB device stack */
 	//uint8_t ttBuf[1]={9};
 	//MX_USB_DEVICE_Init();
