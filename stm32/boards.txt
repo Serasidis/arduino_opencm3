@@ -24,6 +24,10 @@ cmBluePillF103C8.menu.upload_method.STLinkMethod=STLink
 cmBluePillF103C8.menu.upload_method.STLinkMethod.upload.protocol=STLink
 cmBluePillF103C8.menu.upload_method.STLinkMethod.upload.tool=stlink_upload
 cmBluePillF103C8.menu.upload_method.STLinkMethod.build.extra_flags=
-cmBluePillF103C8.menu.upload_method.STLinkMethod.build.ldscript=libopencm3_stm32f1.ld
+cmBluePillF103C8.menu.upload_method.STLinkMethod.build.ldscript=stm32f103rbt6.ld
 
+cmBluePillF103C8.menu.upload_method.OpenOCD=OpenOCD
+cmBluePillF103C8.menu.upload_method.OpenOCD.upload.protocol=OpenOCD
+cmBluePillF103C8.menu.upload_method.OpenOCD.upload.tool=openocd_upload
+cmBluePillF103C8.menu.upload_method.OpenOCD.build.extra_flags=
 ##############################################################

@@ -2,7 +2,7 @@
 #
 #
 
-name=ArduOpenCM3 (Alpha testing)
+name=arduino_opencm3 (Alpha testing)
 version=1.6.9
 
 compiler.warning_flags=-w
@@ -83,6 +83,7 @@ recipe.objcopy.hex.pattern="{compiler.path}{compiler.elf2hex.cmd}" {compiler.elf
 # ---------------------
 recipe.size.pattern="{compiler.path}{compiler.size.cmd}" -A "{build.path}/{build.project_name}.elf"
 recipe.size.regex=^(?:\.text|\.data|\.rodata|\.text.align|\.ARM.exidx)\s+([0-9]+).*
+
 recipe.size.regex.data=^(?:\.data|\.bss|\.noinit)\s+([0-9]+).*
 
 # Uploader tools
@@ -98,4 +99,9 @@ tools.stlink_upload.path.linux={runtime.hardware.path}/tools/linux
 tools.stlink_upload.upload.params.verbose=-d
 tools.stlink_upload.upload.params.quiet=
 tools.stlink_upload.upload.pattern="{path}/{cmd}" {serial.port.file} {upload.altID} {upload.usbID} "{build.path}/{build.project_name}.bin"
+ 
+tools.openocd_upload.upload.cmd=openocd
+tools.openocd_upload.upload.params.verbose=-d
+tools.openocd_upload.upload.pattern=openocd -f /usr/share/openocd/scripts/interface/stlink-v2.cfg -f /usr/share/openocd/scripts/target/stm32f1x.cfg -c init -c targets -c "halt" -c "flash write_image erase {build.path}/{build.project_name}.elf"  -c "verify_image {build.path}/{build.project_name}.elf" -c "reset run" -c shutdown
+ 
  
