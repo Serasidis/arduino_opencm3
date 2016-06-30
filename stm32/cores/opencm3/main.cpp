@@ -24,6 +24,9 @@
  * SOFTWARE.
  *****************************************************************************/
 
+#define ARDUINO_MAIN
+#include "Arduino.h"
+
  /*
  * Arduino srl - www.arduino.org
  * 2016 Jun 9: Edited Francesco Alessi (alfran) - francesco@arduino.org
@@ -34,41 +37,38 @@
 //#include "usbd_cdc_if.h"
 //#include "io.h"
 
-#include <libopencm3/stm32/rcc.h>
 
-extern void setup(void);
-extern void loop(void);
-//extern void init(void);
+// Weak empty variant initialization function.
+// May be redefined by variant files.
+void initVariant() __attribute__((weak));
+void initVariant() { }
 
 
 //extern USBD_HandleTypeDef hUsbDeviceFS;
 
 
-// Force init to be called *first*, i.e. before static object allocation.
-// Otherwise, statically allocated objects that need libmaple may fail.
-// __attribute__(( constructor )) void premain() {
-//    init();
-//}
 
 int main(void) {
-  //Set the Clock 72Hz from HSE 8MHz
-  rcc_clock_setup_in_hse_8mhz_out_72mhz();    
+	// Initialize watchdog
+//	watchdogSetup();
 
-  rcc_periph_clock_enable(RCC_GPIOA);
-  rcc_periph_clock_enable(RCC_GPIOC);
-  rcc_periph_clock_enable(RCC_GPIOB);
-	/* Initialize USB device stack */
-	//uint8_t ttBuf[1]={9};
-	//MX_USB_DEVICE_Init();
+//	init();
 
-	/* Enable FPU
-	 * Note: this should have already been done in SystemInit() in HAL/src/system_stm32f4xx.c */
-	//SCB->CPACR |= ((3UL << 10*2)|(3UL << 11*2));  /* set CP10 and CP11 Full Access */
-	//analogReadResolution(10);
+	initVariant();
+
+//	delay(1);
+
+//#if defined(USBCON)
+//	USBDevice.attach();
+//#endif
+
 	setup();
 
-	while (1) {
+	for (;;)
+	{
 		loop();
+//		if (serialEventRun) serialEventRun();
 	}
+
 	return 0;
 }

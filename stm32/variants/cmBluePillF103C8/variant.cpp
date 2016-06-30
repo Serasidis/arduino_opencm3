@@ -19,12 +19,12 @@
     This file is converted for using it with ST HAL + CubeMX + Arduino SAM core files.
 */
 
-#include "Arduino.h"
+#include "variant.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-
+  
 extern const Pin2PortMapArray g_Pin2PortMapArray[]=
 {    
 
@@ -80,4 +80,23 @@ extern const Pin2PortMapArray g_Pin2PortMapArray[]=
 #else
   #define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
 #endif /* __GNUC__ */
+
+void serialEvent() __attribute__((weak));
+void serialEvent() { }
+
+// ----------------------------------------------------------------------------
+
+// Custom board init  
+  
+void initVariant( void )
+{
+  // BluePill has 8MHz HSE
+  rcc_clock_setup_in_hse_8mhz_out_72mhz();    /// Clock 72Hz from HSE 8MHz
+  // Connect All ports to CLK
+  rcc_periph_clock_enable(RCC_GPIOA);
+  rcc_periph_clock_enable(RCC_GPIOB);
+  rcc_periph_clock_enable(RCC_GPIOC);
+}
+
+  
 

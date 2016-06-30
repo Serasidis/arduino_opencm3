@@ -12,8 +12,21 @@
 #ifndef _VARIANT_BLUE_PILL_
 #define _VARIANT_BLUE_PILL_
 
-//#include <libopencm3/stm32/gpio.h>
-//#include <libopencm3/stm32/common/timer_common_all.h>
+/*----------------------------------------------------------------------------
+ *        Headers
+ *----------------------------------------------------------------------------*/
+#include "Arduino.h"
+#ifdef __cplusplus
+//#include "UARTClass.h"
+//#include "USARTClass.h"
+#endif
+
+#ifdef __cplusplus
+extern "C"{
+#endif // __cplusplus
+  
+#include <libopencm3/stm32/rcc.h>
+#include <libopencm3/stm32/gpio.h>
 
 #define GPIO_PINS      35
 
@@ -33,5 +46,9 @@ typedef struct _Pin2PortMapArray
 } Pin2PortMapArray ;
 
 //extern const Pin2PortMapArray g_Pin2PortMapArray[] ;
+#ifdef __cplusplus
+}
+#endif
+
 
 #endif
