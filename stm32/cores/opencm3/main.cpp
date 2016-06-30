@@ -54,7 +54,9 @@ int main(void) {
   //Set the Clock 72Hz from HSE 8MHz
   rcc_clock_setup_in_hse_8mhz_out_72mhz();    
 
+  rcc_periph_clock_enable(RCC_GPIOA);
   rcc_periph_clock_enable(RCC_GPIOC);
+  rcc_periph_clock_enable(RCC_GPIOB);
 	/* Initialize USB device stack */
 	//uint8_t ttBuf[1]={9};
 	//MX_USB_DEVICE_Init();
