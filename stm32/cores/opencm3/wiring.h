@@ -52,7 +52,7 @@
 #include "wiring_time.h"
 #include <wiring_constants.h>
 #include "HardwareSPI.h"
-#include "HardwareSerial.h"
+//#include "HardwareSerial.h"
 #include "HardwareTimer.h"
 #include "usb_serial.h"
 #include "Wire.h"

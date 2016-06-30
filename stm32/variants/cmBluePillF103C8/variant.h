@@ -27,6 +27,7 @@ extern "C"{
   
 #include <libopencm3/stm32/rcc.h>
 #include <libopencm3/stm32/gpio.h>
+#include <libopencm3/stm32/usart.h>
 
 #define GPIO_PINS      35
 
