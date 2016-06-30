@@ -73,7 +73,7 @@
                                                    bitClear(value, bit))
 #define bit(b)                         (1UL << (b))
 
-typedef uint8 boolean;
-typedef uint8 byte;
+//typedef uint8 boolean;
+//typedef uint8 byte;
 
 #endif

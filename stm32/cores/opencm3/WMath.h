@@ -16,24 +16,18 @@
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef Printable_h
-#define Printable_h
+#ifndef _WIRING_MATH_
+#define _WIRING_MATH_
 
-#include <stdlib.h>
+extern long random( long ) ;
+extern long random( long, long ) ;
+extern void randomSeed( uint32_t dwSeed ) ;
+extern long map( long, long, long, long, long ) ;
 
-class Print;
+extern uint16_t makeWord( uint16_t w ) ;
+extern uint16_t makeWord( uint8_t h, uint8_t l ) ;
 
-/** The Printable class provides a way for new classes to allow themselves to be printed.
-    By deriving from Printable and implementing the printTo method, it will then be possible
-    for users to print out instances of this class by passing them into the usual
-    Print::print and Print::println methods.
-*/
+#define word(...) makeWord(__VA_ARGS__)
 
-class Printable
-{
-  public:
-    virtual size_t printTo(Print& p) const = 0;
-};
 
-#endif
-
+#endif /* _WIRING_MATH_ */

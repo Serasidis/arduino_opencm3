@@ -16,24 +16,35 @@
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef Printable_h
-#define Printable_h
+#ifndef _RING_BUFFER_
+#define _RING_BUFFER_
 
-#include <stdlib.h>
+#include <stdint.h>
 
-class Print;
+// Define constants and variables for buffering incoming serial data.  We're
+// using a ring buffer (I think), in which head is the index of the location
+// to which to write the next incoming character and tail is the index of the
+// location from which to read.
+#define SERIAL_BUFFER_SIZE 64
 
-/** The Printable class provides a way for new classes to allow themselves to be printed.
-    By deriving from Printable and implementing the printTo method, it will then be possible
-    for users to print out instances of this class by passing them into the usual
-    Print::print and Print::println methods.
-*/
-
-class Printable
+class RingBuffer
 {
   public:
-    virtual size_t printTo(Print& p) const = 0;
-};
+    uint8_t _aucBuffer[SERIAL_BUFFER_SIZE] ;
+    volatile uint16_t _iHead ;
+    volatile uint16_t _iTail ;
 
-#endif
+  public:
+    RingBuffer( void ) ;
+    void store_char( uint8_t c ) ;
+	void clear();
+	int read_char();
+	int available();
+	int peek();
+	bool isFull();
 
+  private:
+	int nextIndex(int index);
+} ;
+
+#endif /* _RING_BUFFER_ */

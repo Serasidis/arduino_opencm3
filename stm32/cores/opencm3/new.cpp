@@ -8,7 +8,7 @@
 
   This library is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
   See the GNU Lesser General Public License for more details.
 
   You should have received a copy of the GNU Lesser General Public
@@ -16,24 +16,21 @@
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef Printable_h
-#define Printable_h
-
 #include <stdlib.h>
 
-class Print;
+void *operator new(size_t size) {
+  return malloc(size);
+}
 
-/** The Printable class provides a way for new classes to allow themselves to be printed.
-    By deriving from Printable and implementing the printTo method, it will then be possible
-    for users to print out instances of this class by passing them into the usual
-    Print::print and Print::println methods.
-*/
+void *operator new[](size_t size) {
+  return malloc(size);
+}
 
-class Printable
-{
-  public:
-    virtual size_t printTo(Print& p) const = 0;
-};
+void operator delete(void * ptr) {
+  free(ptr);
+}
 
-#endif
+void operator delete[](void * ptr) {
+  free(ptr);
+}
 
