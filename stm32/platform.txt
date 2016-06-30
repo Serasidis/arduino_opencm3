@@ -1,0 +1,101 @@
+# 
+#
+#
+
+name=ArduOpenCM3 (Alpha testing)
+version=1.6.9
+
+compiler.warning_flags=-w
+compiler.warning_flags.none=-w
+compiler.warning_flags.default=
+compiler.warning_flags.more=-Wall
+compiler.warning_flags.all=-Wall -Wextra
+
+# compiler variables
+# ----------------------
+compiler.path={runtime.tools.arm-none-eabi-gcc.path}/bin/
+compiler.opencm3.path={runtime.platform.path}/libopencm3
+compiler.cpreprocessor.flags="-I{compiler.opencm3.path}/include"
+
+compiler.c.cmd=arm-none-eabi-gcc
+compiler.c.flags=-mcpu={build.mcu} -mthumb  -msoft-float -mfix-cortex-m3-ldrd -DSTM32F1 -c -g -Os {compiler.warning_flags} -std=gnu11 -ffunction-sections -fdata-sections -nostdlib --param max-inline-insns-single=500 -MMD 
+
+compiler.S.cmd=arm-none-eabi-gcc
+compiler.S.flags=-c -g -x assembler-with-cpp
+
+compiler.cpp.cmd=arm-none-eabi-g++
+compiler.cpp.flags=-mcpu={build.mcu} -mthumb  -msoft-float -mfix-cortex-m3-ldrd -DSTM32F1 -c -g -Os {compiler.warning_flags} -std=gnu++11 -ffunction-sections -fdata-sections -fno-threadsafe-statics -nostdlib --param max-inline-insns-single=500 -fno-rtti -fno-exceptions -MMD 
+
+compiler.ar.cmd=arm-none-eabi-ar
+compiler.ar.flags=rcs
+
+compiler.c.elf.cmd=arm-none-eabi-gcc
+compiler.c.elf.flags=-mcpu={build.mcu} -mthumb  -msoft-float -mfix-cortex-m3-ldrd -g {compiler.warning_flags} -Os -nostdlib -Wl,--no-check-sections -Wl,-static "-L{compiler.opencm3.path}/lib" "-L{compiler.opencm3.path}/ld" "-T{build.flash_ld}" -Wl,--gc-sections "-Wl,-Map,{build.path}/{build.project_name}.map" --specs=nano.specs
+compiler.c.elf.libs=-lopencm3_stm32f1 -lc -lgcc -lnosys 
+
+
+compiler.objcopy.cmd=arm-none-eabi-objcopy
+compiler.objcopy.eep.flags=-O ihex -j .eeprom --set-section-flags=.eeprom=alloc,load --no-change-warnings --change-section-lma .eeprom=0
+compiler.elf2hex.flags=-O binary
+compiler.elf2hex.cmd=arm-none-eabi-objcopy
+compiler.size.cmd=arm-none-eabi-size
+compiler.define=-DARDUINO=                            
+
+build.cpu_flags=
+build.hs_flag=
+build.upload_flags=
+
+# These can be overridden in platform.local.txt
+compiler.c.extra_flags=
+compiler.c.elf.extra_flags=
+compiler.cpp.extra_flags= 
+compiler.S.extra_flags=
+compiler.ar.extra_flags=
+compiler.elf2hex.extra_flags=
+
+# build patterns
+# ---------------------
+
+## Compile c files
+recipe.c.o.pattern="{compiler.path}{compiler.c.cmd}" {compiler.cpreprocessor.flags} {compiler.c.flags} -DF_CPU={build.f_cpu} -DARDUINO={runtime.ide.version} -DARDUINO_{build.board} -DARDUINO_ARCH_{build.arch} {compiler.c.extra_flags} {build.extra_flags} {includes} "{source_file}" -o "{object_file}"
+
+## Compile c++ files
+recipe.cpp.o.pattern="{compiler.path}{compiler.cpp.cmd}" {compiler.cpreprocessor.flags} {compiler.cpp.flags} -DF_CPU={build.f_cpu} -DARDUINO={runtime.ide.version} -DARDUINO_{build.board} -DARDUINO_ARCH_{build.arch} {compiler.cpp.extra_flags} {build.extra_flags} {includes} "{source_file}" -o "{object_file}"
+
+## Compile S files
+recipe.S.o.pattern="{compiler.path}{compiler.S.cmd}" {compiler.cpreprocessor.flags} {compiler.S.flags} -DF_CPU={build.f_cpu} -DARDUINO={runtime.ide.version} -DARDUINO_{build.board} -DARDUINO_ARCH_{build.arch} {compiler.S.extra_flags} {build.extra_flags} {includes} "{source_file}" -o "{object_file}"
+
+## Create archives
+recipe.ar.pattern="{compiler.path}{compiler.ar.cmd}" {compiler.ar.flags} {compiler.ar.extra_flags} "{build.path}/arduino.ar" "{object_file}"
+
+## Combine gc-sections, archives, and objects
+recipe.c.combine.pattern="{compiler.path}{compiler.c.elf.cmd}" {compiler.c.elf.flags} {compiler.c.elf.extra_flags} -o "{build.path}/{build.project_name}.elf" -Wl,--start-group {object_files} "{build.path}/arduino.ar" {compiler.c.elf.libs} -Wl,--end-group  "-L{build.path}"
+
+## Create eeprom
+recipe.objcopy.eep.pattern=
+
+## Create hex or binary
+recipe.objcopy.hex.pattern="{compiler.path}{compiler.elf2hex.cmd}" {compiler.elf2hex.flags} {compiler.elf2hex.extra_flags} "{build.path}/{build.project_name}.elf" "{build.path}/{build.project_name}.bin"
+
+
+
+## Compute size
+# ---------------------
+recipe.size.pattern="{compiler.path}{compiler.size.cmd}" -A "{build.path}/{build.project_name}.elf"
+recipe.size.regex=^(?:\.text|\.data|\.rodata|\.text.align|\.ARM.exidx)\s+([0-9]+).*
+recipe.size.regex.data=^(?:\.data|\.bss|\.noinit)\s+([0-9]+).*
+
+# Uploader tools
+# -------------------
+
+# stlink upload
+tools.stlink_upload.cmd=stlink_upload
+tools.stlink_upload.cmd.windows=stlink_upload.bat
+tools.stlink_upload.path.windows={runtime.hardware.path}/tools/win
+tools.stlink_upload.path.macosx={runtime.hardware.path}/tools/macosx
+tools.stlink_upload.path.linux={runtime.hardware.path}/tools/linux
+
+tools.stlink_upload.upload.params.verbose=-d
+tools.stlink_upload.upload.params.quiet=
+tools.stlink_upload.upload.pattern="{path}/{cmd}" {serial.port.file} {upload.altID} {upload.usbID} "{build.path}/{build.project_name}.bin"
+ 
