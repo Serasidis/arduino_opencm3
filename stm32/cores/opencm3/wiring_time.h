@@ -44,13 +44,17 @@
 
 #define US_PER_MS               1000
 
+//volatile unsigned long  systick_uptime_millis2;
+//volatile uint32_t systick_uptime_millis;
+
 /**
  * Returns time (in milliseconds) since the beginning of program
  * execution. On overflow, restarts at 0.
  * @see micros()
  */
-static inline uint32 millis(void) {
-    return systick_uptime();
+static inline unsigned long  millis(void) {
+    //return systick_uptime();
+    return systick_uptime_millis;
 }
 
 /**
@@ -58,10 +62,10 @@ static inline uint32 millis(void) {
  * execution.  On overflow, restarts at 0.
  * @see millis()
  */
-static inline uint32 micros(void) {
-    uint32 ms;
-    uint32 cycle_cnt;
-    uint32 res;
+static inline unsigned long  micros(void) {
+    unsigned long  ms;
+    unsigned long  cycle_cnt;
+    unsigned long  res;
 
     do {
         ms = millis();
@@ -105,6 +109,6 @@ void delay(unsigned long ms);
  * @param us the number of microseconds to delay.
  * @see delay()
  */
-void delayMicroseconds(uint32 us);
+void delayMicroseconds(unsigned long us);
 
 #endif

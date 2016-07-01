@@ -25,6 +25,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#include "io.h"
 
 typedef bool boolean;
 typedef uint8_t byte;

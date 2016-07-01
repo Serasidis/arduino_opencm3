@@ -96,6 +96,12 @@ void initVariant( void )
   rcc_periph_clock_enable(RCC_GPIOA);
   rcc_periph_clock_enable(RCC_GPIOB);
   rcc_periph_clock_enable(RCC_GPIOC);
+  
+  systick_set_clocksource(STK_CSR_CLKSOURCE_AHB_DIV8);    /// SysTick at 72Mhz/8
+  systick_set_reload(8999);                               /// SysTick Reload for 1ms tick
+  systick_interrupt_enable();
+  systick_counter_enable();
+    
 }
 
   
