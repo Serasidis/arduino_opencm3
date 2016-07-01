@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="project" />
+		<Option pch_mode="2" />
+		<Option compiler="arm-elf-gcc" />
+		<Build>
+			<Target title="arduino">
+				<Option output="_bin/libarduino.a" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="" />
+				<Option object_output="_obj/" />
+				<Option type="2" />
+				<Option compiler="arm-elf-gcc" />
+				<Compiler>
+					<Add directory="../stm32/variants/cmBluePillF103C8" />
+				</Compiler>
+				<ExtraCommands>
+					<Add after="arm-none-eabi-size $(TARGET_OUTPUT_FILE)" />
+					<Add after="arm-none-eabi-objcopy  -O binary $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).bin" />
+				</ExtraCommands>
+			</Target>
+			<Target title="blink">
+				<Option output="_bin/${TARGET_NAME}/${TARGET_NAME}" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="_obj/${TARGET_NAME}" />
+				<Option type="5" />
+				<Option compiler="arm-elf-gcc" />
+				<Compiler>
+					<Add directory="../stm32/variants/cmBluePillF103C8" />
+				</Compiler>
+			</Target>
+		</Build>
+		<VirtualTargets>
+			<Add alias="ALL" targets="arduino;" />
+		</VirtualTargets>
+		<Compiler>
+			<Add option="-mcpu=cortex-m3" />
+			<Add option="-mthumb" />
+			<Add option="-msoft-float" />
+			<Add option="-Os" />
+			<Add option="-Wshadow" />
+			<Add option="-Wredundant-decls" />
+			<Add option="-Wundef" />
+			<Add option="-Weffc++" />
+			<Add option="-Wextra" />
+			<Add option="-Wall" />
+			<Add option="-g" />
+			<Add option="-mfix-cortex-m3-ldrd" />
+			<Add option="-std=gnu11" />
+			<Add option="-nostdlib" />
+			<Add option="-fno-common" />
+			<Add option="-ffunction-sections" />
+			<Add option="-fdata-sections" />
+			<Add option="-fno-rtti" />
+			<Add option="-fno-exceptions" />
+			<Add option="-MD" />
+			<Add option="-DSTM32F1" />
+			<Add directory="../stm32/libopencm3/include" />
+			<Add directory="../stm32/cores/opencm3" />
+		</Compiler>
+		<Linker>
+			<Add option="--static" />
+			<Add option="-L../stm32/libopencm3/lib" />
+			<Add option="-L_bin" />
+			<Add option="-Tstm32f103rbt6.ld" />
+			<Add option="-Wl,-Map=$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).map,--cref" />
+			<Add option="-Wl,--gc-sections" />
+			<Add option="-mthumb" />
+			<Add option="-mcpu=cortex-m3" />
+			<Add option="-msoft-float" />
+			<Add option="-mfix-cortex-m3-ldrd" />
+			<Add option="-nostartfiles" />
+			<Add option="--specs=nano.specs" />
+			<Add option="-Wl,--no-check-sections" />
+			<Add option="-Wl,-static" />
+			<Add option="-Wl,--start-group -larduino -lopencm3_stm32f1 -lc -lgcc -lnosys -Wl,--end-group" />
+		</Linker>
+		<ExtraCommands>
+			<Add after="arm-none-eabi-size $(TARGET_OUTPUT_FILE)" />
+			<Add after="arm-none-eabi-objcopy  -O binary $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).bin" />
+		</ExtraCommands>
+		<Unit filename="../stm32/cores/opencm3/Arduino.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/Client.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/HardwareSPI.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/HardwareSerial.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/HardwareTimer.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/IPAddress.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/Print.cpp">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/Print.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/Printable.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/RingBuffer.cpp">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/RingBuffer.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/Server.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/Stream.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/Tone.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/Udp.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/WMath.cpp">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/WMath.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/WProgram.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/WString.cpp">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/WString.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/Wire.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/abi.cpp">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/adc.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/avr/dtostrf.c">
+			<Option compilerVar="CC" />
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/avr/dtostrf.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/avr/interrupt.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/avr/io.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/avr/pgmspace.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/binary.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/bit_constants.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/bitband.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/bits.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/boards.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/dac.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/delay.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/dma.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/exti.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/flash.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/fsmc.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/interrupts.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/io.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/itoa.c">
+			<Option compilerVar="CC" />
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/itoa.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/iwdg.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/main.cpp">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/memory.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/new.cpp">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/nvic.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/pwm.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/pwr.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/ring_buffer.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/scb.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/spi.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/spiF4.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/spi_private.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/stm32.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/systick.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/timer.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/types.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/usart.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/usb_serial.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/util.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/wiring.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/wiring_constants.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/wiring_debug.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/wiring_digital.cpp">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/wiring_math.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/wiring_time.cpp">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/wiring_time.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/wiring_types.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="../stm32/variants/cmBluePillF103C8/variant.cpp">
+			<Option target="blink" />
+		</Unit>
+		<Unit filename="../stm32/variants/cmBluePillF103C8/variant.h">
+			<Option target="arduino" />
+		</Unit>
+		<Unit filename="blink.cpp">
+			<Option target="blink" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<lib_finder disable_auto="1" />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
