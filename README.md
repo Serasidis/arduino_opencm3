@@ -15,6 +15,8 @@ This repository is a testbed for combining the libopencm3 libray with Arduino ID
 - **libopencm3** open-source firmware library (https://github.com/libopencm3/libopencm3)
 - Arduino IDE (tested on 1.6.9)
   
-
+##Developers
+- Vassilis Serasidis (https://github.com/Serasidis)
+- Evangelos Arkalis (https://github.com/evark)
 
 
