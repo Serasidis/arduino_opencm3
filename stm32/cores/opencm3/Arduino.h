@@ -25,7 +25,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include "io.h"
 
 typedef bool boolean;
 typedef uint8_t byte;
@@ -45,8 +44,8 @@ typedef uint16_t word;
 extern "C"{
 #endif // __cplusplus
 
-  
-  
+
+
 
 #include "wiring_constants.h"
 
@@ -60,24 +59,72 @@ void yield(void);
 extern void setup( void ) ;
 extern void loop( void ) ;
 
-typedef void (*voidFuncPtr)( void ) ;
-
-#define WEAK __attribute__ ((weak))
+#include "WVariant.h"
 
 #ifdef __cplusplus
 } // extern "C"
+#endif
 
-#include "Tone.h"
+// The following headers are for C++ only compilation
+#ifdef __cplusplus
+  #include "WCharacter.h"
+  #include "WString.h"
+  #include "Tone.h"
+  #include "WMath.h"
+  #include "HardwareSerial.h"
+//  #include "pulse.h"
+#endif
+#include "delay.h"
 
-#endif // __cplusplus
+#ifdef __cplusplus
+//  #include "Uart.h"
+#endif
 
 // Include board variant
 #include "variant.h"
-#include "WProgram.h"
+
+#include "wiring.h"
+#include "wiring_digital.h"
+#include "wiring_analog.h"
+#include "wiring_shift.h"
+#include "WInterrupts.h"
+
+// undefine stdlib's abs if encountered
+#ifdef abs
+#undef abs
+#endif // abs
+
+#define min(a,b) ((a)<(b)?(a):(b))
+#define max(a,b) ((a)>(b)?(a):(b))
+#define abs(x) ((x)>0?(x):-(x))
+#define constrain(amt,low,high) ((amt)<(low)?(low):((amt)>(high)?(high):(amt)))
+#define round(x)     ((x)>=0?(long)((x)+0.5):(long)((x)-0.5))
+#define radians(deg) ((deg)*DEG_TO_RAD)
+#define degrees(rad) ((rad)*RAD_TO_DEG)
+#define sq(x) ((x)*(x))
+
+#define interrupts() __enable_irq()
+#define noInterrupts() __disable_irq()
+
+#define lowByte(w) ((uint8_t) ((w) & 0xff))
+#define highByte(w) ((uint8_t) ((w) >> 8))
+
+#define bitRead(value, bit) (((value) >> (bit)) & 0x01)
+#define bitSet(value, bit) ((value) |= (1UL << (bit)))
+#define bitClear(value, bit) ((value) &= ~(1UL << (bit)))
+#define bitWrite(value, bit, bitvalue) (bitvalue ? bitSet(value, bit) : bitClear(value, bit))
+
+#define bit(b) (1UL << (b))
+
+#if (ARDUINO_STM32_VARIANT_COMPLIANCE >= 10606)
+// Interrupts
+#define digitalPinToInterrupt(P)   ( P )
+#endif
+
+// USB Device
+//#include "USB/USBDesc.h"
+//#include "USB/USBCore.h"
+//#include "USB/USBAPI.h"
+//#include "USB/USB_host.h"
 
 #endif // Arduino_h
-
-
-
-#include "variant.h"
-

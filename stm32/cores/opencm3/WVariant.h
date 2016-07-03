@@ -18,12 +18,7 @@
 
 #pragma once
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+#include <stdint.h>
 
-extern void init(void);
 
-#ifdef __cplusplus
-}
-#endif
+

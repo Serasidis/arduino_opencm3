@@ -6,6 +6,7 @@ void setup() {
 void loop() {
     /* Using API function gpio_toggle(): */
     gpio_toggle(GPIOC, GPIO13); /* LED on/off */
-    for (int i = 0; i < 800000; i++)  /* Wait a bit. */
-      __asm__("nop");
+    delay(100);
+    //for (int i = 0; i < 800000; i++)  /* Wait a bit. */
+    //  __asm__("nop");
 }

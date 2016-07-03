@@ -46,13 +46,11 @@ void initVariant() { }
 
 //extern USBD_HandleTypeDef hUsbDeviceFS;
 
-
-
 int main(void) {
 	// Initialize watchdog
 //	watchdogSetup();
 
-//	init();
+	init();
 
 	initVariant();
 
@@ -69,6 +67,5 @@ int main(void) {
 		loop();
 //		if (serialEventRun) serialEventRun();
 	}
-
 	return 0;
 }

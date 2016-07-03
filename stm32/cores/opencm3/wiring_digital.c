@@ -32,47 +32,45 @@
   * Arduino srl - www.arduino.org
   * 2016 Jun 9: Edited Francesco Alessi (alfran) - francesco@arduino.org
   */
-  
+
   /*
   * http://www.serasidis.gr
   * 2016 Jun 30: Modified by Vassilis Serasidis - avrsite@yahoo.gr
   */
 
-//#include "wiring.h"
-#include "io.h"
+
 #include "Arduino.h"
-//#include "variant.h"
-//#include "dac.h"
 
-extern const Pin2PortMapArray g_Pin2PortMapArray[] ;
+#ifdef __cplusplus
+ extern "C" {
+#endif
 
-void pinMode(uint8 pin, WiringPinMode mode)
+void pinMode( uint32_t ulPin, uint32_t ulMode )
 {
-  if (pin >= GPIO_PINS){
+
+  if (ulPin >= GPIO_PINS){
         return;
   }
-    
-  rcc_periph_clock_enable(g_Pin2PortMapArray[pin].periph_clock);
-  
-  switch ( mode )
+
+  switch ( ulMode )
   {
     case INPUT:
-        gpio_set_mode(g_Pin2PortMapArray[pin].GPIOx_Port,       //Port
+        gpio_set_mode(g_PinDescription[ulPin].Port,       //Port
                       GPIO_MODE_INPUT, GPIO_CNF_INPUT_FLOAT,    //
-                      g_Pin2PortMapArray[pin].Pin_abstraction); //Pin
+                      g_PinDescription[ulPin].Pin); //Pin
 		break ;
 
     case INPUT_PULLUP:
-        gpio_set_mode(g_Pin2PortMapArray[pin].GPIOx_Port,
+        gpio_set_mode(g_PinDescription[ulPin].Port,
                       GPIO_MODE_INPUT, GPIO_CNF_INPUT_PULL_UPDOWN,
-                      g_Pin2PortMapArray[pin].Pin_abstraction);
+                      g_PinDescription[ulPin].Pin);
 		break ;
 
     case OUTPUT:
-        gpio_set_mode(g_Pin2PortMapArray[pin].GPIOx_Port,
+        gpio_set_mode(g_PinDescription[ulPin].Port,
                       GPIO_MODE_OUTPUT_50_MHZ,
                       GPIO_CNF_OUTPUT_PUSHPULL,
-                      g_Pin2PortMapArray[pin].Pin_abstraction);
+                      g_PinDescription[ulPin].Pin);
 		break ;
 
     default:
@@ -80,37 +78,37 @@ void pinMode(uint8 pin, WiringPinMode mode)
     }
 }
 
-
-uint32 digitalRead(uint8 pin)
+int digitalRead( uint32_t ulPin )
 {
-  if (pin >= GPIO_PINS){
+  if (ulPin >= GPIO_PINS){
         return 0;
   }
-  
-  gpio_get(g_Pin2PortMapArray[pin].GPIOx_Port, g_Pin2PortMapArray[pin].Pin_abstraction);
+  return gpio_get(g_PinDescription[ulPin].Port, g_PinDescription[ulPin].Pin);
 }
 
-void digitalWrite(uint8 pin, uint8 val)
+void digitalWrite( uint32_t ulPin, uint32_t ulVal )
 {
-  if (pin >= GPIO_PINS){
+
+  if (ulPin >= GPIO_PINS){
         return;
   }
-    
-  if(val == HIGH)
-    gpio_set(g_Pin2PortMapArray[pin].GPIOx_Port, g_Pin2PortMapArray[pin].Pin_abstraction);
+
+  if(ulVal == HIGH)
+    gpio_set(g_PinDescription[ulPin].Port, g_PinDescription[ulPin].Pin);
   else
-    gpio_clear(g_Pin2PortMapArray[pin].GPIOx_Port, g_Pin2PortMapArray[pin].Pin_abstraction);
+    gpio_clear(g_PinDescription[ulPin].Port, g_PinDescription[ulPin].Pin);
+
 }
 
-void togglePin(uint8 pin)
+void togglePin(uint32_t ulPin)
 {
-  if (pin >= GPIO_PINS){
+  if (ulPin >= GPIO_PINS){
         return;
   }
-  
-  gpio_toggle(g_Pin2PortMapArray[pin].GPIOx_Port, g_Pin2PortMapArray[pin].Pin_abstraction);
-}
 
+  gpio_toggle(g_PinDescription[ulPin].Port, g_PinDescription[ulPin].Pin);
+}
+/*
 uint32_t pulseIn( uint8 pin, uint32_t state, uint32_t timeout )
 {
 #if 0
@@ -121,3 +119,4 @@ uint32_t pulseIn( uint8 pin, uint32_t state, uint32_t timeout )
     return (micros()-start_time);
 #endif
 }
+*/

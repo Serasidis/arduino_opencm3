@@ -14,7 +14,7 @@
   You should have received a copy of the GNU Lesser General Public
   License along with this library; if not, write to the Free Software
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-  
+
   - 08 April 2016 Modified by Vassilis Serasidis
     This file is converted for using it with ST HAL + CubeMX + Arduino SAM core files.
 */
@@ -24,47 +24,47 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-  
-extern const Pin2PortMapArray g_Pin2PortMapArray[]=
-{    
 
-    {GPIOA, GPIO0,  RCC_GPIOA},  /*-WKUP  */
-    {GPIOA, GPIO1,  RCC_GPIOA},  /*  */
-    {GPIOA, GPIO2,  RCC_GPIOA},  /*  */
-    {GPIOA, GPIO3,  RCC_GPIOA},  /*  */
-    {GPIOA, GPIO4,  RCC_GPIOA},  /*SPI1_NSS  SPI1_NSS (opt)*/
-    {GPIOA, GPIO5,  RCC_GPIOA},  /*SPI1_SCK  */
-    {GPIOA, GPIO6,  RCC_GPIOA},  /*SPI1_MISO  */
-    {GPIOA, GPIO7,  RCC_GPIOA},  /*SPI1_MOSI  */
-    {GPIOA, GPIO8,  RCC_GPIOA},  /*  */
-    {GPIOA, GPIO9,  RCC_GPIOA},  /*USART1_TX  */
-    {GPIOA, GPIO10, RCC_GPIOA},  /*USART1_RX  */
-    {GPIOA, GPIO11, RCC_GPIOA},  /* USBDM (-)  */
-    {GPIOA, GPIO12, RCC_GPIOA},  /* USBDP (+)  */
-    {GPIOA, GPIO13, RCC_GPIOA},  /*SYS_JTMS-SWDIO  */
-    {GPIOA, GPIO14, RCC_GPIOA},  /*SYS_JTCK-SWCLK  */
-    {GPIOA, GPIO15, RCC_GPIOA},  /*  */
-    
-    {GPIOB, GPIO0,  RCC_GPIOB},  /*  */
-    {GPIOB, GPIO1,  RCC_GPIOB},  /*Output  GPIO_Output  Blue_LED*/
-    {GPIOB, GPIO2,  RCC_GPIOB},  /* BOOT1 */
-    {GPIOB, GPIO3,  RCC_GPIOB},  /*  */
-    {GPIOB, GPIO4,  RCC_GPIOB},  /*  */
-    {GPIOB, GPIO5,  RCC_GPIOB},  /*  */
-    {GPIOB, GPIO6,  RCC_GPIOB},  /*I2C1_SCL  */
-    {GPIOB, GPIO7,  RCC_GPIOB},  /*I2C1_SDA  */
-    {GPIOB, GPIO8,  RCC_GPIOB},  /*CAN_RX  */
-    {GPIOB, GPIO9,  RCC_GPIOB},  /*CAN_TX  */
-    {GPIOB, GPIO10, RCC_GPIOB},  /* USART3_TX  */
-    {GPIOB, GPIO11, RCC_GPIOB},  /* USART3_RX  */
-    {GPIOB, GPIO12, RCC_GPIOB},  /* SPI2_NSS  */
-    {GPIOB, GPIO13, RCC_GPIOB},  /* SPI2_SCK */
-    {GPIOB, GPIO14, RCC_GPIOB},  /* SPI2_MISO */
-    {GPIOB, GPIO15, RCC_GPIOB},  /* SPI2_MOSI */
-    
-    {GPIOC, GPIO13, RCC_GPIOC},  /*-TAMPER-RTC  Output  GPIO_Output  */
-    {GPIOC, GPIO14, RCC_GPIOC},  /*-OSC32_IN   */
-    {GPIOC, GPIO15, RCC_GPIOC}   /*-OSC32_OUT  */
+extern const PinDescription g_PinDescription[]=
+{
+
+    {GPIOA, GPIO0},  /*-WKUP  */
+    {GPIOA, GPIO1},  /*  */
+    {GPIOA, GPIO2},  /*  */
+    {GPIOA, GPIO3},  /*  */
+    {GPIOA, GPIO4},  /*SPI1_NSS  SPI1_NSS (opt)*/
+    {GPIOA, GPIO5},  /*SPI1_SCK  */
+    {GPIOA, GPIO6},  /*SPI1_MISO  */
+    {GPIOA, GPIO7},  /*SPI1_MOSI  */
+    {GPIOA, GPIO8},  /*  */
+    {GPIOA, GPIO9},  /*USART1_TX  */
+    {GPIOA, GPIO10},  /*USART1_RX  */
+    {GPIOA, GPIO11},  /* USBDM (-)  */
+    {GPIOA, GPIO12},  /* USBDP (+)  */
+    {GPIOA, GPIO13},  /*SYS_JTMS-SWDIO  */
+    {GPIOA, GPIO14},  /*SYS_JTCK-SWCLK  */
+    {GPIOA, GPIO15},  /*  */
+
+    {GPIOB, GPIO0},  /*  */
+    {GPIOB, GPIO1},  /*Output  GPIO_Output  Blue_LED*/
+    {GPIOB, GPIO2},  /* BOOT1 */
+    {GPIOB, GPIO3},  /*  */
+    {GPIOB, GPIO4},  /*  */
+    {GPIOB, GPIO5},  /*  */
+    {GPIOB, GPIO6},  /*I2C1_SCL  */
+    {GPIOB, GPIO7},  /*I2C1_SDA  */
+    {GPIOB, GPIO8},  /*CAN_RX  */
+    {GPIOB, GPIO9},  /*CAN_TX  */
+    {GPIOB, GPIO10},  /* USART3_TX  */
+    {GPIOB, GPIO11},  /* USART3_RX  */
+    {GPIOB, GPIO12},  /* SPI2_NSS  */
+    {GPIOB, GPIO13},  /* SPI2_SCK */
+    {GPIOB, GPIO14},  /* SPI2_MISO */
+    {GPIOB, GPIO15},  /* SPI2_MOSI */
+
+    {GPIOC, GPIO13},  /*-TAMPER-RTC  Output  GPIO_Output  */
+    {GPIOC, GPIO14},  /*-OSC32_IN   */
+    {GPIOC, GPIO15}   /*-OSC32_OUT  */
 };
 
 
@@ -86,9 +86,9 @@ void serialEvent() { }
 
 // ----------------------------------------------------------------------------
 
-// Custom board init  
-  
-void initVariant( void )
+// Custom board init
+
+void init( void )
 {
   // BluePill has 8MHz HSE
   rcc_clock_setup_in_hse_8mhz_out_72mhz();    /// Clock 72Hz from HSE 8MHz
@@ -96,13 +96,13 @@ void initVariant( void )
   rcc_periph_clock_enable(RCC_GPIOA);
   rcc_periph_clock_enable(RCC_GPIOB);
   rcc_periph_clock_enable(RCC_GPIOC);
-  
+
   systick_set_clocksource(STK_CSR_CLKSOURCE_AHB_DIV8);    /// SysTick at 72Mhz/8
   systick_set_reload(8999);                               /// SysTick Reload for 1ms tick
   systick_interrupt_enable();
   systick_counter_enable();
-    
+
 }
 
-  
+
 

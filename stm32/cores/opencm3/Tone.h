@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2011 Arduino.  All right reserved.
+  Copyright (c) 2015 Arduino LLC.  All right reserved.
 
   This library is free software; you can redistribute it and/or
   modify it under the terms of the GNU Lesser General Public
@@ -16,20 +16,13 @@
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef _WIRING_TONE_
-#define _WIRING_TONE_
+#pragma once
 
-#include <stdint.h>
-#include <stdlib.h>
-#include <math.h>
+#ifdef __cplusplus
 
-void tone(uint8_t pin, unsigned int frequency, unsigned long duration = 0);
-void noTone(uint8_t pin);
-void set_timer(int ch);
-void handler_tone(void);
+#include "Arduino.h"
 
+void tone(uint32_t _pin, uint32_t frequency, uint32_t duration = 0);
+void noTone(uint32_t _pin);
 
-
-
-
-#endif /* _WIRING_TONE_ */
+#endif

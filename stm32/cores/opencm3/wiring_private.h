@@ -18,12 +18,24 @@
 
 #pragma once
 
+#include <stdint.h>
+#include <stdio.h>
+#include <stdarg.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-extern void init(void);
+// Includes Atmel CMSIS
+#include "sam.h"
+
+#include "wiring_constants.h"
+
+int pinPeripheral( uint32_t ulPin, EPioType ulPeripheral );
 
 #ifdef __cplusplus
-}
+} // extern "C"
+
+#include "HardwareSerial.h"
+
 #endif

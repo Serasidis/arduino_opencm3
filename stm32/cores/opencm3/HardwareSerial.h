@@ -1,94 +1,84 @@
-/******************************************************************************
- * The MIT License
- *
- * Copyright (c) 2010 Perry Hung.
- *
- * Permission is hereby granted, free of charge, to any person
- * obtaining a copy of this software and associated documentation
- * files (the "Software"), to deal in the Software without
- * restriction, including without limitation the rights to use, copy,
- * modify, merge, publish, distribute, sublicense, and/or sell copies
- * of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be
- * included in all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
- * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
- * BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
- * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- *****************************************************************************/
+/*
+  Copyright (c) 2015 Arduino LLC.  All right reserved.
 
-/**
- * @file HardwareSerial.h
- * @brief Wirish serial port interface.
- */
+  This library is free software; you can redistribute it and/or
+  modify it under the terms of the GNU Lesser General Public
+  License as published by the Free Software Foundation; either
+  version 2.1 of the License, or (at your option) any later version.
 
- /*
- * Arduino srl - www.arduino.org
- * 2016 Jun 9: Edited Francesco Alessi (alfran) - francesco@arduino.org
- */
+  This library is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  See the GNU Lesser General Public License for more details.
 
-#ifndef _HARDWARESERIAL_H_
-#define _HARDWARESERIAL_H_
+  You should have received a copy of the GNU Lesser General Public
+  License along with this library; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+*/
 
-#include "types.h"
-#include "usart.h"
+#ifndef HardwareSerial_h
+#define HardwareSerial_h
+
+#include <inttypes.h>
 
 #include "Stream.h"
 
-/*
- * IMPORTANT:
- *
- * This class documented "by hand" (i.e., not using Doxygen) in the
- * leaflabs-docs/ repository.
- *
- * If you alter the public HardwareSerial interface, you MUST update
- * the documentation accordingly.
- */
+#define HARDSER_PARITY_EVEN (0x1ul)
+#define HARDSER_PARITY_ODD	(0x2ul)
+#define HARDSER_PARITY_NONE (0x3ul)
+#define HARDSER_PARITY_MASK	(0xFul)
 
-class HardwareSerial : public Stream {
-public:
-    HardwareSerial(usart_dev *usart_device);
+#define HARDSER_STOP_BIT_1		(0x10ul)
+#define HARDSER_STOP_BIT_1_5	(0x20ul)
+#define HARDSER_STOP_BIT_2	 	(0x30ul)
+#define HARDSER_STOP_BIT_MASK	(0xF0ul)
 
-    /* Set up/tear down */
-    void begin(uint32 baud);
-    void end(void);
+#define HARDSER_DATA_5	 	(0x100ul)
+#define HARDSER_DATA_6	 	(0x200ul)
+#define HARDSER_DATA_7	 	(0x300ul)
+#define HARDSER_DATA_8	 	(0x400ul)
+#define HARDSER_DATA_MASK	(0xF00ul)
 
-    /* I/O */
-    virtual int available(void);
-    virtual int peek(void);
-    virtual void flush(void);
-    uint32 pending(void);
-    virtual int read(void);
-    virtual size_t write(unsigned char);
-    using Print::write;
-    operator bool() { return true; };
-    int txPin(void) { return this->tx_pin; }
-    int rxPin(void) { return this->rx_pin; }
+#define SERIAL_5N1	(HARDSER_STOP_BIT_1 | HARDSER_PARITY_NONE | HARDSER_DATA_5)
+#define SERIAL_6N1	(HARDSER_STOP_BIT_1 | HARDSER_PARITY_NONE | HARDSER_DATA_6)
+#define SERIAL_7N1	(HARDSER_STOP_BIT_1 | HARDSER_PARITY_NONE | HARDSER_DATA_7)
+#define SERIAL_8N1	(HARDSER_STOP_BIT_1 | HARDSER_PARITY_NONE | HARDSER_DATA_8)
+#define SERIAL_5N2	(HARDSER_STOP_BIT_2 | HARDSER_PARITY_NONE | HARDSER_DATA_5)
+#define SERIAL_6N2	(HARDSER_STOP_BIT_2 | HARDSER_PARITY_NONE | HARDSER_DATA_6)
+#define SERIAL_7N2	(HARDSER_STOP_BIT_2 | HARDSER_PARITY_NONE | HARDSER_DATA_7)
+#define SERIAL_8N2	(HARDSER_STOP_BIT_2 | HARDSER_PARITY_NONE | HARDSER_DATA_8)
+#define SERIAL_5E1	(HARDSER_STOP_BIT_1 | HARDSER_PARITY_EVEN | HARDSER_DATA_5)
+#define SERIAL_6E1	(HARDSER_STOP_BIT_1 | HARDSER_PARITY_EVEN | HARDSER_DATA_6)
+#define SERIAL_7E1	(HARDSER_STOP_BIT_1 | HARDSER_PARITY_EVEN | HARDSER_DATA_7)
+#define SERIAL_8E1	(HARDSER_STOP_BIT_1 | HARDSER_PARITY_EVEN | HARDSER_DATA_8)
+#define SERIAL_5E2	(HARDSER_STOP_BIT_2 | HARDSER_PARITY_EVEN | HARDSER_DATA_5)
+#define SERIAL_6E2	(HARDSER_STOP_BIT_2 | HARDSER_PARITY_EVEN | HARDSER_DATA_6)
+#define SERIAL_7E2	(HARDSER_STOP_BIT_2 | HARDSER_PARITY_EVEN | HARDSER_DATA_7)
+#define SERIAL_8E2	(HARDSER_STOP_BIT_2 | HARDSER_PARITY_EVEN | HARDSER_DATA_8)
+#define SERIAL_5O1	(HARDSER_STOP_BIT_1 | HARDSER_PARITY_ODD  | HARDSER_DATA_5)
+#define SERIAL_6O1	(HARDSER_STOP_BIT_1 | HARDSER_PARITY_ODD  | HARDSER_DATA_6)
+#define SERIAL_7O1	(HARDSER_STOP_BIT_1 | HARDSER_PARITY_ODD  | HARDSER_DATA_7)
+#define SERIAL_8O1	(HARDSER_STOP_BIT_1 | HARDSER_PARITY_ODD  | HARDSER_DATA_8)
+#define SERIAL_5O2	(HARDSER_STOP_BIT_2 | HARDSER_PARITY_ODD  | HARDSER_DATA_5)
+#define SERIAL_6O2	(HARDSER_STOP_BIT_2 | HARDSER_PARITY_ODD  | HARDSER_DATA_6)
+#define SERIAL_7O2	(HARDSER_STOP_BIT_2 | HARDSER_PARITY_ODD  | HARDSER_DATA_7)
+#define SERIAL_8O2	(HARDSER_STOP_BIT_2 | HARDSER_PARITY_ODD  | HARDSER_DATA_8)
 
-
-private:
-    usart_dev *usart_device;
-    uint8 tx_pin;
-    uint8 rx_pin;
+class HardwareSerial : public Stream
+{
+  public:
+    virtual void begin(unsigned long);
+    virtual void begin(unsigned long baudrate, uint16_t config);
+    virtual void end();
+    virtual int available(void) = 0;
+    virtual int peek(void) = 0;
+    virtual int read(void) = 0;
+    virtual void flush(void) = 0;
+    virtual size_t write(uint8_t) = 0;
+    using Print::write; // pull in write(str) and write(buf, size) from Print
+    virtual operator bool() = 0;
 };
 
-extern HardwareSerial Serial0;
-extern HardwareSerial Serial1;
-extern HardwareSerial Serial2;
-extern HardwareSerial Serial3;
-extern HardwareSerial Serial4;
-extern HardwareSerial Serial5;
-extern HardwareSerial Serial6;
-extern HardwareSerial Serial7;
-extern HardwareSerial Serial8;
-extern HardwareSerial SerialESP;
+extern void serialEventRun(void) __attribute__((weak));
 
-extern HardwareSerial &SerialDebug;
 #endif

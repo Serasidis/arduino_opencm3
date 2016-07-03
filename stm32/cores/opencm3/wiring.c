@@ -16,13 +16,46 @@
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#pragma once
+#include "Arduino.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-extern void init(void);
+/*
+ * System Core Clock is at 1MHz (8MHz/8) at Reset.
+ * It is switched to 48MHz in the Reset Handler (startup.c)
+ */
+uint32_t SystemCoreClock=1000000ul ;
+
+/*
+void calibrateADC()
+{
+  volatile uint32_t valeur = 0;
+
+  for(int i = 0; i < 5; ++i)
+  {
+    ADC->SWTRIG.bit.START = 1;
+    while( ADC->INTFLAG.bit.RESRDY == 0 || ADC->STATUS.bit.SYNCBUSY == 1 )
+    {
+      // Waiting for a complete conversion and complete synchronization
+    }
+
+    valeur += ADC->RESULT.bit.RESULT;
+  }
+
+  valeur = valeur/5;
+}*/
+
+
+/*
+    Init common for all variants
+*/
+
+void init( void )
+{
+
+}
 
 #ifdef __cplusplus
 }
