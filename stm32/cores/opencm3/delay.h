@@ -85,7 +85,7 @@ static __inline__ void delayMicroseconds( uint32_t usec )
 
   // VARIANT_MCK / 1000000 == cycles needed to delay 1uS
   //                     7 == cycles used in a loop 
-  uint32_t n = usec * (VARIANT_MCK / 1000000) / 7;
+  uint32_t n = usec * (VARIANT_MCK / 1000000) / 9;
   __asm__ __volatile__(
     "1:              \n"
     "   nop          \n"
