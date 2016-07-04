@@ -118,6 +118,9 @@
 		<Unit filename="../stm32/cores/opencm3/Server.h" />
 		<Unit filename="../stm32/cores/opencm3/Stream.h" />
 		<Unit filename="../stm32/cores/opencm3/Tone.h" />
+		<Unit filename="../stm32/cores/opencm3/Uart.cpp">
+			<Option target="arduino" />
+		</Unit>
 		<Unit filename="../stm32/cores/opencm3/Uart.h" />
 		<Unit filename="../stm32/cores/opencm3/Udp.h" />
 		<Unit filename="../stm32/cores/opencm3/WCharacter.h" />

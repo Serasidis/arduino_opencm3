@@ -26,8 +26,7 @@
  *----------------------------------------------------------------------------*/
 #include "Arduino.h"
 #ifdef __cplusplus
-//#include "UARTClass.h"
-//#include "USARTClass.h"
+#include "Uart.h"
 #endif
 
 #ifdef __cplusplus
@@ -62,9 +61,27 @@ typedef struct _PinDescription
 
 extern const PinDescription g_PinDescription[] ;
 
+#define PIN_SERIAL1_RX       PA10
+#define PIN_SERIAL1_TX       PA9
+
+#define PIN_SERIAL2_RX       PA3
+#define PIN_SERIAL2_TX       PA2
+
+#define PIN_SERIAL3_RX       PB11
+#define PIN_SERIAL3_TX       PB10
+
 #ifdef __cplusplus
 }
 #endif
 
+/*----------------------------------------------------------------------------
+ *        Arduino objects - C++ only
+ *----------------------------------------------------------------------------*/
+
+#ifdef __cplusplus
+extern Uart Serial1;
+extern Uart Serial2;
+extern Uart Serial3;
+#endif
 
 #endif

@@ -27,11 +27,11 @@ extern "C" {
 #endif
 
 // Includes Atmel CMSIS
-#include "sam.h"
+//#include "sam.h"
 
 #include "wiring_constants.h"
 
-int pinPeripheral( uint32_t ulPin, EPioType ulPeripheral );
+//int pinPeripheral( uint32_t ulPin, EPioType ulPeripheral );
 
 #ifdef __cplusplus
 } // extern "C"

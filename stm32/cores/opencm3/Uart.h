@@ -19,15 +19,13 @@
 #pragma once
 
 #include "HardwareSerial.h"
-#include "SERCOM.h"
 #include "RingBuffer.h"
-
 #include <cstddef>
 
 class Uart : public HardwareSerial
 {
   public:
-    Uart(SERCOM *_s, uint8_t _pinRX, uint8_t _pinTX, SercomRXPad _padRX, SercomUartTXPad _padTX);
+    Uart(uint32_t usartn);
     void begin(unsigned long baudRate);
     void begin(unsigned long baudrate, uint16_t config);
     void end();
@@ -40,19 +38,11 @@ class Uart : public HardwareSerial
     using Print::write; // pull in write(str) and write(buf, size) from Print
 
     void IrqHandler();
-
+    void push(uint8_t b);
     operator bool() { return true; }
 
   private:
-    SERCOM *sercom;
     RingBuffer rxBuffer;
+    uint32_t  usart;
 
-    uint8_t uc_pinRX;
-    uint8_t uc_pinTX;
-    SercomRXPad uc_padRX;
-    SercomUartTXPad uc_padTX;
-
-    SercomNumberStopBit extractNbStopBit(uint16_t config);
-    SercomUartCharSize extractCharSize(uint16_t config);
-    SercomParityMode extractParity(uint16_t config);
 };
