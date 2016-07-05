@@ -17,10 +17,12 @@
  *----------------------------------------------------------------------------*/
 
 /** Frequency of the board main oscillator */
-#define VARIANT_MAINOSC		8000000
+#define VARIANT_MAINOSC   8000000
 
 /** Master clock frequency */
-#define VARIANT_MCK			72000000
+#define VARIANT_MCK       72000000
+
+#define SYSTICK_RELOAD_VAL ((VARIANT_MCK / 8)/1000) //In this case the value is ((72000000 MHz / 8) / 1000) = 9000 ticks
 /*----------------------------------------------------------------------------
  *        Headers
  *----------------------------------------------------------------------------*/
@@ -55,8 +57,8 @@ enum {
 
 typedef struct _PinDescription
 {
-  	uint32_t   Port;
-  	uint16_t 	Pin;
+    uint32_t   Port;
+    uint16_t 	Pin;
 } PinDescription ;
 
 extern const PinDescription g_PinDescription[] ;

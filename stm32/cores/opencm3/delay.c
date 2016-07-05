@@ -37,7 +37,9 @@ uint32_t millis( void )
 // When it appears that millis counter and pending is stable and SysTick hasn't rolled over, use these
 // values to calculate micros. If there is a pending SysTick, add one to the millis counter in the calculation.
 uint32_t micros( void )
-{ 
+{
+  _ulTickCount2 = (1000 * _ulTickCount);
+  _ulTickCount2 += ((SYSTICK_RELOAD_VAL - systick_get_value()) / (SYSTICK_RELOAD_VAL / 1000));
   return _ulTickCount2;
 }
 
@@ -48,7 +50,7 @@ void delay( uint32_t ms )
     return ;
   }
 
-  uint32_t start = _ulTickCount ;
+  uint32_t start = _ulTickCount;
 
   do
   {
@@ -60,11 +62,7 @@ void delay( uint32_t ms )
 
 void sys_tick_handler(void)
 {
-  // Increment tick count each ms
-  _ulTickCount2++;
-  if((_ulTickCount2 % 1000) == 0){
     _ulTickCount++;
-  }
 }
 
 #ifdef __cplusplus

@@ -101,8 +101,8 @@ void init( void )
   rcc_periph_clock_enable(RCC_GPIOB);
   rcc_periph_clock_enable(RCC_GPIOC);
 
-  systick_set_clocksource(STK_CSR_CLKSOURCE_AHB);       /// SysTick at 72Mhz
-  systick_set_reload(72);                               /// SysTick Reload for 1us tick (72 / 72000000 /  = 0.0000001 s )
+  systick_set_clocksource(STK_CSR_CLKSOURCE_AHB_DIV8);    /// SysTick at 72Mhz/8
+  systick_set_reload(SYSTICK_RELOAD_VAL - 1);             /// SysTick Reload for 1ms tick
   systick_interrupt_enable();
   systick_counter_enable();
 

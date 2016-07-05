@@ -27,8 +27,8 @@ extern "C" {
 #include "variant.h"
 
 /** Tick Counter united by ms */
-static volatile uint32_t _ulTickCount=0 ;
-static volatile uint32_t _ulTickCount2=0 ;
+static volatile uint32_t _ulTickCount = 0 ;
+static volatile uint32_t _ulTickCount2 = 0 ;
 
 /**
  * \brief Returns the number of milliseconds since the Arduino board began running the current program.
@@ -73,11 +73,11 @@ static __inline__ void delayMicroseconds( uint32_t usec )
     return ;
   }
   
-  uint32_t start = _ulTickCount2 ;
+  uint32_t start = micros();
   do
   {
-    yield() ;
-  } while ( _ulTickCount2 - start < usec ) ;
+    yield();
+  } while ( micros() - start < usec ) ;
 }
 
 #ifdef __cplusplus
