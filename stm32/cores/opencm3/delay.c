@@ -38,6 +38,7 @@ uint32_t millis( void )
 // values to calculate micros. If there is a pending SysTick, add one to the millis counter in the calculation.
 uint32_t micros( void )
 {
+  volatile uint32_t _ulTickCount2 = 0 ;
   _ulTickCount2 = (1000 * _ulTickCount);
   _ulTickCount2 += ((SYSTICK_RELOAD_VAL - systick_get_value()) / (SYSTICK_RELOAD_VAL / 1000));
   return _ulTickCount2;
