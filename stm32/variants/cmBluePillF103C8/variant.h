@@ -58,6 +58,10 @@ extern "C"{
 
 #define GPIO_PINS      35
 
+#define digitalPinToPort(P)        ( g_PinDescription[P].Port )
+#define digitalPinToBitMask(P)     ( g_PinDescription[P].Pin )
+//#define portOutputRegister(port)   ( &(port->PIO_ODSR) )
+//#define portInputRegister(port)    ( &(port->PIO_PDSR) )
 
 /* This mapping is for from Blue pill Schematic */
 enum {
@@ -104,6 +108,7 @@ extern const spi_port SPI_PinDescription[];
 
 #ifdef __cplusplus
 extern Uart Serial1;
+#define Serial Serial1
 extern Uart Serial2;
 extern Uart Serial3;
 #endif
