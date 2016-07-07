@@ -26,6 +26,7 @@ This repository is a testbed for combining the libopencm3 libray with Arduino ID
 `7 July 2016 ` **[ SPI support  ]**
   
 * Added SPI support (SPI, SPI1,...,SPI6)
+* Added a modified version of the Adafuit ILI9341 library.
 
 ---
 `5 July 2016 ` **[ Timing functions ]**
