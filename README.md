@@ -33,6 +33,11 @@ This repository is a testbed for combining the libopencm3 libray with Arduino ID
 * `delay.c` Added support to **delay()**, **delayMicroseconds()**, **millis()** and **micros()** functions. 
 
 ---
+`3 July 2016 ` **[ Serial ports ]**
+
+* `Uart.cpp` Added support to hardware **Serial1**, **Serial2** and **Serial3**.
+
+---
 `2 July 2016 ` **[ Removed the libmaple files ]**
 
 * Removed some files from the core that have belonged to the old libmaple core.
