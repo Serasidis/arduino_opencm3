@@ -14,11 +14,21 @@
   You should have received a copy of the GNU Lesser General Public
   License along with this library; if not, write to the Free Software
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-
-  - 08 April 2016 Modified by Vassilis Serasidis
-    This file is converted for using it with ST HAL + CubeMX + Arduino SAM core files.
+  
+  Last edit: 07 Jul 2016 
+  
 */
 
+ /**
+  * Modified for using this library with libopencm3 and STM32 MCUs.
+  * 06 Jul 2016 - Modified by Vassilis Serasidis <avrsite@yahoo.gr>
+  * Home: http://www.serasidis.gr
+  */
+
+ /**
+  * Edited by Evangelos Arkalis.
+  */
+  
 #include "variant.h"
 
 #ifdef __cplusplus
@@ -67,7 +77,12 @@ extern const PinDescription g_PinDescription[]=
     {GPIOC, GPIO15}   /*-OSC32_OUT  */
 };
 
-
+extern const spi_port SPI_PinDescription[]{
+   { PA4 , PA5 , PA6 , PA7  } // SPI1 - NSS pin, SCK pin, MISO pin, MOSI pin
+  ,{ PB12, PB13, PB14, PB15 } // SPI2 - NSS pin, SCK pin, MISO pin, MOSI pin
+/* The SPI3 is not  used in this variant
+  ,{ PA15, PB3 , PB4 , PB5  } // SPI3 - NSS pin, SCK pin, MISO pin, MOSI pin */
+};
 
 #ifdef __cplusplus
 }

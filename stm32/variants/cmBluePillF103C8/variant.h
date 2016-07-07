@@ -1,14 +1,24 @@
 /****************************************************************************
  * Copyright (c) 2016 by Vassilis Serasidis <info@serasidis.gr>
  *
- * Variant definition library for Arduino STM32 + HAL + CubeMX (HALMX).
+ * Home: http://www.serasidis.gr
+ *
+ * Variant definition library for Arduino IDE + libopencm3.
  *
  * This file is free software; you can redistribute it and/or modify
- * it under the terms of either the GNU General Public License version 2
- * or the GNU Lesser General Public License version 2.1, both as
+ * it under the terms of either the GNU General Public License version 3
+ * or the GNU Lesser General Public License version 3, both as
  * published by the Free Software Foundation.
+ * ( https://www.gnu.org/licenses/gpl-3.0.html )
+ *
+ * Last edit: 07 Jul 2016 
+ *
  ****************************************************************************/
-
+  
+ /**
+  * Edited by Evangelos Arkalis.
+  */
+  
 #ifndef _VARIANT_BLUEPILL_F103_
 #define _VARIANT_BLUEPILL_F103_
 
@@ -40,6 +50,7 @@ extern "C"{
 #include <libopencm3/stm32/usart.h>
 #include <libopencm3/stm32/flash.h>
 #include <libopencm3/stm32/gpio.h>
+#include <libopencm3/stm32/spi.h>
 #include <libopencm3/cm3/nvic.h>
 #include <libopencm3/cm3/systick.h>
 
@@ -57,20 +68,31 @@ enum {
 
 typedef struct _PinDescription
 {
-    uint32_t   Port;
-    uint16_t 	Pin;
+   uint32_t  Port;
+   uint16_t  Pin;
 } PinDescription ;
 
-extern const PinDescription g_PinDescription[] ;
+typedef struct spi_port{
+  uint16_t  cs_pin;
+  uint16_t  mosi_pin;
+  uint16_t  miso_pin;
+  uint16_t  sck_pin;
+}spi_port;
 
-#define PIN_SERIAL1_RX       PA10
-#define PIN_SERIAL1_TX       PA9
+extern const PinDescription g_PinDescription[];
+extern const spi_port SPI_PinDescription[];
 
-#define PIN_SERIAL2_RX       PA3
-#define PIN_SERIAL2_TX       PA2
+#define PIN_SERIAL1_RX        PA10
+#define PIN_SERIAL1_TX        PA9
 
-#define PIN_SERIAL3_RX       PB11
-#define PIN_SERIAL3_TX       PB10
+#define PIN_SERIAL2_RX        PA3
+#define PIN_SERIAL2_TX        PA2
+
+#define PIN_SERIAL3_RX        PB11
+#define PIN_SERIAL3_TX        PB10
+
+#define SPI_INTERFACES_COUNT  2   //The STM32F103C8T6 has 2 SPI ports.
+#define SPI_MIN_CLOCK_DIVIDER 4   //Maximum SPI clock speed (72MHz / 4 = 18 MHz)
 
 #ifdef __cplusplus
 }

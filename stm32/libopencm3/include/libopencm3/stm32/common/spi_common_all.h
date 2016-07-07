@@ -43,12 +43,12 @@ specific memorymap.h header before including this header file.*/
 @ingroup spi_defines
 
 @{*/
-#define SPI1				SPI1_BASE
-#define SPI2				SPI2_BASE
-#define SPI3				SPI3_BASE
-#define SPI4				SPI4_BASE
-#define SPI5				SPI5_BASE
-#define SPI6				SPI6_BASE
+#define SPI_1				SPI1_BASE
+#define SPI_2				SPI2_BASE
+#define SPI_3				SPI3_BASE
+#define SPI_4				SPI4_BASE
+#define SPI_5				SPI5_BASE
+#define SPI_6				SPI6_BASE
 /**@}*/
 
 /* --- SPI registers ------------------------------------------------------- */

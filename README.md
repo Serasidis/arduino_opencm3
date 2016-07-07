@@ -20,3 +20,25 @@ This repository is a testbed for combining the libopencm3 libray with Arduino ID
 - Evangelos Arkalis (https://github.com/evark)
 
 
+  
+##Roadmap
+
+`7 July 2016 ` **[ SPI support  ]**
+  
+* Added SPI support (SPI, SPI1,...,SPI6)
+
+## 
+`5 July 2016 ` **[ Timing functions ]**
+
+* `delay.c` Added support to **delay()**, **delayMicroseconds()**, **millis()** and **micros()** functions. 
+
+## 
+`2 July 2016 ` **[ Removed the libmaple files ]**
+
+* Removed some files from the core that have belonged to the old libmaple core.
+
+## 
+`30 June 2016 ` **[ Initial release ]** 
+
+* Added core files from official Arduino core
+* `wiring_digital.c` Added **pinMode()** , **digitalRead()** , **digitalWrite()** and **togglePin()** functions.
