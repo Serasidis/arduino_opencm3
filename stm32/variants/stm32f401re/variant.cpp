@@ -112,14 +112,14 @@ extern const PinDescription g_PinDescription[]=
 #else
   #define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
 #endif /* __GNUC__ */
-/*
+
 void serialEvent() __attribute__((weak));
 void serialEvent() { }
 
 Uart Serial1(USART1);
 Uart Serial2(USART2);
-Uart Serial3(USART3);
-*/
+//Uart Serial3(USART3);
+
 // ----------------------------------------------------------------------------
 
 // Custom board init

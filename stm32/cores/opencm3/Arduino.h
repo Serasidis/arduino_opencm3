@@ -116,10 +116,10 @@ extern void loop( void ) ;
 
 #define bit(b) (1UL << (b))
 
-#if (ARDUINO_STM32_VARIANT_COMPLIANCE >= 10606)
+//#if (ARDUINO_STM32_VARIANT_COMPLIANCE >= 10606)
 // Interrupts
-#define digitalPinToInterrupt(P)   ( P )
-#endif
+//#define digitalPinToInterrupt(P)   ( P )
+//#endif
 
 // USB Device
 //#include "USB/USBDesc.h"

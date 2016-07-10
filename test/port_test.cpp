@@ -7,5 +7,5 @@ void setup() {
 void loop() {
   /* Using API function gpio_toggle(): */
   togglePin(LED1);
-  delay(100);
+  delay(1000);
 }

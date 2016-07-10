@@ -247,6 +247,7 @@
 		<Unit filename="../stm32/cores/opencm3/Tone.h" />
 		<Unit filename="../stm32/cores/opencm3/Uart.cpp">
 			<Option target="arduino-f103" />
+			<Option target="arduino-f401re" />
 		</Unit>
 		<Unit filename="../stm32/cores/opencm3/Uart.h" />
 		<Unit filename="../stm32/cores/opencm3/Udp.h" />
@@ -590,17 +591,6 @@
 		<Unit filename="../stm32/libopencm3/include/libopencmsis/stm32/l0/irqhandlers.h" />
 		<Unit filename="../stm32/libopencm3/include/libopencmsis/stm32/l1/irqhandlers.h" />
 		<Unit filename="../stm32/libopencm3/include/libopencmsis/stm32/l4/irqhandlers.h" />
-		<Unit filename="../stm32/variants/stm32f401re/variant.cpp">
-			<Option target="blink-f401re" />
-			<Option target="blink_systick-f401re" />
-			<Option target="port_test-f401re" />
-		</Unit>
-		<Unit filename="../stm32/variants/stm32f401re/variant.h">
-			<Option target="blink-f401re" />
-			<Option target="blink_systick-f401re" />
-			<Option target="port_test-f401re" />
-			<Option target="arduino-f401re" />
-		</Unit>
 		<Unit filename="../stm32/variants/stm32f103c8/variant.cpp">
 			<Option target="blink-f103" />
 			<Option target="blink_systick-f103" />
@@ -611,6 +601,17 @@
 			<Option target="blink-f103" />
 			<Option target="blink_systick-f103" />
 			<Option target="port_test-f103" />
+		</Unit>
+		<Unit filename="../stm32/variants/stm32f401re/variant.cpp">
+			<Option target="blink-f401re" />
+			<Option target="blink_systick-f401re" />
+			<Option target="port_test-f401re" />
+		</Unit>
+		<Unit filename="../stm32/variants/stm32f401re/variant.h">
+			<Option target="blink-f401re" />
+			<Option target="blink_systick-f401re" />
+			<Option target="port_test-f401re" />
+			<Option target="arduino-f401re" />
 		</Unit>
 		<Unit filename="PeripheralNames.h">
 			<Option target="port_test-f103" />

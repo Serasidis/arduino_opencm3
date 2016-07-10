@@ -46,14 +46,23 @@ void pinMode( uint32_t ulPin, uint32_t ulMode )
         gpio_set_mode(g_PinDescription[ulPin].Port,       //Port
                       GPIO_MODE_INPUT, GPIO_CNF_INPUT_FLOAT,    //
                       g_PinDescription[ulPin].Pin); //Pin
+#else
+        gpio_mode_setup(g_PinDescription[ulPin].Port,       //Port
+                      GPIO_MODE_INPUT, GPIO_PUPD_NONE,    //
+                      g_PinDescription[ulPin].Pin); //Pin
 #endif // defined
 		break ;
+
 
     case INPUT_PULLUP:
 #if defined(STM32F1)
         gpio_set_mode(g_PinDescription[ulPin].Port,
                       GPIO_MODE_INPUT, GPIO_CNF_INPUT_PULL_UPDOWN,
                       g_PinDescription[ulPin].Pin);
+#else
+        gpio_mode_setup(g_PinDescription[ulPin].Port,       //Port
+                      GPIO_MODE_INPUT, GPIO_PUPD_PULLUP,    //
+                      g_PinDescription[ulPin].Pin); //Pin
 #endif
 		break ;
 
@@ -63,6 +72,11 @@ void pinMode( uint32_t ulPin, uint32_t ulMode )
                       GPIO_MODE_OUTPUT_50_MHZ,
                       GPIO_CNF_OUTPUT_PUSHPULL,
                       g_PinDescription[ulPin].Pin);
+#else
+        gpio_mode_setup(g_PinDescription[ulPin].Port,       //Port
+                      GPIO_MODE_OUTPUT, GPIO_PUPD_NONE,    //
+                      g_PinDescription[ulPin].Pin); //Pin
+
 #endif
 		break ;
 

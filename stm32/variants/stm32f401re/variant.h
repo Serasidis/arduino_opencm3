@@ -97,8 +97,8 @@ extern const spi_port SPI_PinDescription[];
 #define PIN_SERIAL2_RX        PA3
 #define PIN_SERIAL2_TX        PA2
 
-#define PIN_SERIAL3_RX        PB11
-#define PIN_SERIAL3_TX        PB10
+//#define PIN_SERIAL3_RX        PB11
+//#define PIN_SERIAL3_TX        PB10
 
 #define SPI_INTERFACES_COUNT  2   //The STM32F103C8T6 has 2 SPI ports.
 #define SPI_MIN_CLOCK_DIVIDER 4   //Maximum SPI clock speed (72MHz / 4 = 18 MHz)
@@ -115,7 +115,7 @@ extern const spi_port SPI_PinDescription[];
 extern Uart Serial1;
 #define Serial Serial1
 extern Uart Serial2;
-extern Uart Serial3;
+//extern Uart Serial3;
 #endif
 
 #endif

@@ -40,22 +40,43 @@ void Uart::begin(unsigned long baudrate, uint16_t config)
         case USART1:
             rcc_periph_clock_enable(RCC_USART1);
             nvic_enable_irq(NVIC_USART1_IRQ);
+#if defined(STM32F1)
             gpio_set_mode(GPIOA, GPIO_MODE_OUTPUT_50_MHZ,GPIO_CNF_OUTPUT_ALTFN_PUSHPULL, GPIO_USART1_TX);   // TODO - Use g_PinDescription
             gpio_set_mode(GPIOA, GPIO_MODE_INPUT, GPIO_CNF_INPUT_FLOAT, GPIO_USART1_RX);                    // TODO - Use g_PinDescription
+#else
+	        gpio_mode_setup(GPIOA, GPIO_MODE_AF, GPIO_PUPD_NONE, GPIO9);
+            gpio_mode_setup(GPIOA, GPIO_MODE_AF, GPIO_PUPD_NONE, GPIO10);
+	        gpio_set_output_options(GPIOA, GPIO_OTYPE_OD, GPIO_OSPEED_25MHZ, GPIO10);
+            gpio_set_af(GPIOA, GPIO_AF7, GPIO9);
+	        gpio_set_af(GPIOA, GPIO_AF7, GPIO10);
+
+#endif
             break;
 
         case USART2:
             rcc_periph_clock_enable(RCC_USART2);
             nvic_enable_irq(NVIC_USART2_IRQ);
+#if defined(STM32F1)
             gpio_set_mode(GPIOA, GPIO_MODE_OUTPUT_50_MHZ,GPIO_CNF_OUTPUT_ALTFN_PUSHPULL, GPIO_USART2_TX);
             gpio_set_mode(GPIOA, GPIO_MODE_INPUT,GPIO_CNF_INPUT_FLOAT, GPIO_USART2_RX);
+#else
+	        gpio_mode_setup(GPIOA, GPIO_MODE_AF, GPIO_PUPD_NONE, GPIO2);
+            gpio_mode_setup(GPIOA, GPIO_MODE_AF, GPIO_PUPD_NONE, GPIO3);
+	        gpio_set_output_options(GPIOA, GPIO_OTYPE_OD, GPIO_OSPEED_25MHZ, GPIO3);
+            gpio_set_af(GPIOA, GPIO_AF7, GPIO2);
+	        gpio_set_af(GPIOA, GPIO_AF7, GPIO3);
+#endif
             break;
 
         case USART3:
             rcc_periph_clock_enable(RCC_USART3);
             nvic_enable_irq(NVIC_USART3_IRQ);
+#if defined(STM32F1)
             gpio_set_mode(GPIOB, GPIO_MODE_OUTPUT_50_MHZ, GPIO_CNF_OUTPUT_ALTFN_PUSHPULL, GPIO_USART3_TX);
             gpio_set_mode(GPIOB, GPIO_MODE_INPUT, GPIO_CNF_INPUT_FLOAT, GPIO_USART3_RX);
+#else
+
+#endif
             break;
     }
     usart_set_baudrate(usart, baudrate);
@@ -111,10 +132,6 @@ void Uart::push(uint8_t b) {
 }
 
 extern Uart Serial1;
-extern Uart Serial2;
-extern Uart Serial3;
-
-
 void usart1_isr(void)
 {
     /* Check if we were called because of RXNE. */
@@ -126,6 +143,7 @@ void usart1_isr(void)
     }
 }
 
+extern Uart Serial2;
 void usart2_isr(void)
 {
     /* Check if we were called because of RXNE. */
@@ -136,7 +154,8 @@ void usart2_isr(void)
         Serial2.push(c);
     }
 }
-
+#if defined(STM32F1)
+extern Uart Serial3;
 void usart3_isr(void)
 {
     /* Check if we were called because of RXNE. */
@@ -147,4 +166,4 @@ void usart3_isr(void)
         Serial3.push(c);
     }
 }
-
+#endif // defined
