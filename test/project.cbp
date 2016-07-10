@@ -6,53 +6,161 @@
 		<Option pch_mode="2" />
 		<Option compiler="arm-elf-gcc" />
 		<Build>
-			<Target title="arduino">
-				<Option output="_bin/arduino.ar" prefix_auto="0" extension_auto="0" />
+			<Target title="arduino-f103">
+				<Option output="_bin/${TARGET_NAME}.ar" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="" />
-				<Option object_output="_obj/" />
+				<Option object_output="_obj/${TARGET_NAME}" />
 				<Option type="2" />
 				<Option compiler="arm-elf-gcc" />
 				<Compiler>
+					<Add option="-mcpu=cortex-m3" />
+					<Add option="-mthumb" />
+					<Add option="-msoft-float" />
+					<Add option="-mfix-cortex-m3-ldrd" />
+					<Add option="-DSTM32F1" />
 					<Add directory="../stm32/variants/cmBluePillF103C8" />
 				</Compiler>
 			</Target>
-			<Target title="blink">
+			<Target title="arduino-f401re">
+				<Option output="_bin/${TARGET_NAME}.ar" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="" />
+				<Option object_output="_obj/${TARGET_NAME}" />
+				<Option type="2" />
+				<Option compiler="arm-elf-gcc" />
+				<Compiler>
+					<Add option="-mcpu=cortex-m4" />
+					<Add option="-mthumb" />
+					<Add option="-mfloat-abi=hard" />
+					<Add option="-mfpu=fpv4-sp-d16" />
+					<Add option="-DSTM32F4" />
+					<Add directory="../stm32/variants/Nucleo401RE" />
+				</Compiler>
+			</Target>
+			<Target title="blink-f103">
 				<Option output="_bin/${TARGET_NAME}/${TARGET_NAME}" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="" />
 				<Option object_output="_obj/${TARGET_NAME}" />
 				<Option type="5" />
 				<Option compiler="arm-elf-gcc" />
 				<Compiler>
+					<Add option="-mcpu=cortex-m3" />
+					<Add option="-mthumb" />
+					<Add option="-msoft-float" />
+					<Add option="-mfix-cortex-m3-ldrd" />
+					<Add option="-DSTM32F1" />
 					<Add directory="../stm32/variants/cmBluePillF103C8" />
 				</Compiler>
+				<Linker>
+					<Add option="-mcpu=cortex-m3" />
+					<Add option="-msoft-float" />
+					<Add option="-mfix-cortex-m3-ldrd" />
+					<Add option="-Tstm32f103rbt6.ld" />
+					<Add option="-Wl,--start-group  _bin/arduino-f103.ar -lopencm3_stm32f1 -lc -lgcc -lnosys -Wl,--end-group" />
+				</Linker>
 				<ExtraCommands>
 					<Add after="arm-none-eabi-size $(TARGET_OUTPUT_FILE)" />
 					<Add after="arm-none-eabi-objcopy  -O binary $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).bin" />
 				</ExtraCommands>
 			</Target>
-			<Target title="blink_systick">
+			<Target title="blink-f401re">
 				<Option output="_bin/${TARGET_NAME}/${TARGET_NAME}" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="" />
 				<Option object_output="_obj/${TARGET_NAME}" />
 				<Option type="5" />
 				<Option compiler="arm-elf-gcc" />
 				<Compiler>
-					<Add directory="../stm32/variants/cmBluePillF103C8" />
+					<Add option="-mcpu=cortex-m4" />
+					<Add option="-mthumb" />
+					<Add option="-mfloat-abi=hard" />
+					<Add option="-mfpu=fpv4-sp-d16" />
+					<Add option="-DSTM32F4" />
+					<Add directory="../stm32/variants/Nucleo401RE" />
 				</Compiler>
+				<Linker>
+					<Add option="-mcpu=cortex-m4" />
+					<Add option="-mfloat-abi=hard" />
+					<Add option="-mfpu=fpv4-sp-d16" />
+					<Add option="-Tstm32f103rbt6.ld" />
+					<Add option="-Wl,--start-group  _bin/arduino-f401re.ar -lopencm3_stm32f4 -lc -lgcc -lnosys -Wl,--end-group" />
+				</Linker>
 				<ExtraCommands>
 					<Add after="arm-none-eabi-size $(TARGET_OUTPUT_FILE)" />
 					<Add after="arm-none-eabi-objcopy  -O binary $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).bin" />
 				</ExtraCommands>
 			</Target>
-			<Target title="port_test">
+			<Target title="blink_systick-f103">
 				<Option output="_bin/${TARGET_NAME}/${TARGET_NAME}" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="" />
 				<Option object_output="_obj/${TARGET_NAME}" />
 				<Option type="5" />
 				<Option compiler="arm-elf-gcc" />
 				<Compiler>
+					<Add option="-mcpu=cortex-m3" />
+					<Add option="-mthumb" />
+					<Add option="-msoft-float" />
+					<Add option="-mfix-cortex-m3-ldrd" />
+					<Add option="-DSTM32F1" />
 					<Add directory="../stm32/variants/cmBluePillF103C8" />
 				</Compiler>
+				<Linker>
+					<Add option="-mcpu=cortex-m3" />
+					<Add option="-msoft-float" />
+					<Add option="-mfix-cortex-m3-ldrd" />
+					<Add option="-Tstm32f103rbt6.ld" />
+					<Add option="-Wl,--start-group  _bin/arduino-f103.ar -lopencm3_stm32f1 -lc -lgcc -lnosys -Wl,--end-group" />
+				</Linker>
+				<ExtraCommands>
+					<Add after="arm-none-eabi-size $(TARGET_OUTPUT_FILE)" />
+					<Add after="arm-none-eabi-objcopy  -O binary $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).bin" />
+				</ExtraCommands>
+			</Target>
+			<Target title="blink_systick-f401re">
+				<Option output="_bin/${TARGET_NAME}/${TARGET_NAME}" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="_obj/${TARGET_NAME}" />
+				<Option type="5" />
+				<Option compiler="arm-elf-gcc" />
+				<Compiler>
+					<Add option="-mcpu=cortex-m4" />
+					<Add option="-mthumb" />
+					<Add option="-mfloat-abi=hard" />
+					<Add option="-mfpu=fpv4-sp-d16" />
+					<Add option="-DSTM32F4" />
+					<Add directory="../stm32/variants/Nucleo401RE" />
+				</Compiler>
+				<Linker>
+					<Add option="-mcpu=cortex-m4" />
+					<Add option="-mfloat-abi=hard" />
+					<Add option="-mfpu=fpv4-sp-d16" />
+					<Add option="-Tstm32f103rbt6.ld" />
+					<Add option="-Wl,--start-group  _bin/arduino-f401re.ar -lopencm3_stm32f4 -lc -lgcc -lnosys -Wl,--end-group" />
+				</Linker>
+				<ExtraCommands>
+					<Add after="arm-none-eabi-size $(TARGET_OUTPUT_FILE)" />
+					<Add after="arm-none-eabi-objcopy  -O binary $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).bin" />
+				</ExtraCommands>
+			</Target>
+			<Target title="port_test-f103">
+				<Option output="_bin/${TARGET_NAME}/${TARGET_NAME}" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="_obj/${TARGET_NAME}" />
+				<Option type="5" />
+				<Option compiler="arm-elf-gcc" />
+				<Compiler>
+					<Add option="-mcpu=cortex-m3" />
+					<Add option="-mthumb" />
+					<Add option="-msoft-float" />
+					<Add option="-mfix-cortex-m3-ldrd" />
+					<Add option="-DSTM32F1" />
+					<Add directory="../stm32/variants/cmBluePillF103C8" />
+				</Compiler>
+				<Linker>
+					<Add option="-mcpu=cortex-m3" />
+					<Add option="-msoft-float" />
+					<Add option="-mfix-cortex-m3-ldrd" />
+					<Add option="-Tstm32f103rbt6.ld" />
+					<Add option="-Wl,--start-group  _bin/arduino-f103.ar -lopencm3_stm32f1 -lc -lgcc -lnosys -Wl,--end-group" />
+				</Linker>
 				<ExtraCommands>
 					<Add after="arm-none-eabi-size $(TARGET_OUTPUT_FILE)" />
 					<Add after="arm-none-eabi-objcopy  -O binary $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).bin" />
@@ -60,12 +168,9 @@
 			</Target>
 		</Build>
 		<VirtualTargets>
-			<Add alias="ALL" targets="arduino;" />
+			<Add alias="ALL-F1" targets="arduino-f103;blink-f103;blink_systick-f103;port_test-f103;" />
 		</VirtualTargets>
 		<Compiler>
-			<Add option="-mcpu=cortex-m3" />
-			<Add option="-mthumb" />
-			<Add option="-msoft-float" />
 			<Add option="-Os" />
 			<Add option="-Wshadow" />
 			<Add option="-Wredundant-decls" />
@@ -73,7 +178,6 @@
 			<Add option="-Wextra" />
 			<Add option="-Wall" />
 			<Add option="-g" />
-			<Add option="-mfix-cortex-m3-ldrd" />
 			<Add option="-std=gnu11" />
 			<Add option="-nostdlib" />
 			<Add option="-fno-common" />
@@ -82,64 +186,64 @@
 			<Add option="-fno-rtti" />
 			<Add option="-fno-exceptions" />
 			<Add option="-pipe" />
-			<Add option="-DSTM32F1" />
 			<Add directory="../stm32/libopencm3/include" />
 			<Add directory="../stm32/cores/opencm3" />
 		</Compiler>
 		<Linker>
 			<Add option="-Os" />
 			<Add option="-L../stm32/libopencm3/lib" />
-			<Add option="-Tstm32f103rbt6.ld" />
 			<Add option="-Wl,-Map=$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).map,--cref" />
 			<Add option="-Wl,--gc-sections" />
 			<Add option="-mthumb" />
-			<Add option="-mcpu=cortex-m3" />
-			<Add option="-msoft-float" />
-			<Add option="-mfix-cortex-m3-ldrd" />
 			<Add option="-nostartfiles" />
 			<Add option="--specs=nano.specs" />
 			<Add option="-Wl,--no-check-sections" />
 			<Add option="-Wl,-static" />
-			<Add option="-Wl,--start-group  _bin/arduino.ar -lopencm3_stm32f1 -lc -lgcc -lnosys -Wl,--end-group" />
 		</Linker>
 		<Unit filename="../stm32/cores/opencm3/Arduino.h" />
 		<Unit filename="../stm32/cores/opencm3/Client.h" />
 		<Unit filename="../stm32/cores/opencm3/HardwareSerial.h" />
 		<Unit filename="../stm32/cores/opencm3/IPAddress.h" />
 		<Unit filename="../stm32/cores/opencm3/Print.cpp">
-			<Option target="arduino" />
+			<Option target="arduino-f103" />
+			<Option target="arduino-f401re" />
 		</Unit>
 		<Unit filename="../stm32/cores/opencm3/Print.h" />
 		<Unit filename="../stm32/cores/opencm3/Printable.h" />
 		<Unit filename="../stm32/cores/opencm3/RingBuffer.cpp">
-			<Option target="arduino" />
+			<Option target="arduino-f103" />
+			<Option target="arduino-f401re" />
 		</Unit>
 		<Unit filename="../stm32/cores/opencm3/RingBuffer.h" />
 		<Unit filename="../stm32/cores/opencm3/Server.h" />
 		<Unit filename="../stm32/cores/opencm3/Stream.h" />
 		<Unit filename="../stm32/cores/opencm3/Tone.h" />
 		<Unit filename="../stm32/cores/opencm3/Uart.cpp">
-			<Option target="arduino" />
+			<Option target="arduino-f103" />
 		</Unit>
 		<Unit filename="../stm32/cores/opencm3/Uart.h" />
 		<Unit filename="../stm32/cores/opencm3/Udp.h" />
 		<Unit filename="../stm32/cores/opencm3/WCharacter.h" />
 		<Unit filename="../stm32/cores/opencm3/WInterrupts.h" />
 		<Unit filename="../stm32/cores/opencm3/WMath.cpp">
-			<Option target="arduino" />
+			<Option target="arduino-f103" />
+			<Option target="arduino-f401re" />
 		</Unit>
 		<Unit filename="../stm32/cores/opencm3/WMath.h" />
 		<Unit filename="../stm32/cores/opencm3/WString.cpp">
-			<Option target="arduino" />
+			<Option target="arduino-f103" />
+			<Option target="arduino-f401re" />
 		</Unit>
 		<Unit filename="../stm32/cores/opencm3/WString.h" />
 		<Unit filename="../stm32/cores/opencm3/WVariant.h" />
 		<Unit filename="../stm32/cores/opencm3/abi.cpp">
-			<Option target="arduino" />
+			<Option target="arduino-f103" />
+			<Option target="arduino-f401re" />
 		</Unit>
 		<Unit filename="../stm32/cores/opencm3/avr/dtostrf.c">
 			<Option compilerVar="CC" />
-			<Option target="arduino" />
+			<Option target="arduino-f103" />
+			<Option target="arduino-f401re" />
 		</Unit>
 		<Unit filename="../stm32/cores/opencm3/avr/dtostrf.h" />
 		<Unit filename="../stm32/cores/opencm3/avr/interrupt.h" />
@@ -148,34 +252,41 @@
 		<Unit filename="../stm32/cores/opencm3/binary.h" />
 		<Unit filename="../stm32/cores/opencm3/delay.c">
 			<Option compilerVar="CC" />
-			<Option target="arduino" />
+			<Option target="arduino-f103" />
+			<Option target="arduino-f401re" />
 		</Unit>
 		<Unit filename="../stm32/cores/opencm3/delay.h" />
 		<Unit filename="../stm32/cores/opencm3/hooks.c">
 			<Option compilerVar="CC" />
-			<Option target="arduino" />
+			<Option target="arduino-f103" />
+			<Option target="arduino-f401re" />
 		</Unit>
 		<Unit filename="../stm32/cores/opencm3/itoa.c">
 			<Option compilerVar="CC" />
-			<Option target="arduino" />
+			<Option target="arduino-f103" />
+			<Option target="arduino-f401re" />
 		</Unit>
 		<Unit filename="../stm32/cores/opencm3/itoa.h" />
 		<Unit filename="../stm32/cores/opencm3/main.cpp">
-			<Option target="arduino" />
+			<Option target="arduino-f103" />
+			<Option target="arduino-f401re" />
 		</Unit>
 		<Unit filename="../stm32/cores/opencm3/new.cpp">
-			<Option target="arduino" />
+			<Option target="arduino-f103" />
+			<Option target="arduino-f401re" />
 		</Unit>
 		<Unit filename="../stm32/cores/opencm3/wiring.c">
 			<Option compilerVar="CC" />
-			<Option target="arduino" />
+			<Option target="arduino-f103" />
+			<Option target="arduino-f401re" />
 		</Unit>
 		<Unit filename="../stm32/cores/opencm3/wiring.h" />
 		<Unit filename="../stm32/cores/opencm3/wiring_analog.h" />
 		<Unit filename="../stm32/cores/opencm3/wiring_constants.h" />
 		<Unit filename="../stm32/cores/opencm3/wiring_digital.c">
 			<Option compilerVar="CC" />
-			<Option target="arduino" />
+			<Option target="arduino-f103" />
+			<Option target="arduino-f401re" />
 		</Unit>
 		<Unit filename="../stm32/cores/opencm3/wiring_digital.h" />
 		<Unit filename="../stm32/cores/opencm3/wiring_private.h" />
@@ -452,31 +563,46 @@
 		<Unit filename="../stm32/libopencm3/include/libopencmsis/stm32/l0/irqhandlers.h" />
 		<Unit filename="../stm32/libopencm3/include/libopencmsis/stm32/l1/irqhandlers.h" />
 		<Unit filename="../stm32/libopencm3/include/libopencmsis/stm32/l4/irqhandlers.h" />
+		<Unit filename="../stm32/variants/Nucleo401RE/variant.cpp">
+			<Option target="blink-f401re" />
+			<Option target="blink_systick-f401re" />
+		</Unit>
+		<Unit filename="../stm32/variants/Nucleo401RE/variant.h">
+			<Option target="blink-f401re" />
+			<Option target="blink_systick-f401re" />
+			<Option target="arduino-f401re" />
+		</Unit>
 		<Unit filename="../stm32/variants/cmBluePillF103C8/variant.cpp">
-			<Option target="blink" />
-			<Option target="blink_systick" />
-			<Option target="port_test" />
+			<Option target="blink-f103" />
+			<Option target="blink_systick-f103" />
+			<Option target="port_test-f103" />
 		</Unit>
 		<Unit filename="../stm32/variants/cmBluePillF103C8/variant.h">
-			<Option target="arduino" />
+			<Option target="arduino-f103" />
 		</Unit>
 		<Unit filename="PeripheralNames.h">
-			<Option target="port_test" />
+			<Option target="port_test-f103" />
 		</Unit>
 		<Unit filename="PinNames.h">
-			<Option target="port_test" />
+			<Option target="port_test-f103" />
 		</Unit>
 		<Unit filename="PortNames.h">
-			<Option target="port_test" />
+			<Option target="port_test-f103" />
 		</Unit>
-		<Unit filename="blink.cpp">
-			<Option target="blink" />
+		<Unit filename="blink-f1.cpp">
+			<Option target="blink-f103" />
 		</Unit>
-		<Unit filename="blink_systick.cpp">
-			<Option target="blink_systick" />
+		<Unit filename="blink-f4.cpp">
+			<Option target="blink-f401re" />
+		</Unit>
+		<Unit filename="blink_systick-f1.cpp">
+			<Option target="blink_systick-f103" />
+		</Unit>
+		<Unit filename="blink_systick-f4.cpp">
+			<Option target="blink_systick-f401re" />
 		</Unit>
 		<Unit filename="port_test.cpp">
-			<Option target="port_test" />
+			<Option target="port_test-f103" />
 		</Unit>
 		<Extensions>
 			<code_completion />

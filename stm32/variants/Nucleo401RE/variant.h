@@ -19,8 +19,8 @@
   * Edited by Evangelos Arkalis.
   */
 
-#ifndef _VARIANT_BLUEPILL_F103_
-#define _VARIANT_BLUEPILL_F103_
+#ifndef _VARIANT_NUCLEO_F401_
+#define _VARIANT_NUCLEO_F401_
 
 /*----------------------------------------------------------------------------
  *        Definitions
@@ -30,9 +30,9 @@
 #define VARIANT_MAINOSC   8000000
 
 /** Master clock frequency */
-#define VARIANT_MCK       72000000
+#define VARIANT_MCK       84000000
 
-#define SYSTICK_RELOAD_VAL ((VARIANT_MCK / 8)/1000) //In this case the value is ((72000000 MHz / 8) / 1000) = 9000 ticks
+#define SYSTICK_RELOAD_VAL ((VARIANT_MCK / 1)/1000)
 /*----------------------------------------------------------------------------
  *        Headers
  *----------------------------------------------------------------------------*/
@@ -56,69 +56,19 @@ extern "C"{
 
 
 
-#define GPIO_PINS      35
+#define GPIO_PINS      50
 
 #define digitalPinToPort(P)        ( g_PinDescription[P].Port )
 #define digitalPinToBitMask(P)     ( g_PinDescription[P].Pin )
 //#define portOutputRegister(port)   ( &(port->PIO_ODSR) )
 //#define portInputRegister(port)    ( &(port->PIO_PDSR) )
 
-/* This mapping is for from Blue pill Schematic */
 enum {
-    PA0  = 0x00,
-    PA1  = 0x01,
-    PA2  = 0x02,
-    PA3  = 0x03,
-    PA4  = 0x04,
-    PA5  = 0x05,
-    PA6  = 0x06,
-    PA7  = 0x07,
-    PA8  = 0x08,
-    PA9  = 0x09,
-    PA10 = 0x0A,
-    PA11 = 0x0B,
-    PA12 = 0x0C,
-    PA13 = 0x0D,
-    PA14 = 0x0E,
-    PA15 = 0x0F,
-
-    PB0  = 0x10,
-    PB1  = 0x11,
-    PB2  = 0x12,
-    PB3  = 0x13,
-    PB4  = 0x14,
-    PB5  = 0x15,
-    PB6  = 0x16,
-    PB7  = 0x17,
-    PB8  = 0x18,
-    PB9  = 0x19,
-    PB10 = 0x1A,
-    PB12 = 0x1C,
-    PB13 = 0x1D,
-    PB14 = 0x1E,
-    PB15 = 0x1F,
-
-    PC0  = 0x20,
-    PC1  = 0x21,
-    PC2  = 0x22,
-    PC3  = 0x23,
-    PC4  = 0x24,
-    PC5  = 0x25,
-    PC6  = 0x26,
-    PC7  = 0x27,
-    PC8  = 0x28,
-    PC9  = 0x29,
-    PC10 = 0x2A,
-    PC11 = 0x2B,
-    PC12 = 0x2C,
-    PC13 = 0x2D,
-    PC14 = 0x2E,
-    PC15 = 0x2F,
-
-    PD2  = 0x32,
-
-    PH0  = 0x70,
-    PH1  = 0x71
+    PA0, PA1, PA2, PA3, PA4, PA5, PA6, PA7, PA8, PA9, PA10, PA11, PA12, PA13, PA14, PA15,
+    PB0, PB1, PB2, PB3, PB4, PB5, PB6, PB7, PB8, PB9, PB10,       PB12, PB13, PB14, PB15,
+    PC0, PC1, PC2, PC3, PC4, PC5, PC6, PC7, PC8, PC9, PC10, PC11, PC12, PC13, PC14, PC15,
+              PD2,
+    PH0, PH1
 };
 
 typedef struct _PinDescription
