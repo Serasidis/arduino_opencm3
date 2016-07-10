@@ -11,14 +11,14 @@
  * published by the Free Software Foundation.
  * ( https://www.gnu.org/licenses/gpl-3.0.html )
  *
- * Last edit: 07 Jul 2016 
+ * Last edit: 07 Jul 2016
  *
  ****************************************************************************/
-  
+
  /**
   * Edited by Evangelos Arkalis.
   */
-  
+
 #ifndef _VARIANT_BLUEPILL_F103_
 #define _VARIANT_BLUEPILL_F103_
 
@@ -85,6 +85,10 @@ typedef struct spi_port{
 
 extern const PinDescription g_PinDescription[];
 extern const spi_port SPI_PinDescription[];
+
+    // Generic signals namings
+#define    LED1              PC13
+#define    LED2              PC13
 
 #define PIN_SERIAL1_RX        PA10
 #define PIN_SERIAL1_TX        PA9

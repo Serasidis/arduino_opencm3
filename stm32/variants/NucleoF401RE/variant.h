@@ -87,6 +87,10 @@ typedef struct spi_port{
 extern const PinDescription g_PinDescription[];
 extern const spi_port SPI_PinDescription[];
 
+    // Generic signals namings
+#define    LED1              PA5
+#define    LED2              PA5
+
 #define PIN_SERIAL1_RX        PA10
 #define PIN_SERIAL1_TX        PA9
 

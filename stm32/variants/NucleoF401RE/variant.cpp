@@ -38,43 +38,61 @@ extern "C" {
 extern const PinDescription g_PinDescription[]=
 {
 
-    {GPIOA, GPIO0},  /*-WKUP  */
-    {GPIOA, GPIO1},  /*  */
-    {GPIOA, GPIO2},  /*  */
-    {GPIOA, GPIO3},  /*  */
-    {GPIOA, GPIO4},  /*SPI1_NSS  SPI1_NSS (opt)*/
-    {GPIOA, GPIO5},  /*SPI1_SCK  */
-    {GPIOA, GPIO6},  /*SPI1_MISO  */
-    {GPIOA, GPIO7},  /*SPI1_MOSI  */
-    {GPIOA, GPIO8},  /*  */
-    {GPIOA, GPIO9},  /*USART1_TX  */
-    {GPIOA, GPIO10},  /*USART1_RX  */
-    {GPIOA, GPIO11},  /* USBDM (-)  */
-    {GPIOA, GPIO12},  /* USBDP (+)  */
-    {GPIOA, GPIO13},  /*SYS_JTMS-SWDIO  */
-    {GPIOA, GPIO14},  /*SYS_JTCK-SWCLK  */
-    {GPIOA, GPIO15},  /*  */
+    {GPIOA, GPIO0},     /*  */
+    {GPIOA, GPIO1},     /*  */
+    {GPIOA, GPIO2},     /*  */
+    {GPIOA, GPIO3},     /*  */
+    {GPIOA, GPIO4},     /*  */
+    {GPIOA, GPIO5},     /*  */
+    {GPIOA, GPIO6},     /*  */
+    {GPIOA, GPIO7},     /*  */
+    {GPIOA, GPIO8},     /*  */
+    {GPIOA, GPIO9},     /*  */
+    {GPIOA, GPIO10},    /*  */
+    {GPIOA, GPIO11},    /*  */
+    {GPIOA, GPIO12},    /*  */
+    {GPIOA, GPIO13},    /*  */
+    {GPIOA, GPIO14},    /*  */
+    {GPIOA, GPIO15},    /*  */
 
-    {GPIOB, GPIO0},  /*  */
-    {GPIOB, GPIO1},  /*Output  GPIO_Output  Blue_LED*/
-    {GPIOB, GPIO2},  /* BOOT1 */
-    {GPIOB, GPIO3},  /*  */
-    {GPIOB, GPIO4},  /*  */
-    {GPIOB, GPIO5},  /*  */
-    {GPIOB, GPIO6},  /*I2C1_SCL  */
-    {GPIOB, GPIO7},  /*I2C1_SDA  */
-    {GPIOB, GPIO8},  /*CAN_RX  */
-    {GPIOB, GPIO9},  /*CAN_TX  */
-    {GPIOB, GPIO10},  /* USART3_TX  */
-    {GPIOB, GPIO11},  /* USART3_RX  */
-    {GPIOB, GPIO12},  /* SPI2_NSS  */
-    {GPIOB, GPIO13},  /* SPI2_SCK */
-    {GPIOB, GPIO14},  /* SPI2_MISO */
-    {GPIOB, GPIO15},  /* SPI2_MOSI */
+    {GPIOB, GPIO0},     /*  */
+    {GPIOB, GPIO1},     /*  */
+    {GPIOB, GPIO2},     /*  */
+    {GPIOB, GPIO3},     /*  */
+    {GPIOB, GPIO4},     /*  */
+    {GPIOB, GPIO5},     /*  */
+    {GPIOB, GPIO6},     /*  */
+    {GPIOB, GPIO7},     /*  */
+    {GPIOB, GPIO8},     /*  */
+    {GPIOB, GPIO9},     /*  */
+    {GPIOB, GPIO10},    /*  */
+//    {GPIOB, GPIO11},    /*  */
+    {GPIOB, GPIO12},    /*  */
+    {GPIOB, GPIO13},    /*  */
+    {GPIOB, GPIO14},    /*  */
+    {GPIOB, GPIO15},    /*  */
 
-    {GPIOC, GPIO13},  /*-TAMPER-RTC  Output  GPIO_Output  */
-    {GPIOC, GPIO14},  /*-OSC32_IN   */
-    {GPIOC, GPIO15}   /*-OSC32_OUT  */
+    {GPIOC, GPIO0},     /*  */
+    {GPIOC, GPIO1},     /*  */
+    {GPIOC, GPIO2},     /*  */
+    {GPIOC, GPIO3},     /*  */
+    {GPIOC, GPIO4},     /*  */
+    {GPIOC, GPIO5},     /*  */
+    {GPIOC, GPIO6},     /*  */
+    {GPIOC, GPIO7},     /*  */
+    {GPIOC, GPIO8},     /*  */
+    {GPIOC, GPIO9},     /*  */
+    {GPIOC, GPIO10},    /*  */
+    {GPIOC, GPIO11},    /*  */
+    {GPIOC, GPIO12},    /*  */
+    {GPIOC, GPIO13},    /*  */
+    {GPIOC, GPIO14},    /*  */
+    {GPIOC, GPIO15},    /*  */
+
+    {GPIOD, GPIO2},     /*  */
+
+    {GPIOH, GPIO0},     /*  */
+    {GPIOH, GPIO1},     /*  */
 };
 
 //extern const spi_port SPI_PinDescription[]{
