@@ -98,7 +98,6 @@ extern const PinDescription g_PinDescription[]=
 //extern const spi_port SPI_PinDescription[]{
 //   { PA4 , PA5 , PA6 , PA7  } // SPI1 - NSS pin, SCK pin, MISO pin, MOSI pin
 //  ,{ PB12, PB13, PB14, PB15 } // SPI2 - NSS pin, SCK pin, MISO pin, MOSI pin
-///* The SPI3 is not  used in this variant
 //  ,{ PA15, PB3 , PB4 , PB5  } // SPI3 - NSS pin, SCK pin, MISO pin, MOSI pin */
 //};
 

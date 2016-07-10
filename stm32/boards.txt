@@ -4,30 +4,83 @@ menu.device_variant=Variant
 menu.bootloader_version=Bootloader version
 menu.upload_method=Upload method
 
+################# GENERIC STM32F103C8 ##################################
+STM32F103C8.name=Generic F103C8 (20kB RAM, 64kB Flash)
+STM32F103C8.upload.maximum_size=65536
+STM32F103C8.upload.file_type=bin
+STM32F103C8.upload.ram.maximum_size=20480
+STM32F103C8.upload.flash.maximum_size=65536
+STM32F103C8.upload.params.quiet=no
 
+STM32F103C8.build.mcu=cortex-m3
+STM32F103C8.build.extra_cflags = -msoft-float -mfix-cortex-m3-ldrd -DSTM32F1
+STM32F103C8.build.extra_lib = opencm3_stm32f1
+STM32F103C8.build.f_cpu=72000000L
+STM32F103C8.build.board=GENERIC_F103C8
+STM32F103C8.build.core=opencm3
+STM32F103C8.build.variant=stm32f103c8
+STM32F103C8.build.flash_ld=stm32f103x8.ld
+
+STM32F103C8.menu.upload_method.STLinkMethod=STLink
+STM32F103C8.menu.upload_method.STLinkMethod.upload.protocol=STLink
+STM32F103C8.menu.upload_method.STLinkMethod.upload.tool=stlink_upload
+STM32F103C8.menu.upload_method.STLinkMethod.build.extra_flags=
+STM32F103C8.menu.upload_method.OpenOCD=OpenOCD
+STM32F103C8.menu.upload_method.OpenOCD.upload.protocol=OpenOCD
+STM32F103C8.menu.upload_method.OpenOCD.upload.tool=openocd_upload
+STM32F103C8.menu.upload_method.OpenOCD.build.extra_flags=
 ##############################################################
-cmBluePillF103C8.name=Generic STM32F103C8 (20kB RAM, 64kB Flash)
-cmBluePillF103C8.upload.maximum_size=65536
-cmBluePillF103C8.upload.file_type=bin
-cmBluePillF103C8.upload.ram.maximum_size=20480
-cmBluePillF103C8.upload.flash.maximum_size=57344
-cmBluePillF103C8.upload.params.quiet=no
 
-cmBluePillF103C8.build.mcu=cortex-m3
-cmBluePillF103C8.build.f_cpu=72000000L
-cmBluePillF103C8.build.board=Generic_STM32F103C8
-cmBluePillF103C8.build.core=opencm3
-cmBluePillF103C8.build.variant=cmBluePillF103C8
-cmBluePillF103C8.build.flash_ld=stm32f103rbt6.ld
+################# BLUEPILL STM32F103C8 ##################################
+BLUEPILL_F103C8.name=BluePill F103C8 (20kB RAM, 64kB Flash)
+BLUEPILL_F103C8.upload.maximum_size=65536
+BLUEPILL_F103C8.upload.file_type=bin
+BLUEPILL_F103C8.upload.ram.maximum_size=20480
+BLUEPILL_F103C8.upload.flash.maximum_size=65536
+BLUEPILL_F103C8.upload.params.quiet=no
 
-cmBluePillF103C8.menu.upload_method.STLinkMethod=STLink
-cmBluePillF103C8.menu.upload_method.STLinkMethod.upload.protocol=STLink
-cmBluePillF103C8.menu.upload_method.STLinkMethod.upload.tool=stlink_upload
-cmBluePillF103C8.menu.upload_method.STLinkMethod.build.extra_flags=
-cmBluePillF103C8.menu.upload_method.STLinkMethod.build.ldscript=stm32f103rbt6.ld
+BLUEPILL_F103C8.build.mcu=cortex-m3
+BLUEPILL_F103C8.build.extra_cflags = -msoft-float -mfix-cortex-m3-ldrd -DSTM32F1
+BLUEPILL_F103C8.build.extra_lib = opencm3_stm32f1
+BLUEPILL_F103C8.build.f_cpu=72000000L
+BLUEPILL_F103C8.build.board=BLUEPILL_F103C8
+BLUEPILL_F103C8.build.core=opencm3
+BLUEPILL_F103C8.build.variant=stm32f103c8
+BLUEPILL_F103C8.build.flash_ld=stm32f103x8.ld
 
-cmBluePillF103C8.menu.upload_method.OpenOCD=OpenOCD
-cmBluePillF103C8.menu.upload_method.OpenOCD.upload.protocol=OpenOCD
-cmBluePillF103C8.menu.upload_method.OpenOCD.upload.tool=openocd_upload
-cmBluePillF103C8.menu.upload_method.OpenOCD.build.extra_flags=
+BLUEPILL_F103C8.menu.upload_method.STLinkMethod=STLink
+BLUEPILL_F103C8.menu.upload_method.STLinkMethod.upload.protocol=STLink
+BLUEPILL_F103C8.menu.upload_method.STLinkMethod.upload.tool=stlink_upload
+BLUEPILL_F103C8.menu.upload_method.STLinkMethod.build.extra_flags=
+BLUEPILL_F103C8.menu.upload_method.OpenOCD=OpenOCD
+BLUEPILL_F103C8.menu.upload_method.OpenOCD.upload.protocol=OpenOCD
+BLUEPILL_F103C8.menu.upload_method.OpenOCD.upload.tool=openocd_upload
+BLUEPILL_F103C8.menu.upload_method.OpenOCD.build.extra_flags=
+##############################################################
+
+################# GENERIC STM32F401RE ##################################
+STM32F401RE.name=Generic F401RE (96kB RAM, 512kB Flash)
+STM32F401RE.upload.maximum_size=524288
+STM32F401RE.upload.file_type=bin
+STM32F401RE.upload.ram.maximum_size=98304
+STM32F401RE.upload.flash.maximum_size=524288
+STM32F401RE.upload.params.quiet=no
+
+STM32F401RE.build.mcu=cortex-m4
+STM32F401RE.build.extra_cflags = -mfloat-abi=hard -mfpu=fpv4-sp-d16 -DSTM32F4
+STM32F401RE.build.extra_lib = opencm3_stm32f4
+STM32F401RE.build.f_cpu=84000000L
+STM32F401RE.build.board=GENERIC_F401RE
+STM32F401RE.build.core=opencm3
+STM32F401RE.build.variant=stm32f401re
+STM32F401RE.build.flash_ld=stm32f401xe.ld
+
+STM32F401RE.menu.upload_method.STLinkMethod=STLink
+STM32F401RE.menu.upload_method.STLinkMethod.upload.protocol=STLink
+STM32F401RE.menu.upload_method.STLinkMethod.upload.tool=stlink_upload
+STM32F401RE.menu.upload_method.STLinkMethod.build.extra_flags=
+STM32F401RE.menu.upload_method.OpenOCD=OpenOCD
+STM32F401RE.menu.upload_method.OpenOCD.upload.protocol=OpenOCD
+STM32F401RE.menu.upload_method.OpenOCD.upload.tool=openocd_upload
+STM32F401RE.menu.upload_method.OpenOCD.build.extra_flags=
 ##############################################################

@@ -18,20 +18,20 @@ compiler.opencm3.path={runtime.platform.path}/libopencm3
 compiler.cpreprocessor.flags="-I{compiler.opencm3.path}/include"
 
 compiler.c.cmd=arm-none-eabi-gcc
-compiler.c.flags=-mcpu={build.mcu} -mthumb  -msoft-float -mfix-cortex-m3-ldrd -DSTM32F1 -c -g -Os {compiler.warning_flags} -std=gnu11 -ffunction-sections -fdata-sections -nostdlib --param max-inline-insns-single=500 -MMD 
+compiler.c.flags=-mcpu={build.mcu} -mthumb  {build.extra_cflags} -c -g -Os {compiler.warning_flags} -std=gnu11 -ffunction-sections -fdata-sections -nostdlib --param max-inline-insns-single=500 -MMD 
 
 compiler.S.cmd=arm-none-eabi-gcc
 compiler.S.flags=-c -g -x assembler-with-cpp
 
 compiler.cpp.cmd=arm-none-eabi-g++
-compiler.cpp.flags=-mcpu={build.mcu} -mthumb  -msoft-float -mfix-cortex-m3-ldrd -DSTM32F1 -c -g -Os {compiler.warning_flags} -std=gnu++11 -ffunction-sections -fdata-sections -fno-threadsafe-statics -nostdlib --param max-inline-insns-single=500 -fno-rtti -fno-exceptions -MMD 
+compiler.cpp.flags=-mcpu={build.mcu} -mthumb  {build.extra_cflags} -c -g -Os {compiler.warning_flags} -std=gnu++11 -ffunction-sections -fdata-sections -fno-threadsafe-statics -nostdlib --param max-inline-insns-single=500 -fno-rtti -fno-exceptions -MMD 
 
 compiler.ar.cmd=arm-none-eabi-ar
 compiler.ar.flags=rcs
 
 compiler.c.elf.cmd=arm-none-eabi-gcc
-compiler.c.elf.flags=-mcpu={build.mcu} -mthumb  -msoft-float -mfix-cortex-m3-ldrd -g {compiler.warning_flags} -Os -nostdlib -Wl,--no-check-sections -Wl,-static "-L{compiler.opencm3.path}/lib" "-L{compiler.opencm3.path}/ld" "-T{build.flash_ld}" -Wl,--gc-sections "-Wl,-Map,{build.path}/{build.project_name}.map" --specs=nano.specs
-compiler.c.elf.libs=-lopencm3_stm32f1 -lc -lgcc -lnosys 
+compiler.c.elf.flags=-mcpu={build.mcu} -mthumb  {build.extra_cflags} -g {compiler.warning_flags} -Os -nostdlib -Wl,--no-check-sections -Wl,-static "-L{compiler.opencm3.path}/lib" "-L{compiler.opencm3.path}/ld" "-T{build.flash_ld}" -Wl,--gc-sections "-Wl,-Map,{build.path}/{build.project_name}.map" --specs=nano.specs
+compiler.c.elf.libs=-l{build.extra_lib} -lc -lgcc -lnosys 
 
 
 compiler.objcopy.cmd=arm-none-eabi-objcopy
