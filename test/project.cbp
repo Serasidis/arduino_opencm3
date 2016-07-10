@@ -18,7 +18,7 @@
 					<Add option="-msoft-float" />
 					<Add option="-mfix-cortex-m3-ldrd" />
 					<Add option="-DSTM32F1" />
-					<Add directory="../stm32/variants/cmBluePillF103C8" />
+					<Add directory="../stm32/variants/stm32f103c8" />
 				</Compiler>
 			</Target>
 			<Target title="arduino-f401re">
@@ -33,7 +33,7 @@
 					<Add option="-mfloat-abi=hard" />
 					<Add option="-mfpu=fpv4-sp-d16" />
 					<Add option="-DSTM32F4" />
-					<Add directory="../stm32/variants/NucleoF401RE" />
+					<Add directory="../stm32/variants/stm32f401re" />
 				</Compiler>
 			</Target>
 			<Target title="blink-f103">
@@ -48,13 +48,13 @@
 					<Add option="-msoft-float" />
 					<Add option="-mfix-cortex-m3-ldrd" />
 					<Add option="-DSTM32F1" />
-					<Add directory="../stm32/variants/cmBluePillF103C8" />
+					<Add directory="../stm32/variants/stm32f103c8" />
 				</Compiler>
 				<Linker>
 					<Add option="-mcpu=cortex-m3" />
 					<Add option="-msoft-float" />
 					<Add option="-mfix-cortex-m3-ldrd" />
-					<Add option="-Tstm32f103rbt6.ld" />
+					<Add option="-Tstm32f103x8.ld" />
 					<Add option="-Wl,--start-group  _bin/arduino-f103.ar -lopencm3_stm32f1 -lc -lgcc -lnosys -Wl,--end-group" />
 				</Linker>
 				<ExtraCommands>
@@ -74,13 +74,13 @@
 					<Add option="-mfloat-abi=hard" />
 					<Add option="-mfpu=fpv4-sp-d16" />
 					<Add option="-DSTM32F4" />
-					<Add directory="../stm32/variants/NucleoF401RE" />
+					<Add directory="../stm32/variants/stm32f401re" />
 				</Compiler>
 				<Linker>
 					<Add option="-mcpu=cortex-m4" />
 					<Add option="-mfloat-abi=hard" />
 					<Add option="-mfpu=fpv4-sp-d16" />
-					<Add option="-Tstm32f103rbt6.ld" />
+					<Add option="-Tstm32f401xe.ld" />
 					<Add option="-Wl,--start-group  _bin/arduino-f401re.ar -lopencm3_stm32f4 -lc -lgcc -lnosys -Wl,--end-group" />
 				</Linker>
 				<ExtraCommands>
@@ -100,13 +100,13 @@
 					<Add option="-msoft-float" />
 					<Add option="-mfix-cortex-m3-ldrd" />
 					<Add option="-DSTM32F1" />
-					<Add directory="../stm32/variants/cmBluePillF103C8" />
+					<Add directory="../stm32/variants/stm32f103c8" />
 				</Compiler>
 				<Linker>
 					<Add option="-mcpu=cortex-m3" />
 					<Add option="-msoft-float" />
 					<Add option="-mfix-cortex-m3-ldrd" />
-					<Add option="-Tstm32f103rbt6.ld" />
+					<Add option="-Tstm32f103x8.ld" />
 					<Add option="-Wl,--start-group  _bin/arduino-f103.ar -lopencm3_stm32f1 -lc -lgcc -lnosys -Wl,--end-group" />
 				</Linker>
 				<ExtraCommands>
@@ -126,13 +126,13 @@
 					<Add option="-mfloat-abi=hard" />
 					<Add option="-mfpu=fpv4-sp-d16" />
 					<Add option="-DSTM32F4" />
-					<Add directory="../stm32/variants/NucleoF401RE" />
+					<Add directory="../stm32/variants/stm32f401re" />
 				</Compiler>
 				<Linker>
 					<Add option="-mcpu=cortex-m4" />
 					<Add option="-mfloat-abi=hard" />
 					<Add option="-mfpu=fpv4-sp-d16" />
-					<Add option="-Tstm32f103rbt6.ld" />
+					<Add option="-Tstm32f401xe.ld" />
 					<Add option="-Wl,--start-group  _bin/arduino-f401re.ar -lopencm3_stm32f4 -lc -lgcc -lnosys -Wl,--end-group" />
 				</Linker>
 				<ExtraCommands>
@@ -152,13 +152,13 @@
 					<Add option="-msoft-float" />
 					<Add option="-mfix-cortex-m3-ldrd" />
 					<Add option="-DSTM32F1" />
-					<Add directory="../stm32/variants/cmBluePillF103C8" />
+					<Add directory="../stm32/variants/stm32f103c8" />
 				</Compiler>
 				<Linker>
 					<Add option="-mcpu=cortex-m3" />
 					<Add option="-msoft-float" />
 					<Add option="-mfix-cortex-m3-ldrd" />
-					<Add option="-Tstm32f103rbt6.ld" />
+					<Add option="-Tstm32f103x8.ld" />
 					<Add option="-Wl,--start-group  _bin/arduino-f103.ar -lopencm3_stm32f1 -lc -lgcc -lnosys -Wl,--end-group" />
 				</Linker>
 				<ExtraCommands>
@@ -178,13 +178,13 @@
 					<Add option="-mfloat-abi=hard" />
 					<Add option="-mfpu=fpv4-sp-d16" />
 					<Add option="-DSTM32F4" />
-					<Add directory="../stm32/variants/NucleoF401RE" />
+					<Add directory="../stm32/variants/stm32f401re" />
 				</Compiler>
 				<Linker>
 					<Add option="-mcpu=cortex-m4" />
 					<Add option="-mfloat-abi=hard" />
 					<Add option="-mfpu=fpv4-sp-d16" />
-					<Add option="-Tstm32f103rbt6.ld" />
+					<Add option="-Tstm32f401xe.ld" />
 					<Add option="-Wl,--start-group  _bin/arduino-f401re.ar -lopencm3_stm32f4 -lc -lgcc -lnosys -Wl,--end-group" />
 				</Linker>
 				<ExtraCommands>
@@ -590,23 +590,23 @@
 		<Unit filename="../stm32/libopencm3/include/libopencmsis/stm32/l0/irqhandlers.h" />
 		<Unit filename="../stm32/libopencm3/include/libopencmsis/stm32/l1/irqhandlers.h" />
 		<Unit filename="../stm32/libopencm3/include/libopencmsis/stm32/l4/irqhandlers.h" />
-		<Unit filename="../stm32/variants/NucleoF401RE/variant.cpp">
+		<Unit filename="../stm32/variants/stm32f401re/variant.cpp">
 			<Option target="blink-f401re" />
 			<Option target="blink_systick-f401re" />
 			<Option target="port_test-f401re" />
 		</Unit>
-		<Unit filename="../stm32/variants/NucleoF401RE/variant.h">
+		<Unit filename="../stm32/variants/stm32f401re/variant.h">
 			<Option target="blink-f401re" />
 			<Option target="blink_systick-f401re" />
 			<Option target="port_test-f401re" />
 			<Option target="arduino-f401re" />
 		</Unit>
-		<Unit filename="../stm32/variants/cmBluePillF103C8/variant.cpp">
+		<Unit filename="../stm32/variants/stm32f103c8/variant.cpp">
 			<Option target="blink-f103" />
 			<Option target="blink_systick-f103" />
 			<Option target="port_test-f103" />
 		</Unit>
-		<Unit filename="../stm32/variants/cmBluePillF103C8/variant.h">
+		<Unit filename="../stm32/variants/stm32f103c8/variant.h">
 			<Option target="arduino-f103" />
 			<Option target="blink-f103" />
 			<Option target="blink_systick-f103" />
