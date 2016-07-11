@@ -17,7 +17,7 @@
 */
 
  /*
-  * 2016 Jul 4: Modified by Evangelos Arkalis
+  * 2016 Jul 12: Modified by Evangelos Arkalis
   */
 
  /*
@@ -27,6 +27,7 @@
 
 
 #include "Arduino.h"
+#include "stm32/gpio_arch.h"
 
 #ifdef __cplusplus
  extern "C" {
@@ -42,42 +43,16 @@ void pinMode( uint32_t ulPin, uint32_t ulMode )
   switch ( ulMode )
   {
     case INPUT:
-#if defined(STM32F1)
-        gpio_set_mode(g_PinDescription[ulPin].Port,       //Port
-                      GPIO_MODE_INPUT, GPIO_CNF_INPUT_FLOAT,    //
-                      g_PinDescription[ulPin].Pin); //Pin
-#else
-        gpio_mode_setup(g_PinDescription[ulPin].Port,       //Port
-                      GPIO_MODE_INPUT, GPIO_PUPD_NONE,    //
-                      g_PinDescription[ulPin].Pin); //Pin
-#endif // defined
+        gpio_setup_input(g_PinDescription[ulPin].Port, g_PinDescription[ulPin].Pin );
 		break ;
 
 
     case INPUT_PULLUP:
-#if defined(STM32F1)
-        gpio_set_mode(g_PinDescription[ulPin].Port,
-                      GPIO_MODE_INPUT, GPIO_CNF_INPUT_PULL_UPDOWN,
-                      g_PinDescription[ulPin].Pin);
-#else
-        gpio_mode_setup(g_PinDescription[ulPin].Port,       //Port
-                      GPIO_MODE_INPUT, GPIO_PUPD_PULLUP,    //
-                      g_PinDescription[ulPin].Pin); //Pin
-#endif
+        gpio_setup_input_pullup(g_PinDescription[ulPin].Port, g_PinDescription[ulPin].Pin  );
 		break ;
 
     case OUTPUT:
-#if defined(STM32F1)
-        gpio_set_mode(g_PinDescription[ulPin].Port,
-                      GPIO_MODE_OUTPUT_50_MHZ,
-                      GPIO_CNF_OUTPUT_PUSHPULL,
-                      g_PinDescription[ulPin].Pin);
-#else
-        gpio_mode_setup(g_PinDescription[ulPin].Port,       //Port
-                      GPIO_MODE_OUTPUT, GPIO_PUPD_NONE,    //
-                      g_PinDescription[ulPin].Pin); //Pin
-
-#endif
+        gpio_setup_output(g_PinDescription[ulPin].Port, g_PinDescription[ulPin].Pin );
 		break ;
 
     default:
