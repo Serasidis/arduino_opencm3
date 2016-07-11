@@ -22,7 +22,11 @@ This repository is a testbed for combining the libopencm3 libray with Arduino ID
 
   
 ##Roadmap
+`11 July 2016 ` **[ STM32F401RE support  ]**
+  
+* Initial F401RE support (Digital I/O, Timing and Uarts functions)
 
+---
 `7 July 2016 ` **[ SPI support  ]**
   
 * Added SPI support (SPI, SPI1,...,SPI6)
