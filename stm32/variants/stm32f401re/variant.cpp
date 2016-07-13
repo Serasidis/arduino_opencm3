@@ -129,10 +129,10 @@ void init( void )
   // Nucleo has 8MHz HSE, pll to 84MHz
   rcc_clock_setup_hse_3v3(&rcc_hse_8mhz_3v3[RCC_CLOCK_3V3_84MHZ]);
   // Connect All ports to CLK
-  rcc_periph_clock_enable(RCC_GPIOA);
-  rcc_periph_clock_enable(RCC_GPIOB);
-  rcc_periph_clock_enable(RCC_GPIOC);
-  rcc_periph_clock_enable(RCC_GPIOD);
+  //rcc_periph_clock_enable(RCC_GPIOA);
+  //rcc_periph_clock_enable(RCC_GPIOB);
+  //rcc_periph_clock_enable(RCC_GPIOC);
+  //rcc_periph_clock_enable(RCC_GPIOD);
 
   systick_set_clocksource(STK_CSR_CLKSOURCE_AHB);
   systick_set_reload(SYSTICK_RELOAD_VAL - 1);             /// SysTick Reload for 1ms tick
