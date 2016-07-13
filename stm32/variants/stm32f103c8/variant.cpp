@@ -99,11 +99,11 @@ extern const spi_port SPI_PinDescription[]{
 void serialEvent() __attribute__((weak));
 void serialEvent() { }
 
-#if USE_UART1
+#ifdef USE_UART1
 Uart Serial1(USART1);
 #endif // USE_UART1
 
-#if USE_UART2
+#ifdef USE_UART2
 Uart Serial2(USART2);
 #endif // USE_UART2
 

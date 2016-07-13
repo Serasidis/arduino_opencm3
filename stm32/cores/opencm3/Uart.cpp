@@ -36,7 +36,7 @@ void Uart::begin(unsigned long baudrate, uint16_t config)
     /* Setup GPIO pins */
     switch(usart)
     {
-#if USE_UART1
+#ifdef USE_UART1
         case USART1:
             rcc_periph_clock_enable(RCC_USART1);
             nvic_enable_irq(NVIC_USART1_IRQ);
@@ -44,12 +44,36 @@ void Uart::begin(unsigned long baudrate, uint16_t config)
             gpio_setup_pin_af(UART1_GPIO_PORT_RX, UART1_GPIO_RX, UART1_GPIO_AF, FALSE);
             break;
 #endif
-#if USE_UART2
+#ifdef USE_UART2
         case USART2:
             rcc_periph_clock_enable(RCC_USART2);
             nvic_enable_irq(NVIC_USART2_IRQ);
             gpio_setup_pin_af(UART2_GPIO_PORT_TX, UART2_GPIO_TX, UART2_GPIO_AF, TRUE);
             gpio_setup_pin_af(UART2_GPIO_PORT_RX, UART2_GPIO_RX, UART2_GPIO_AF, FALSE);
+            break;
+#endif
+#ifdef USE_UART3
+        case USART3:
+            rcc_periph_clock_enable(RCC_USART3);
+            nvic_enable_irq(NVIC_USART3_IRQ);
+            gpio_setup_pin_af(UART3_GPIO_PORT_TX, UART3_GPIO_TX, UART3_GPIO_AF, TRUE);
+            gpio_setup_pin_af(UART3_GPIO_PORT_RX, UART3_GPIO_RX, UART3_GPIO_AF, FALSE);
+            break;
+#endif
+#ifdef USE_UART4
+        case USART4:
+            rcc_periph_clock_enable(RCC_USART4);
+            nvic_enable_irq(NVIC_USART4_IRQ);
+            gpio_setup_pin_af(UART4_GPIO_PORT_TX, UART4_GPIO_TX, UART4_GPIO_AF, TRUE);
+            gpio_setup_pin_af(UART4_GPIO_PORT_RX, UART4_GPIO_RX, UART4_GPIO_AF, FALSE);
+            break;
+#endif
+#ifdef USE_UART5
+        case USART5:
+            rcc_periph_clock_enable(RCC_USART5);
+            nvic_enable_irq(NVIC_USART5_IRQ);
+            gpio_setup_pin_af(UART5_GPIO_PORT_TX, UART5_GPIO_TX, UART5_GPIO_AF, TRUE);
+            gpio_setup_pin_af(UART5_GPIO_PORT_RX, UART5_GPIO_RX, UART5_GPIO_AF, FALSE);
             break;
 #endif
         default:
@@ -106,8 +130,11 @@ size_t Uart::write(const uint8_t data)
 void Uart::push(uint8_t b) {
     rxBuffer.store_char(b);
 }
-#if USE_UART1
+
+
+#ifdef USE_UART1
 extern Uart Serial1;
+
 void usart1_isr(void)
 {
     /* Check if we were called because of RXNE. */
@@ -120,7 +147,7 @@ void usart1_isr(void)
 }
 #endif
 
-#if USE_UART2
+#ifdef USE_UART2
 extern Uart Serial2;
 void usart2_isr(void)
 {

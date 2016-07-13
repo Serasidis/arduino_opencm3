@@ -95,14 +95,14 @@ extern const spi_port SPI_PinDescription[];
 /*----------------------------------------------------------------------------
  *        Define Uarts Enables and Pins
  *----------------------------------------------------------------------------*/
-#define USE_UART1               1
+#define USE_UART1
 #define UART1_GPIO_AF           GPIO_AF7
 #define UART1_GPIO_PORT_RX      GPIOA
 #define UART1_GPIO_RX           GPIO10
 #define UART1_GPIO_PORT_TX      GPIOA
 #define UART1_GPIO_TX           GPIO9
 
-#define USE_UART2               1
+#define USE_UART2
 #define UART2_GPIO_AF           GPIO_AF7
 #define UART2_GPIO_PORT_RX      GPIOA
 #define UART2_GPIO_RX           GPIO3
@@ -122,11 +122,11 @@ extern const spi_port SPI_PinDescription[];
 
 #ifdef __cplusplus
 
-#if USE_UART1
+#ifdef USE_UART1
 extern Uart Serial1;
 #endif // USE_UART1
 
-#if USE_UART2
+#ifdef USE_UART2
 extern Uart Serial2;
 #endif // USE_UART2
 
