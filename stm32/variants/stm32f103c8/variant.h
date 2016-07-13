@@ -60,8 +60,8 @@ extern "C"{
 
 #define digitalPinToPort(P)        ( g_PinDescription[P].Port )
 #define digitalPinToBitMask(P)     ( g_PinDescription[P].Pin )
-//#define portOutputRegister(port)   ( &(port->PIO_ODSR) )
-//#define portInputRegister(port)    ( &(port->PIO_PDSR) )
+#define portOutputRegister(port)   ( &(GPIO_ODR(port)) )
+#define portInputRegister(port)    ( &(GPIO_IDR(port) )
 
 /* This mapping is for from Blue pill Schematic */
 enum {

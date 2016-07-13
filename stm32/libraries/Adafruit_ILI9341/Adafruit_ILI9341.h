@@ -30,8 +30,8 @@
 #endif
 
 
-#if defined (__AVR__) || defined(TEENSYDUINO) || defined (__arm__)
-//#define USE_FAST_PINIO
+#if defined (__AVR__) || defined(TEENSYDUINO) || defined (__arm__) || defined (STM32F1)
+#define USE_FAST_PINIO
 #endif
 
 #define ILI9341_TFTWIDTH  240

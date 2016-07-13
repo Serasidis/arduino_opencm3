@@ -34,7 +34,7 @@ static inline void spi_begin(void) {
 #if defined (ARDUINO_ARCH_ARC32)
   // max speed!
   SPI.beginTransaction(SPISettings(16000000, MSBFIRST, SPI_MODE0));
-#elseif defined (STM32F1)
+#elif defined (STM32F1)
   SPI.beginTransaction(SPISettings(18000000, MSBFIRST, SPI_MODE0));
 #else
     // max speed!
@@ -223,6 +223,8 @@ void Adafruit_ILI9341::begin(void) {
     mySPCR = SPCR;
   #elif defined(TEENSYDUINO)
     SPI.setClockDivider(SPI_CLOCK_DIV2); // 8 MHz (full! speed!)
+  #elif defined(STM32F1)
+    SPI.setClockDivider(SPI_CLOCK_DIV2);
   #elif defined (__arm__)
     SPI.setClockDivider(11); // 8-ish MHz (full! speed!)
   #endif
