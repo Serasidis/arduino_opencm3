@@ -33,6 +33,15 @@
 
 #include <libopencm3/stm32/gpio.h>
 
+#ifndef FALSE
+#define FALSE 0
+#endif
+#ifndef TRUE
+#define TRUE (!FALSE)
+#endif
+
+BEGIN_DECLS
+
 /**
  * Setup one or more pins of the given GPIO port as outputs.
  * @param[in] port
@@ -82,5 +91,7 @@ extern void gpio_setup_pin_analog(uint32_t port, uint16_t pin);
  * This is an STM32 specific helper funtion and should only be used in stm32 arch code.
  */
 extern void gpio_enable_clock(uint32_t port);
+
+END_DECLS
 
 #endif /* GPIO_ARCH_H */

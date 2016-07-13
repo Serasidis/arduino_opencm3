@@ -36,7 +36,7 @@
 /*----------------------------------------------------------------------------
  *        Headers
  *----------------------------------------------------------------------------*/
-#include "Arduino.h"
+//#include "Arduino.h"
 #ifdef __cplusplus
 #include "Uart.h"
 #endif
@@ -87,17 +87,25 @@ extern const PinDescription g_PinDescription[];
 extern const spi_port SPI_PinDescription[];
 
     // Generic signals namings
-#define    LED1              PC13
-#define    LED2              PC13
+#define    LED1                 PC13
+#define    LED2                 PC13
 
-#define PIN_SERIAL1_RX        PA10
-#define PIN_SERIAL1_TX        PA9
+/*----------------------------------------------------------------------------
+ *        Define Uarts Enables and Pins
+ *----------------------------------------------------------------------------*/
+#define USE_UART1               1
+#define UART1_GPIO_AF           0
+#define UART1_GPIO_PORT_RX      GPIOA
+#define UART1_GPIO_RX           GPIO10
+#define UART1_GPIO_PORT_TX      GPIOA
+#define UART1_GPIO_TX           GPIO9
 
-#define PIN_SERIAL2_RX        PA3
-#define PIN_SERIAL2_TX        PA2
-
-#define PIN_SERIAL3_RX        PB11
-#define PIN_SERIAL3_TX        PB10
+#define USE_UART2               1
+#define UART2_GPIO_AF           0
+#define UART2_GPIO_PORT_RX      GPIOA
+#define UART2_GPIO_RX           GPIO3
+#define UART2_GPIO_PORT_TX      GPIOA
+#define UART2_GPIO_TX           GPIO2
 
 #define SPI_INTERFACES_COUNT  2   //The STM32F103C8T6 has 2 SPI ports.
 #define SPI_MIN_CLOCK_DIVIDER 4   //Maximum SPI clock speed (72MHz / 4 = 18 MHz)
@@ -111,10 +119,17 @@ extern const spi_port SPI_PinDescription[];
  *----------------------------------------------------------------------------*/
 
 #ifdef __cplusplus
+
+#if USE_UART1
 extern Uart Serial1;
-#define Serial Serial1
+#endif // USE_UART1
+
+#if USE_UART2
 extern Uart Serial2;
-extern Uart Serial3;
+#endif // USE_UART2
+
+#define Serial Serial1
+
 #endif
 
 #endif

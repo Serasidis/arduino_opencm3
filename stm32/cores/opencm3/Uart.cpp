@@ -19,8 +19,7 @@
 #include "Uart.h"
 #include "Arduino.h"
 #include "wiring_private.h"
-#include <libopencm3/stm32/usart.h>
-#include <libopencm3/cm3/nvic.h>
+#include "stm32/gpio_arch.h"
 
 Uart::Uart(uint32_t usartn)
 {
@@ -37,47 +36,24 @@ void Uart::begin(unsigned long baudrate, uint16_t config)
     /* Setup GPIO pins */
     switch(usart)
     {
+#if USE_UART1
         case USART1:
             rcc_periph_clock_enable(RCC_USART1);
             nvic_enable_irq(NVIC_USART1_IRQ);
-#if defined(STM32F1)
-            gpio_set_mode(GPIOA, GPIO_MODE_OUTPUT_50_MHZ,GPIO_CNF_OUTPUT_ALTFN_PUSHPULL, GPIO_USART1_TX);   // TODO - Use g_PinDescription
-            gpio_set_mode(GPIOA, GPIO_MODE_INPUT, GPIO_CNF_INPUT_FLOAT, GPIO_USART1_RX);                    // TODO - Use g_PinDescription
-#else
-	        gpio_mode_setup(GPIOA, GPIO_MODE_AF, GPIO_PUPD_NONE, GPIO9);
-            gpio_mode_setup(GPIOA, GPIO_MODE_AF, GPIO_PUPD_NONE, GPIO10);
-	        gpio_set_output_options(GPIOA, GPIO_OTYPE_OD, GPIO_OSPEED_25MHZ, GPIO10);
-            gpio_set_af(GPIOA, GPIO_AF7, GPIO9);
-	        gpio_set_af(GPIOA, GPIO_AF7, GPIO10);
-
-#endif
+            gpio_setup_pin_af(UART1_GPIO_PORT_TX, UART1_GPIO_TX, UART1_GPIO_AF, TRUE);
+            gpio_setup_pin_af(UART1_GPIO_PORT_RX, UART1_GPIO_RX, UART1_GPIO_AF, FALSE);
             break;
-
+#endif
+#if USE_UART2
         case USART2:
             rcc_periph_clock_enable(RCC_USART2);
             nvic_enable_irq(NVIC_USART2_IRQ);
-#if defined(STM32F1)
-            gpio_set_mode(GPIOA, GPIO_MODE_OUTPUT_50_MHZ,GPIO_CNF_OUTPUT_ALTFN_PUSHPULL, GPIO_USART2_TX);
-            gpio_set_mode(GPIOA, GPIO_MODE_INPUT,GPIO_CNF_INPUT_FLOAT, GPIO_USART2_RX);
-#else
-	        gpio_mode_setup(GPIOA, GPIO_MODE_AF, GPIO_PUPD_NONE, GPIO2);
-            gpio_mode_setup(GPIOA, GPIO_MODE_AF, GPIO_PUPD_NONE, GPIO3);
-	        gpio_set_output_options(GPIOA, GPIO_OTYPE_OD, GPIO_OSPEED_25MHZ, GPIO3);
-            gpio_set_af(GPIOA, GPIO_AF7, GPIO2);
-	        gpio_set_af(GPIOA, GPIO_AF7, GPIO3);
-#endif
+            gpio_setup_pin_af(UART2_GPIO_PORT_TX, UART2_GPIO_TX, UART2_GPIO_AF, TRUE);
+            gpio_setup_pin_af(UART2_GPIO_PORT_RX, UART2_GPIO_RX, UART2_GPIO_AF, FALSE);
             break;
-
-        case USART3:
-            rcc_periph_clock_enable(RCC_USART3);
-            nvic_enable_irq(NVIC_USART3_IRQ);
-#if defined(STM32F1)
-            gpio_set_mode(GPIOB, GPIO_MODE_OUTPUT_50_MHZ, GPIO_CNF_OUTPUT_ALTFN_PUSHPULL, GPIO_USART3_TX);
-            gpio_set_mode(GPIOB, GPIO_MODE_INPUT, GPIO_CNF_INPUT_FLOAT, GPIO_USART3_RX);
-#else
-
 #endif
-            break;
+        default:
+            ;
     }
     usart_set_baudrate(usart, baudrate);
     //usart_set_databits(usart, bits);
@@ -130,7 +106,7 @@ size_t Uart::write(const uint8_t data)
 void Uart::push(uint8_t b) {
     rxBuffer.store_char(b);
 }
-
+#if USE_UART1
 extern Uart Serial1;
 void usart1_isr(void)
 {
@@ -142,7 +118,9 @@ void usart1_isr(void)
         Serial1.push(c);
     }
 }
+#endif
 
+#if USE_UART2
 extern Uart Serial2;
 void usart2_isr(void)
 {
@@ -154,16 +132,5 @@ void usart2_isr(void)
         Serial2.push(c);
     }
 }
-#if defined(STM32F1)
-extern Uart Serial3;
-void usart3_isr(void)
-{
-    /* Check if we were called because of RXNE. */
-    if (((USART_CR1(USART3) & USART_CR1_RXNEIE) != 0) &&
-            ((USART_SR(USART3) & USART_SR_RXNE) != 0))
-    {
-        char c = usart_recv(USART3);
-        Serial3.push(c);
-    }
-}
-#endif // defined
+#endif
+

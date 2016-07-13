@@ -43,6 +43,7 @@ class Uart : public HardwareSerial
 
   private:
     RingBuffer rxBuffer;
+    RingBuffer txBuffer;
     uint32_t  usart;
 
 };
