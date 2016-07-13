@@ -19,15 +19,15 @@
 
 */
 
- /**
-  * Modified for using this library with libopencm3 and STM32 MCUs.
-  * 06 Jul 2016 - Modified by Vassilis Serasidis <avrsite@yahoo.gr>
-  * Home: http://www.serasidis.gr
-  */
+/**
+ * Modified for using this library with libopencm3 and STM32 MCUs.
+ * 06 Jul 2016 - Modified by Vassilis Serasidis <avrsite@yahoo.gr>
+ * Home: http://www.serasidis.gr
+ */
 
- /**
-  * Edited by Evangelos Arkalis.
-  */
+/**
+ * Edited by Evangelos Arkalis.
+ */
 
 #include "variant.h"
 
@@ -77,11 +77,12 @@ extern const PinDescription g_PinDescription[]=
     {GPIOC, GPIO15}   /*-OSC32_OUT  */
 };
 
-extern const spi_port SPI_PinDescription[]{
-   { PA4 , PA5 , PA6 , PA7  } // SPI1 - NSS pin, SCK pin, MISO pin, MOSI pin
-  ,{ PB12, PB13, PB14, PB15 } // SPI2 - NSS pin, SCK pin, MISO pin, MOSI pin
-/* The SPI3 is not  used in this variant
-  ,{ PA15, PB3 , PB4 , PB5  } // SPI3 - NSS pin, SCK pin, MISO pin, MOSI pin */
+extern const spi_port SPI_PinDescription[]
+{
+    { PA4, PA5, PA6, PA7  }    // SPI1 - NSS pin, SCK pin, MISO pin, MOSI pin
+    ,{ PB12, PB13, PB14, PB15 } // SPI2 - NSS pin, SCK pin, MISO pin, MOSI pin
+    /* The SPI3 is not  used in this variant
+      ,{ PA15, PB3 , PB4 , PB5  } // SPI3 - NSS pin, SCK pin, MISO pin, MOSI pin */
 };
 
 #ifdef __cplusplus
@@ -89,11 +90,11 @@ extern const spi_port SPI_PinDescription[]{
 #endif
 
 #ifdef __GNUC__
-  /* With GCC/RAISONANCE, small printf (option LD Linker->Libraries->Small printf
-     set to 'Yes') calls __io_putchar() */
-  #define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
+/* With GCC/RAISONANCE, small printf (option LD Linker->Libraries->Small printf
+   set to 'Yes') calls __io_putchar() */
+#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
 #else
-  #define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
+#define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
 #endif /* __GNUC__ */
 
 void serialEvent() __attribute__((weak));
@@ -109,25 +110,28 @@ Uart Serial2(USART2);
 
 //Uart Serial3(USART3);
 
-// ----------------------------------------------------------------------------
-
-// Custom board init
-
+/*----------------------------------------------------------------------------
+ *        Custom Board Init ( C API )
+ *----------------------------------------------------------------------------*/
+#ifdef __cplusplus
+extern "C" {
+#endif
 void init( void )
 {
-  // BluePill has 8MHz HSE
-  rcc_clock_setup_in_hse_8mhz_out_72mhz();    /// Clock 72Hz from HSE 8MHz
-  // Connect All ports to CLK
-  //rcc_periph_clock_enable(RCC_GPIOA);
-  //rcc_periph_clock_enable(RCC_GPIOB);
-  //rcc_periph_clock_enable(RCC_GPIOC);
+    // BluePill has 8MHz HSE
+    rcc_clock_setup_in_hse_8mhz_out_72mhz();    /// Clock 72Hz from HSE 8MHz
+    // Connect All ports to CLK
+    //rcc_periph_clock_enable(RCC_GPIOA);
+    //rcc_periph_clock_enable(RCC_GPIOB);
+    //rcc_periph_clock_enable(RCC_GPIOC);
 
-  systick_set_clocksource(STK_CSR_CLKSOURCE_AHB_DIV8);    /// SysTick at 72Mhz/8
-  systick_set_reload(SYSTICK_RELOAD_VAL - 1);             /// SysTick Reload for 1ms tick
-  systick_interrupt_enable();
-  systick_counter_enable();
-
+    systick_set_clocksource(STK_CSR_CLKSOURCE_AHB_DIV8);    /// SysTick at 72Mhz/8
+    systick_set_reload(SYSTICK_RELOAD_VAL - 1);             /// SysTick Reload for 1ms tick
+    systick_interrupt_enable();
+    systick_counter_enable();
 }
-
+#ifdef __cplusplus
+}
+#endif
 
 

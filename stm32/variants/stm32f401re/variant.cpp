@@ -126,10 +126,12 @@ Uart Serial2(USART2);
 
 //Uart Serial3(USART3);
 
-// ----------------------------------------------------------------------------
-
-// Custom board init
-
+/*----------------------------------------------------------------------------
+ *        Custom Board Init ( C API )
+ *----------------------------------------------------------------------------*/
+#ifdef __cplusplus
+extern "C" {
+#endif
 void init( void )
 {
   // Nucleo has 8MHz HSE, pll to 84MHz
@@ -144,9 +146,8 @@ void init( void )
   systick_set_reload(SYSTICK_RELOAD_VAL - 1);             /// SysTick Reload for 1ms tick
   systick_counter_enable();
   systick_interrupt_enable();
-
-
 }
-
-
+#ifdef __cplusplus
+}
+#endif
 

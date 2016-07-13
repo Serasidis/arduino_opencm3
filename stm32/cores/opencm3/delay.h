@@ -26,9 +26,6 @@ extern "C" {
 #include <stdint.h>
 #include "variant.h"
 
-/** Tick Counter united by ms */
-static volatile uint32_t _ulTickCount = 0 ;
-
 /**
  * \brief Returns the number of milliseconds since the Arduino board began running the current program.
  *

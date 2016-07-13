@@ -19,12 +19,9 @@
 #include "delay.h"
 #include "Arduino.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
 
-
-
+/** Tick Counter united by ms */
+static volatile uint32_t _ulTickCount = 0 ;
 
 uint32_t millis( void )
 {
@@ -66,6 +63,3 @@ void sys_tick_handler(void)
     _ulTickCount++;
 }
 
-#ifdef __cplusplus
-}
-#endif
