@@ -43,16 +43,16 @@ void pinMode( uint32_t ulPin, uint32_t ulMode )
   switch ( ulMode )
   {
     case INPUT:
-        gpio_setup_input(g_PinDescription[ulPin].Port, g_PinDescription[ulPin].Pin );
+        gpio_setup_input(digitalPinToPort(ulPin), digitalPinToBitMask(ulPin) );
 		break ;
 
 
     case INPUT_PULLUP:
-        gpio_setup_input_pullup(g_PinDescription[ulPin].Port, g_PinDescription[ulPin].Pin  );
+        gpio_setup_input_pullup(digitalPinToPort(ulPin), digitalPinToBitMask(ulPin)   );
 		break ;
 
     case OUTPUT:
-        gpio_setup_output(g_PinDescription[ulPin].Port, g_PinDescription[ulPin].Pin );
+        gpio_setup_output(digitalPinToPort(ulPin), digitalPinToBitMask(ulPin)  );
 		break ;
 
     default:
@@ -65,7 +65,7 @@ int digitalRead( uint32_t ulPin )
   if (ulPin >= GPIO_PINS){
         return 0;
   }
-  return gpio_get(g_PinDescription[ulPin].Port, g_PinDescription[ulPin].Pin);
+  return gpio_get(digitalPinToPort(ulPin), digitalPinToBitMask(ulPin) );
 }
 
 void digitalWrite( uint32_t ulPin, uint32_t ulVal )
@@ -76,9 +76,9 @@ void digitalWrite( uint32_t ulPin, uint32_t ulVal )
   }
 
   if(ulVal == HIGH)
-    gpio_set(g_PinDescription[ulPin].Port, g_PinDescription[ulPin].Pin);
+    gpio_set(digitalPinToPort(ulPin), digitalPinToBitMask(ulPin) );
   else
-    gpio_clear(g_PinDescription[ulPin].Port, g_PinDescription[ulPin].Pin);
+    gpio_clear(digitalPinToPort(ulPin), digitalPinToBitMask(ulPin) );
 
 }
 
@@ -88,5 +88,5 @@ void togglePin(uint32_t ulPin)
         return;
   }
 
-  gpio_toggle(g_PinDescription[ulPin].Port, g_PinDescription[ulPin].Pin);
+  gpio_toggle(digitalPinToPort(ulPin), digitalPinToBitMask(ulPin) );
 }

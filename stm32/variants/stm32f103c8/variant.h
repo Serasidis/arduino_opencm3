@@ -60,10 +60,10 @@ extern "C"{
 
 #define digitalPinToPort(P)        ( g_PinDescription[P].Port )
 #define digitalPinToBitMask(P)     ( g_PinDescription[P].Pin )
-#define portOutputRegister(port)   ( &(GPIO_ODR(port)) )
-#define portInputRegister(port)    ( &(GPIO_IDR(port) )
+//#define portOutputRegister(port)   ( &(GPIO_ODR(port)) )
+//#define portInputRegister(port)    ( &(GPIO_IDR(port) )
 
-/* This mapping is for from Blue pill Schematic */
+
 enum {
   PA0, PA1, PA2, PA3, PA4, PA5, PA6, PA7, PA8, PA9, PA10, PA11, PA12, PA13,	PA14, PA15,
   PB0, PB1, PB2, PB3, PB4, PB5,	PB6, PB7, PB8, PB9, PB10, PB11, PB12, PB13, PB14, PB15,
