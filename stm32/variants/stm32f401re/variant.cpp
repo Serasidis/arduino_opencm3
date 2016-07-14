@@ -19,15 +19,15 @@
 
 */
 
- /**
-  * Modified for using this library with libopencm3 and STM32 MCUs.
-  * 06 Jul 2016 - Modified by Vassilis Serasidis <avrsite@yahoo.gr>
-  * Home: http://www.serasidis.gr
-  */
+/**
+ * Modified for using this library with libopencm3 and STM32 MCUs.
+ * 06 Jul 2016 - Modified by Vassilis Serasidis <avrsite@yahoo.gr>
+ * Home: http://www.serasidis.gr
+ */
 
- /**
-  * Edited by Evangelos Arkalis.
-  */
+/**
+ * Edited by Evangelos Arkalis.
+ */
 
 #include "variant.h"
 
@@ -106,11 +106,11 @@ extern const PinDescription g_PinDescription[]=
 #endif
 
 #ifdef __GNUC__
-  /* With GCC/RAISONANCE, small printf (option LD Linker->Libraries->Small printf
-     set to 'Yes') calls __io_putchar() */
-  #define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
+/* With GCC/RAISONANCE, small printf (option LD Linker->Libraries->Small printf
+   set to 'Yes') calls __io_putchar() */
+#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
 #else
-  #define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
+#define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
 #endif /* __GNUC__ */
 
 void serialEvent() __attribute__((weak));
@@ -134,18 +134,13 @@ extern "C" {
 #endif
 void init( void )
 {
-  // Nucleo has 8MHz HSE, pll to 84MHz
-  rcc_clock_setup_hse_3v3(&rcc_hse_8mhz_3v3[RCC_CLOCK_3V3_84MHZ]);
-  // Connect All ports to CLK
-  //rcc_periph_clock_enable(RCC_GPIOA);
-  //rcc_periph_clock_enable(RCC_GPIOB);
-  //rcc_periph_clock_enable(RCC_GPIOC);
-  //rcc_periph_clock_enable(RCC_GPIOD);
+    // Nucleo has 8MHz HSE, pll to 84MHz
+    rcc_clock_setup_hse_3v3(&rcc_hse_8mhz_3v3[RCC_CLOCK_3V3_84MHZ]);
 
-  systick_set_clocksource(STK_CSR_CLKSOURCE_AHB);
-  systick_set_reload(SYSTICK_RELOAD_VAL - 1);             /// SysTick Reload for 1ms tick
-  systick_counter_enable();
-  systick_interrupt_enable();
+    systick_set_clocksource(STK_CSR_CLKSOURCE_AHB);
+    systick_set_reload(SYSTICK_RELOAD_VAL - 1);             /// SysTick Reload for 1ms tick
+    systick_interrupt_enable();
+    systick_counter_enable();
 }
 #ifdef __cplusplus
 }

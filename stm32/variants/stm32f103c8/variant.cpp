@@ -120,10 +120,6 @@ void init( void )
 {
     // BluePill has 8MHz HSE
     rcc_clock_setup_in_hse_8mhz_out_72mhz();    /// Clock 72Hz from HSE 8MHz
-    // Connect All ports to CLK
-    //rcc_periph_clock_enable(RCC_GPIOA);
-    //rcc_periph_clock_enable(RCC_GPIOB);
-    //rcc_periph_clock_enable(RCC_GPIOC);
 
     systick_set_clocksource(STK_CSR_CLKSOURCE_AHB_DIV8);    /// SysTick at 72Mhz/8
     systick_set_reload(SYSTICK_RELOAD_VAL - 1);             /// SysTick Reload for 1ms tick

@@ -11,7 +11,9 @@ void setup()
 
 void loop()
 {
-    Serial.println(n++);
+    Serial.print(n++);
+    Serial.print(" RSV:");
+    Serial.println( Serial.available());
     togglePin(LED1);
     delay(100);
 }

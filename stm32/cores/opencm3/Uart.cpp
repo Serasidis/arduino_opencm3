@@ -85,7 +85,10 @@ void Uart::begin(unsigned long baudrate, uint16_t config)
     //usart_set_parity(usart, parity);
     usart_set_flow_control(usart, USART_FLOWCONTROL_NONE);
     usart_set_mode(usart, USART_MODE_TX_RX);
-    USART_CR1(usart) |= USART_CR1_RXNEIE;
+    rxBuffer.clear();
+    txBuffer.clear();
+    txRunning=false;
+    usart_enable_rx_interrupt(usart);
     usart_enable(usart);
 }
 
@@ -107,8 +110,7 @@ int Uart::available()
 
 int Uart::availableForWrite()
 {
-  // TODO
-  return 1;
+  return !txBuffer.isFull();
 }
 
 int Uart::peek()
@@ -123,7 +125,15 @@ int Uart::read()
 
 size_t Uart::write(const uint8_t data)
 {
-  usart_send_blocking(usart,data);
+  while (txBuffer.isFull()) ;
+  usart_disable_tx_interrupt(usart);
+  if (txRunning) {
+    txBuffer.store_char(data);
+  } else {
+    txRunning=true;
+    usart_send(usart,data);
+  }
+  usart_enable_tx_interrupt(usart);
   return 1;
 }
 
@@ -132,32 +142,32 @@ void Uart::push(uint8_t b) {
 }
 
 
-#ifdef USE_UART1
-extern Uart Serial1;
-
-void usart1_isr(void)
+void Uart::IrqHandler()
 {
-    /* Check if we were called because of RXNE. */
-    if (((USART_CR1(USART1) & USART_CR1_RXNEIE) != 0) &&
-            ((USART_SR(USART1) & USART_SR_RXNE) != 0))
-    {
-        char c = usart_recv(USART1);
-        Serial1.push(c);
+    if (((USART_CR1(usart) & USART_CR1_RXNEIE) != 0) && usart_get_flag(usart, USART_SR_RXNE)) {
+        push(usart_recv(usart));
+    }
+    if (((USART_CR1(usart) & USART_CR1_TXEIE) != 0) && usart_get_flag(usart, USART_SR_TXE)) {
+        if ( txBuffer.available()>0 ) {
+            usart_send(usart,txBuffer.read_char());
+        } else {
+            txRunning=false;
+            usart_disable_tx_interrupt(usart);
+        }
     }
 }
+
+#ifdef USE_UART1
+extern Uart Serial1;
+void usart1_isr(void) { Serial1.IrqHandler();}
 #endif
 
 #ifdef USE_UART2
 extern Uart Serial2;
-void usart2_isr(void)
-{
-    /* Check if we were called because of RXNE. */
-    if (((USART_CR1(USART2) & USART_CR1_RXNEIE) != 0) &&
-            ((USART_SR(USART2) & USART_SR_RXNE) != 0))
-    {
-        char c = usart_recv(USART2);
-        Serial2.push(c);
-    }
-}
+void usart2_isr(void) { Serial2.IrqHandler();}
 #endif
 
+#ifdef USE_UART3
+extern Uart Serial3;
+void usart3_isr(void) { Serial3.IrqHandler();}
+#endif

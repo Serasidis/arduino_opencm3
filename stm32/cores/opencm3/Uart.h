@@ -45,5 +45,6 @@ class Uart : public HardwareSerial
     RingBuffer rxBuffer;
     RingBuffer txBuffer;
     uint32_t  usart;
+    bool      txRunning;
 
 };
