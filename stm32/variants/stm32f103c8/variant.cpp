@@ -38,43 +38,43 @@ extern "C" {
 extern const PinDescription g_PinDescription[]=
 {
 
-    {GPIOA, GPIO0},  /*-WKUP  */
-    {GPIOA, GPIO1},  /*  */
-    {GPIOA, GPIO2},  /*  */
-    {GPIOA, GPIO3},  /*  */
-    {GPIOA, GPIO4},  /*SPI1_NSS  SPI1_NSS (opt)*/
-    {GPIOA, GPIO5},  /*SPI1_SCK  */
-    {GPIOA, GPIO6},  /*SPI1_MISO  */
-    {GPIOA, GPIO7},  /*SPI1_MOSI  */
-    {GPIOA, GPIO8},  /*  */
-    {GPIOA, GPIO9},  /*USART1_TX  */
-    {GPIOA, GPIO10},  /*USART1_RX  */
-    {GPIOA, GPIO11},  /* USBDM (-)  */
-    {GPIOA, GPIO12},  /* USBDP (+)  */
-    {GPIOA, GPIO13},  /*SYS_JTMS-SWDIO  */
-    {GPIOA, GPIO14},  /*SYS_JTCK-SWCLK  */
-    {GPIOA, GPIO15},  /*  */
+    {GPIOA, GPIO0,  PIN_ATTR_NONE},  /*-WKUP  */
+    {GPIOA, GPIO1,  PIN_ATTR_NONE},  /*  */
+    {GPIOA, GPIO2,  PIN_ATTR_NONE},  /*  */
+    {GPIOA, GPIO3,  PIN_ATTR_NONE},  /*  */
+    {GPIOA, GPIO4,  PIN_ATTR_NONE},  /*SPI1_NSS  SPI1_NSS (opt)*/
+    {GPIOA, GPIO5,  PIN_ATTR_NONE},  /*SPI1_SCK  */
+    {GPIOA, GPIO6,  PIN_ATTR_NONE},  /*SPI1_MISO  */
+    {GPIOA, GPIO7,  PIN_ATTR_NONE},  /*SPI1_MOSI  */
+    {GPIOA, GPIO8,  PIN_ATTR_NONE},  /*  */
+    {GPIOA, GPIO9,  PIN_ATTR_NONE},  /*USART1_TX  */
+    {GPIOA, GPIO10, PIN_ATTR_NONE},  /*USART1_RX  */
+    {GPIOA, GPIO11, PIN_ATTR_NONE},  /* USBDM (-)  */
+    {GPIOA, GPIO12, PIN_ATTR_NONE},  /* USBDP (+)  */
+    {GPIOA, GPIO13, PIN_ATTR_NONE},  /*SYS_JTMS-SWDIO  */
+    {GPIOA, GPIO14, PIN_ATTR_NONE},  /*SYS_JTCK-SWCLK  */
+    {GPIOA, GPIO15, PIN_ATTR_NONE},  /*  */
 
-    {GPIOB, GPIO0},  /*  */
-    {GPIOB, GPIO1},  /*Output  GPIO_Output  Blue_LED*/
-    {GPIOB, GPIO2},  /* BOOT1 */
-    {GPIOB, GPIO3},  /*  */
-    {GPIOB, GPIO4},  /*  */
-    {GPIOB, GPIO5},  /*  */
-    {GPIOB, GPIO6},  /*I2C1_SCL  */
-    {GPIOB, GPIO7},  /*I2C1_SDA  */
-    {GPIOB, GPIO8},  /*CAN_RX  */
-    {GPIOB, GPIO9},  /*CAN_TX  */
-    {GPIOB, GPIO10},  /* USART3_TX  */
-    {GPIOB, GPIO11},  /* USART3_RX  */
-    {GPIOB, GPIO12},  /* SPI2_NSS  */
-    {GPIOB, GPIO13},  /* SPI2_SCK */
-    {GPIOB, GPIO14},  /* SPI2_MISO */
-    {GPIOB, GPIO15},  /* SPI2_MOSI */
+    {GPIOB, GPIO0,  PIN_ATTR_NONE},  /*  */
+    {GPIOB, GPIO1,  PIN_ATTR_NONE},  /*Output  GPIO_Output  Blue_LED*/
+    {GPIOB, GPIO2,  PIN_ATTR_NONE},  /* BOOT1 */
+    {GPIOB, GPIO3,  PIN_ATTR_NONE},  /*  */
+    {GPIOB, GPIO4,  PIN_ATTR_NONE},  /*  */
+    {GPIOB, GPIO5,  PIN_ATTR_NONE},  /*  */
+    {GPIOB, GPIO6,  PIN_ATTR_NONE},  /*I2C1_SCL  */
+    {GPIOB, GPIO7,  PIN_ATTR_NONE},  /*I2C1_SDA  */
+    {GPIOB, GPIO8,  PIN_ATTR_NONE},  /*CAN_RX  */
+    {GPIOB, GPIO9,  PIN_ATTR_NONE},  /*CAN_TX  */
+    {GPIOB, GPIO10, PIN_ATTR_NONE},  /* USART3_TX  */
+    {GPIOB, GPIO11, PIN_ATTR_NONE},  /* USART3_RX  */
+    {GPIOB, GPIO12, PIN_ATTR_NONE},  /* SPI2_NSS  */
+    {GPIOB, GPIO13, PIN_ATTR_NONE},  /* SPI2_SCK */
+    {GPIOB, GPIO14, PIN_ATTR_NONE},  /* SPI2_MISO */
+    {GPIOB, GPIO15, PIN_ATTR_NONE},  /* SPI2_MOSI */
 
-    {GPIOC, GPIO13},  /*-TAMPER-RTC  Output  GPIO_Output  */
-    {GPIOC, GPIO14},  /*-OSC32_IN   */
-    {GPIOC, GPIO15}   /*-OSC32_OUT  */
+    {GPIOC, GPIO13, PIN_ATTR_NONE},  /*-TAMPER-RTC  Output  GPIO_Output  */
+    {GPIOC, GPIO14, PIN_ATTR_NONE},  /*-OSC32_IN   */
+    {GPIOC, GPIO15, PIN_ATTR_NONE}   /*-OSC32_OUT  */
 };
 
 extern const spi_port SPI_PinDescription[]

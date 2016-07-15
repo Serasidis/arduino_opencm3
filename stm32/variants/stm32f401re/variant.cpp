@@ -38,61 +38,61 @@ extern "C" {
 extern const PinDescription g_PinDescription[]=
 {
 
-    {GPIOA, GPIO0},     /*  */
-    {GPIOA, GPIO1},     /*  */
-    {GPIOA, GPIO2},     /*  */
-    {GPIOA, GPIO3},     /*  */
-    {GPIOA, GPIO4},     /*  */
-    {GPIOA, GPIO5},     /*  */
-    {GPIOA, GPIO6},     /*  */
-    {GPIOA, GPIO7},     /*  */
-    {GPIOA, GPIO8},     /*  */
-    {GPIOA, GPIO9},     /*  */
-    {GPIOA, GPIO10},    /*  */
-    {GPIOA, GPIO11},    /*  */
-    {GPIOA, GPIO12},    /*  */
-    {GPIOA, GPIO13},    /*  */
-    {GPIOA, GPIO14},    /*  */
-    {GPIOA, GPIO15},    /*  */
+    {GPIOA, GPIO0,  PIN_ATTR_NONE},     /*  */
+    {GPIOA, GPIO1,  PIN_ATTR_NONE},     /*  */
+    {GPIOA, GPIO2,  PIN_ATTR_NONE},     /*  */
+    {GPIOA, GPIO3,  PIN_ATTR_NONE},     /*  */
+    {GPIOA, GPIO4,  PIN_ATTR_NONE},     /*  */
+    {GPIOA, GPIO5,  PIN_ATTR_NONE},     /*  */
+    {GPIOA, GPIO6,  PIN_ATTR_NONE},     /*  */
+    {GPIOA, GPIO7,  PIN_ATTR_NONE},     /*  */
+    {GPIOA, GPIO8,  PIN_ATTR_NONE},     /*  */
+    {GPIOA, GPIO9,  PIN_ATTR_NONE},     /*  */
+    {GPIOA, GPIO10, PIN_ATTR_NONE},    /*  */
+    {GPIOA, GPIO11, PIN_ATTR_NONE},    /*  */
+    {GPIOA, GPIO12, PIN_ATTR_NONE},    /*  */
+    {GPIOA, GPIO13, PIN_ATTR_NONE},    /*  */
+    {GPIOA, GPIO14, PIN_ATTR_NONE},    /*  */
+    {GPIOA, GPIO15, PIN_ATTR_NONE},    /*  */
 
-    {GPIOB, GPIO0},     /*  */
-    {GPIOB, GPIO1},     /*  */
-    {GPIOB, GPIO2},     /*  */
-    {GPIOB, GPIO3},     /*  */
-    {GPIOB, GPIO4},     /*  */
-    {GPIOB, GPIO5},     /*  */
-    {GPIOB, GPIO6},     /*  */
-    {GPIOB, GPIO7},     /*  */
-    {GPIOB, GPIO8},     /*  */
-    {GPIOB, GPIO9},     /*  */
-    {GPIOB, GPIO10},    /*  */
-//    {GPIOB, GPIO11},    /*  */
-    {GPIOB, GPIO12},    /*  */
-    {GPIOB, GPIO13},    /*  */
-    {GPIOB, GPIO14},    /*  */
-    {GPIOB, GPIO15},    /*  */
+    {GPIOB, GPIO0,  PIN_ATTR_NONE},     /*  */
+    {GPIOB, GPIO1,  PIN_ATTR_NONE},     /*  */
+    {GPIOB, GPIO2,  PIN_ATTR_NONE},     /*  */
+    {GPIOB, GPIO3,  PIN_ATTR_NONE},     /*  */
+    {GPIOB, GPIO4,  PIN_ATTR_NONE},     /*  */
+    {GPIOB, GPIO5,  PIN_ATTR_NONE},     /*  */
+    {GPIOB, GPIO6,  PIN_ATTR_NONE},     /*  */
+    {GPIOB, GPIO7,  PIN_ATTR_NONE},     /*  */
+    {GPIOB, GPIO8,  PIN_ATTR_NONE},     /*  */
+    {GPIOB, GPIO9,  PIN_ATTR_NONE},     /*  */
+    {GPIOB, GPIO10, PIN_ATTR_NONE},    /*  */
+//  {GPIOB, GPIO11, PIN_ATTR_NONE},    /*  */
+    {GPIOB, GPIO12, PIN_ATTR_NONE},    /*  */
+    {GPIOB, GPIO13, PIN_ATTR_NONE},    /*  */
+    {GPIOB, GPIO14, PIN_ATTR_NONE},    /*  */
+    {GPIOB, GPIO15, PIN_ATTR_NONE},    /*  */
 
-    {GPIOC, GPIO0},     /*  */
-    {GPIOC, GPIO1},     /*  */
-    {GPIOC, GPIO2},     /*  */
-    {GPIOC, GPIO3},     /*  */
-    {GPIOC, GPIO4},     /*  */
-    {GPIOC, GPIO5},     /*  */
-    {GPIOC, GPIO6},     /*  */
-    {GPIOC, GPIO7},     /*  */
-    {GPIOC, GPIO8},     /*  */
-    {GPIOC, GPIO9},     /*  */
-    {GPIOC, GPIO10},    /*  */
-    {GPIOC, GPIO11},    /*  */
-    {GPIOC, GPIO12},    /*  */
-    {GPIOC, GPIO13},    /*  */
-    {GPIOC, GPIO14},    /*  */
-    {GPIOC, GPIO15},    /*  */
+    {GPIOC, GPIO0,  PIN_ATTR_NONE},     /*  */
+    {GPIOC, GPIO1,  PIN_ATTR_NONE},     /*  */
+    {GPIOC, GPIO2,  PIN_ATTR_NONE},     /*  */
+    {GPIOC, GPIO3,  PIN_ATTR_NONE},     /*  */
+    {GPIOC, GPIO4,  PIN_ATTR_NONE},     /*  */
+    {GPIOC, GPIO5,  PIN_ATTR_NONE},     /*  */
+    {GPIOC, GPIO6,  PIN_ATTR_NONE},     /*  */
+    {GPIOC, GPIO7,  PIN_ATTR_NONE},     /*  */
+    {GPIOC, GPIO8,  PIN_ATTR_NONE},     /*  */
+    {GPIOC, GPIO9,  PIN_ATTR_NONE},     /*  */
+    {GPIOC, GPIO10, PIN_ATTR_NONE},    /*  */
+    {GPIOC, GPIO11, PIN_ATTR_NONE},    /*  */
+    {GPIOC, GPIO12, PIN_ATTR_NONE},    /*  */
+    {GPIOC, GPIO13, PIN_ATTR_NONE},    /*  */
+    {GPIOC, GPIO14, PIN_ATTR_NONE},    /*  */
+    {GPIOC, GPIO15, PIN_ATTR_NONE},    /*  */
 
-    {GPIOD, GPIO2},     /*  */
+    {GPIOD, GPIO2,  PIN_ATTR_NONE},     /*  */
 
-    {GPIOH, GPIO0},     /*  */
-    {GPIOH, GPIO1},     /*  */
+    {GPIOH, GPIO0,  PIN_ATTR_NONE},     /*  */
+    {GPIOH, GPIO1,  PIN_ATTR_NONE},     /*  */
 };
 
 //extern const spi_port SPI_PinDescription[]{

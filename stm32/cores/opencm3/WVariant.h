@@ -24,10 +24,22 @@
 extern "C" {
 #endif
 
+/**
+ * Pin Attributes to be OR-ed
+ */
+#define PIN_ATTR_NONE          (0UL<<0)
+#define PIN_ATTR_COMBO         (1UL<<0)
+#define PIN_ATTR_ADC           (1UL<<1)
+#define PIN_ATTR_DAC           (1UL<<2)
+#define PIN_ATTR_PWM           (1UL<<3)
+#define PIN_ATTR_TIMER         (1UL<<4)
+#define PIN_ATTR_EXTINT        (1UL<<5)
+
 typedef struct _PinDescription
 {
    uint32_t  Port;
    uint16_t  Pin;
+   uint8_t   PinAttribute ;
 } PinDescription ;
 
 /* Pins table to be instantiated into variant.cpp */
