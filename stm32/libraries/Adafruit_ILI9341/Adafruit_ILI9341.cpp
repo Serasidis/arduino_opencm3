@@ -1,14 +1,12 @@
 /***************************************************
   This is our library for the Adafruit ILI9341 Breakout and Shield
   ----> http://www.adafruit.com/products/1651
-
   Check out the links above for our tutorials and wiring diagrams
   These displays use SPI to communicate, 4 or 5 pins are required to
   interface (RST is optional)
   Adafruit invests time and resources providing this open source code,
   please support Adafruit and open-source hardware by purchasing
   products from Adafruit!
-
   Written by Limor Fried/Ladyada for Adafruit Industries.
   MIT license, all text above must be included in any redistribution
  ****************************************************/
@@ -412,8 +410,9 @@ void Adafruit_ILI9341::pushColor(uint16_t color) {
   digitalWrite(_cs, LOW);
 #endif
 
-  spiwrite(color >> 8);
-  spiwrite(color);
+  //spiwrite(color >> 8);
+  //spiwrite(color);
+  SPI.transfer16(color);
 
 #if defined(USE_FAST_PINIO)
   *csport |= cspinmask;
@@ -439,9 +438,10 @@ void Adafruit_ILI9341::drawPixel(int16_t x, int16_t y, uint16_t color) {
   digitalWrite(_cs, LOW);
 #endif
 
-  spiwrite(color >> 8);
-  spiwrite(color);
-
+  //spiwrite(color >> 8);
+  //spiwrite(color);
+  SPI.transfer16(color);
+  
 #if defined(USE_FAST_PINIO)
   *csport |= cspinmask;
 #else
@@ -475,8 +475,9 @@ void Adafruit_ILI9341::drawFastVLine(int16_t x, int16_t y, int16_t h,
 #endif
 
   while (h--) {
-    spiwrite(hi);
-    spiwrite(lo);
+    //spiwrite(hi);
+    //spiwrite(lo);
+    SPI.transfer16(color);
   }
 
 #if defined(USE_FAST_PINIO)
@@ -507,8 +508,9 @@ void Adafruit_ILI9341::drawFastHLine(int16_t x, int16_t y, int16_t w,
   digitalWrite(_cs, LOW);
 #endif
   while (w--) {
-    spiwrite(hi);
-    spiwrite(lo);
+    //spiwrite(hi);
+    //spiwrite(lo);
+    SPI.transfer16(color);
   }
 #if defined(USE_FAST_PINIO)
   *csport |= cspinmask;
@@ -546,8 +548,9 @@ void Adafruit_ILI9341::fillRect(int16_t x, int16_t y, int16_t w, int16_t h,
 
   for(y=h; y>0; y--) {
     for(x=w; x>0; x--) {
-      spiwrite(hi);
-      spiwrite(lo);
+      //spiwrite(hi);
+      //spiwrite(lo);
+      SPI.transfer16(color);
     }
   }
 #if defined(USE_FAST_PINIO)
@@ -684,7 +687,6 @@ uint8_t Adafruit_ILI9341::readcommand8(uint8_t c, uint8_t index) {
 
  
 /*
-
  uint16_t Adafruit_ILI9341::readcommand16(uint8_t c) {
  digitalWrite(_dc, LOW);
  if (_cs)
