@@ -197,24 +197,19 @@ void SPIClass::setClockDivider(uint8_t div)
 
 byte SPIClass::transfer(uint8_t data)
 {
-  if(_dff == SPI_CR1_DFF_8BIT)   // Checks if the SPI data frame is set to 8-bit data mode.
-    return spi_xfer(_spi, data); // Writing data to the SPI bus and after that, read data.
-  else{
+  if(_dff != SPI_CR1_DFF_8BIT){  // Checks if the SPI data frame is set to 8-bit data mode.
     spi_set_dff_8bit(_spi);      // If the SPI is set to 16-bit data mode,
     _dff = SPI_CR1_DFF_8BIT;     // change the data frame mode to 8-bit.
-    return spi_xfer(_spi, data);
   }
+  return spi_xfer(_spi, data);   // Writing data to the SPI bus and after that, read data.
 }
 
 uint16_t SPIClass::transfer16(uint16_t data) {
-  if(_dff == SPI_CR1_DFF_16BIT)
-    spi_write(_spi, data);
-  else{
+  if(_dff != SPI_CR1_DFF_16BIT){
     spi_set_dff_16bit(_spi);
     _dff = SPI_CR1_DFF_16BIT;
-    spi_write(_spi, data);
   }
-  return data;
+  return spi_xfer(_spi, data);
 }
 
 void SPIClass::attachInterrupt() {
@@ -245,4 +240,3 @@ void SPIClass::detachInterrupt() {
 #if SPI_INTERFACES_COUNT > 5
   SPIClass SPI6(SPI_6);
 #endif
-
