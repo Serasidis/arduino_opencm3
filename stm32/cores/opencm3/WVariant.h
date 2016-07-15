@@ -20,5 +20,19 @@
 
 #include <stdint.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 
+typedef struct _PinDescription
+{
+   uint32_t  Port;
+   uint16_t  Pin;
+} PinDescription ;
 
+/* Pins table to be instantiated into variant.cpp */
+extern const PinDescription g_PinDescription[] ;
+
+#ifdef __cplusplus
+} // extern "C"
+#endif

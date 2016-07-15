@@ -36,7 +36,7 @@
 /*----------------------------------------------------------------------------
  *        Headers
  *----------------------------------------------------------------------------*/
-//#include "Arduino.h"
+#include "WVariant.h"
 #ifdef __cplusplus
 #include "Uart.h"
 #endif
@@ -70,12 +70,6 @@ enum {
   PC13, PC14, PC15
 };
 
-typedef struct _PinDescription
-{
-   uint32_t  Port;
-   uint16_t  Pin;
-} PinDescription ;
-
 typedef struct spi_port{
   uint16_t  cs_pin;
   uint16_t  mosi_pin;
@@ -83,7 +77,6 @@ typedef struct spi_port{
   uint16_t  sck_pin;
 }spi_port;
 
-extern const PinDescription g_PinDescription[];
 extern const spi_port SPI_PinDescription[];
 
     // Generic signals namings
