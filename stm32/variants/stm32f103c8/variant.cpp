@@ -13,7 +13,7 @@
 
   You should have received a copy of the GNU Lesser General Public
   License along with this library; if not, write to the Free Software
-  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  NOADC2110-1301  USA
 
   Last edit: 07 Jul 2016
 
@@ -37,44 +37,44 @@ extern "C" {
 
 extern const PinDescription g_PinDescription[]=
 {
+/// PORT   PIN    AD TM  TC
+    {GPIOA, GPIO0,  0,  2,  1},   /*-WKUP  */
+    {GPIOA, GPIO1,  1,  2,  2},   /*  */
+    {GPIOA, GPIO2,  2,  2,  3},   /*  */
+    {GPIOA, GPIO3,  3,  2,  4},   /*  */
+    {GPIOA, GPIO4,  4,  NA, NA},  /*SPI1_NSS  SPI1_NSS (opt)*/
+    {GPIOA, GPIO5,  5,  NA, NA},  /*SPI1_SCK  */
+    {GPIOA, GPIO6,  6,  NA, NA},  /*SPI1_MISO  */
+    {GPIOA, GPIO7,  7,  NA, NA},  /*SPI1_MOSI  */
+    {GPIOA, GPIO8,  NA, 1,  1},   /*  */
+    {GPIOA, GPIO9,  NA, 1,  2},   /*USART1_TX  */
+    {GPIOA, GPIO10, NA, 1,  3},   /*USART1_RX  */
+    {GPIOA, GPIO11, NA, 1,  4},   /* USBDM (-)  */
+    {GPIOA, GPIO12, NA, NA, NA},  /* USBDP (+)  */
+    {GPIOA, GPIO13, NA, NA, NA},  /*SYS_JTMS-SWDIO  */
+    {GPIOA, GPIO14, NA, NA, NA},  /*SYS_JTCK-SWCLK  */
+    {GPIOA, GPIO15, NA, NA, NA},  /*  */
 
-    {GPIOA, GPIO0,  PIN_ATTR_NONE},  /*-WKUP  */
-    {GPIOA, GPIO1,  PIN_ATTR_NONE},  /*  */
-    {GPIOA, GPIO2,  PIN_ATTR_NONE},  /*  */
-    {GPIOA, GPIO3,  PIN_ATTR_NONE},  /*  */
-    {GPIOA, GPIO4,  PIN_ATTR_NONE},  /*SPI1_NSS  SPI1_NSS (opt)*/
-    {GPIOA, GPIO5,  PIN_ATTR_NONE},  /*SPI1_SCK  */
-    {GPIOA, GPIO6,  PIN_ATTR_NONE},  /*SPI1_MISO  */
-    {GPIOA, GPIO7,  PIN_ATTR_NONE},  /*SPI1_MOSI  */
-    {GPIOA, GPIO8,  PIN_ATTR_NONE},  /*  */
-    {GPIOA, GPIO9,  PIN_ATTR_NONE},  /*USART1_TX  */
-    {GPIOA, GPIO10, PIN_ATTR_NONE},  /*USART1_RX  */
-    {GPIOA, GPIO11, PIN_ATTR_NONE},  /* USBDM (-)  */
-    {GPIOA, GPIO12, PIN_ATTR_NONE},  /* USBDP (+)  */
-    {GPIOA, GPIO13, PIN_ATTR_NONE},  /*SYS_JTMS-SWDIO  */
-    {GPIOA, GPIO14, PIN_ATTR_NONE},  /*SYS_JTCK-SWCLK  */
-    {GPIOA, GPIO15, PIN_ATTR_NONE},  /*  */
+    {GPIOB, GPIO0,  8,  3,  3},   /*  */
+    {GPIOB, GPIO1,  9,  3,  4},   /*  */
+    {GPIOB, GPIO2,  NA, NA, NA},  /* BOOT1 */
+    {GPIOB, GPIO3,  NA, NA, NA},  /*  */
+    {GPIOB, GPIO4,  NA, NA, NA},  /*  */
+    {GPIOB, GPIO5,  NA, NA, NA},  /*  */
+    {GPIOB, GPIO6,  NA, 4,  1},   /*I2C1_SCL  */
+    {GPIOB, GPIO7,  NA, 4,  2},   /*I2C1_SDA  */
+    {GPIOB, GPIO8,  NA, 4,  3},   /*CAN_RX  */
+    {GPIOB, GPIO9,  NA, 4,  4},   /*CAN_TX  */
+    {GPIOB, GPIO10, NA, NA, NA},  /* USART3_TX  */
+    {GPIOB, GPIO11, NA, NA, NA},  /* USART3_RX  */
+    {GPIOB, GPIO12, NA, NA, NA},  /* SPI2_NSS  */
+    {GPIOB, GPIO13, NA, NA, NA},  /* SPI2_SCK */
+    {GPIOB, GPIO14, NA, NA, NA},  /* SPI2_MISO */
+    {GPIOB, GPIO15, NA, NA, NA},  /* SPI2_MOSI */
 
-    {GPIOB, GPIO0,  PIN_ATTR_NONE},  /*  */
-    {GPIOB, GPIO1,  PIN_ATTR_NONE},  /*Output  GPIO_Output  Blue_LED*/
-    {GPIOB, GPIO2,  PIN_ATTR_NONE},  /* BOOT1 */
-    {GPIOB, GPIO3,  PIN_ATTR_NONE},  /*  */
-    {GPIOB, GPIO4,  PIN_ATTR_NONE},  /*  */
-    {GPIOB, GPIO5,  PIN_ATTR_NONE},  /*  */
-    {GPIOB, GPIO6,  PIN_ATTR_NONE},  /*I2C1_SCL  */
-    {GPIOB, GPIO7,  PIN_ATTR_NONE},  /*I2C1_SDA  */
-    {GPIOB, GPIO8,  PIN_ATTR_NONE},  /*CAN_RX  */
-    {GPIOB, GPIO9,  PIN_ATTR_NONE},  /*CAN_TX  */
-    {GPIOB, GPIO10, PIN_ATTR_NONE},  /* USART3_TX  */
-    {GPIOB, GPIO11, PIN_ATTR_NONE},  /* USART3_RX  */
-    {GPIOB, GPIO12, PIN_ATTR_NONE},  /* SPI2_NSS  */
-    {GPIOB, GPIO13, PIN_ATTR_NONE},  /* SPI2_SCK */
-    {GPIOB, GPIO14, PIN_ATTR_NONE},  /* SPI2_MISO */
-    {GPIOB, GPIO15, PIN_ATTR_NONE},  /* SPI2_MOSI */
-
-    {GPIOC, GPIO13, PIN_ATTR_NONE},  /*-TAMPER-RTC  Output  GPIO_Output  */
-    {GPIOC, GPIO14, PIN_ATTR_NONE},  /*-OSC32_IN   */
-    {GPIOC, GPIO15, PIN_ATTR_NONE}   /*-OSC32_OUT  */
+    {GPIOC, GPIO13, NA, NA, NA},  /*-TAMPER-RTC  Output  GPIO_Output  */
+    {GPIOC, GPIO14, NA, NA, NA},  /*-OSC32_IN   */
+    {GPIOC, GPIO15, NA, NA, NA}   /*-OSC32_OUT  */
 };
 
 extern const spi_port SPI_PinDescription[]

@@ -24,22 +24,25 @@
 extern "C" {
 #endif
 
-/**
- * Pin Attributes to be OR-ed
- */
-#define PIN_ATTR_NONE          (0UL<<0)
-#define PIN_ATTR_COMBO         (1UL<<0)
-#define PIN_ATTR_ADC           (1UL<<1)
-#define PIN_ATTR_DAC           (1UL<<2)
-#define PIN_ATTR_PWM           (1UL<<3)
-#define PIN_ATTR_TIMER         (1UL<<4)
-#define PIN_ATTR_EXTINT        (1UL<<5)
+#include <libopencm3/stm32/rcc.h>
+#include <libopencm3/stm32/gpio.h>
+#include <libopencm3/stm32/usart.h>
+#include <libopencm3/stm32/flash.h>
+#include <libopencm3/stm32/gpio.h>
+#include <libopencm3/stm32/spi.h>
+#include <libopencm3/stm32/adc.h>
+#include <libopencm3/cm3/nvic.h>
+#include <libopencm3/cm3/systick.h>
+
+#define NA   0xFF
 
 typedef struct _PinDescription
 {
    uint32_t  Port;
    uint16_t  Pin;
-   uint8_t   PinAttribute ;
+   uint8_t   AdcChan ;
+   uint8_t   Timer;
+   uint8_t   TimerChan;
 } PinDescription ;
 
 /* Pins table to be instantiated into variant.cpp */
