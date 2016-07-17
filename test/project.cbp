@@ -244,11 +244,63 @@
 					<Add after="arm-none-eabi-objcopy  -O binary $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).bin" />
 				</ExtraCommands>
 			</Target>
+			<Target title="analog-serial-f103">
+				<Option output="_bin/${TARGET_NAME}/${TARGET_NAME}" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="_obj/${TARGET_NAME}" />
+				<Option type="5" />
+				<Option compiler="arm-elf-gcc" />
+				<Compiler>
+					<Add option="-mcpu=cortex-m3" />
+					<Add option="-mthumb" />
+					<Add option="-msoft-float" />
+					<Add option="-mfix-cortex-m3-ldrd" />
+					<Add option="-DSTM32F1" />
+					<Add directory="../stm32/variants/stm32f103c8" />
+				</Compiler>
+				<Linker>
+					<Add option="-mcpu=cortex-m3" />
+					<Add option="-msoft-float" />
+					<Add option="-mfix-cortex-m3-ldrd" />
+					<Add option="-Tstm32f103x8.ld" />
+					<Add option="-Wl,--start-group  _bin/arduino-f103.ar -lopencm3_stm32f1 -lc -lgcc -lnosys -Wl,--end-group" />
+				</Linker>
+				<ExtraCommands>
+					<Add after="arm-none-eabi-size $(TARGET_OUTPUT_FILE)" />
+					<Add after="arm-none-eabi-objcopy  -O binary $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).bin" />
+				</ExtraCommands>
+			</Target>
+			<Target title="analog-serial-f401re">
+				<Option output="_bin/${TARGET_NAME}/${TARGET_NAME}" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="_obj/${TARGET_NAME}" />
+				<Option type="5" />
+				<Option compiler="arm-elf-gcc" />
+				<Compiler>
+					<Add option="-mthumb" />
+					<Add option="-mcpu=cortex-m4" />
+					<Add option="-mfloat-abi=hard" />
+					<Add option="-mfpu=fpv4-sp-d16" />
+					<Add option="-DSTM32F4" />
+					<Add directory="../stm32/variants/stm32f401re" />
+				</Compiler>
+				<Linker>
+					<Add option="-mcpu=cortex-m4" />
+					<Add option="-mfloat-abi=hard" />
+					<Add option="-mfpu=fpv4-sp-d16" />
+					<Add option="-Tstm32f401xe.ld" />
+					<Add option="-Wl,--start-group  _bin/arduino-f401re.ar -lopencm3_stm32f4 -lc -lgcc -lnosys -Wl,--end-group" />
+				</Linker>
+				<ExtraCommands>
+					<Add after="arm-none-eabi-size $(TARGET_OUTPUT_FILE)" />
+					<Add after="arm-none-eabi-objcopy  -O binary $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).bin" />
+				</ExtraCommands>
+			</Target>
 		</Build>
 		<VirtualTargets>
-			<Add alias="ALL" targets="arduino-f103;arduino-f401re;blink-f103;blink-f401re;blink2-f103;blink2-f401re;uart-f401re;uart-f103;" />
-			<Add alias="ALL-F1" targets="arduino-f103;blink-f103;uart-f103;blink2-f103;" />
-			<Add alias="ALL-F4" targets="arduino-f401re;blink-f401re;uart-f401re;blink2-f401re;" />
+			<Add alias="ALL" targets="arduino-f103;arduino-f401re;blink-f103;blink-f401re;blink2-f103;blink2-f401re;uart-f103;uart-f401re;uart-speed-f103;uart-speed-f401re;analog-serial-f103;analog-serial-f401re;" />
+			<Add alias="ALL-F1" targets="arduino-f103;blink-f103;blink2-f103;uart-f103;uart-speed-f103;analog-serial-f103;" />
+			<Add alias="ALL-F4" targets="arduino-f401re;blink-f401re;blink2-f401re;uart-f401re;uart-speed-f401re;analog-serial-f401re;" />
 		</VirtualTargets>
 		<Compiler>
 			<Add option="-Os" />
@@ -356,6 +408,12 @@
 			<Option target="arduino-f103" />
 			<Option target="arduino-f401re" />
 		</Unit>
+		<Unit filename="../stm32/cores/opencm3/stm32/adc_arch.c">
+			<Option compilerVar="CC" />
+			<Option target="arduino-f103" />
+			<Option target="arduino-f401re" />
+		</Unit>
+		<Unit filename="../stm32/cores/opencm3/stm32/adc_arch.h" />
 		<Unit filename="../stm32/cores/opencm3/stm32/gpio_arch.c">
 			<Option compilerVar="CC" />
 			<Option target="arduino-f103" />
@@ -368,6 +426,11 @@
 			<Option target="arduino-f401re" />
 		</Unit>
 		<Unit filename="../stm32/cores/opencm3/wiring.h" />
+		<Unit filename="../stm32/cores/opencm3/wiring_analog.c">
+			<Option compilerVar="CC" />
+			<Option target="arduino-f103" />
+			<Option target="arduino-f401re" />
+		</Unit>
 		<Unit filename="../stm32/cores/opencm3/wiring_analog.h" />
 		<Unit filename="../stm32/cores/opencm3/wiring_constants.h" />
 		<Unit filename="../stm32/cores/opencm3/wiring_digital.c">
@@ -655,6 +718,7 @@
 			<Option target="blink2-f103" />
 			<Option target="uart-f103" />
 			<Option target="uart-speed-f103" />
+			<Option target="analog-serial-f103" />
 		</Unit>
 		<Unit filename="../stm32/variants/stm32f103c8/variant.h">
 			<Option target="arduino-f103" />
@@ -662,12 +726,14 @@
 			<Option target="blink2-f103" />
 			<Option target="uart-f103" />
 			<Option target="uart-speed-f103" />
+			<Option target="analog-serial-f103" />
 		</Unit>
 		<Unit filename="../stm32/variants/stm32f401re/variant.cpp">
 			<Option target="blink-f401re" />
 			<Option target="blink2-f401re" />
 			<Option target="uart-f401re" />
 			<Option target="uart-speed-f401re" />
+			<Option target="analog-serial-f401re" />
 		</Unit>
 		<Unit filename="../stm32/variants/stm32f401re/variant.h">
 			<Option target="blink-f401re" />
@@ -675,6 +741,11 @@
 			<Option target="blink2-f401re" />
 			<Option target="uart-f401re" />
 			<Option target="uart-speed-f401re" />
+			<Option target="analog-serial-f401re" />
+		</Unit>
+		<Unit filename="analog-serial.cpp">
+			<Option target="analog-serial-f103" />
+			<Option target="analog-serial-f401re" />
 		</Unit>
 		<Unit filename="blink-nodelay.cpp">
 			<Option target="blink2-f103" />

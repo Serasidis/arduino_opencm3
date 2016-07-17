@@ -16,6 +16,10 @@
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+/**
+  * Edited by Evangelos Arkalis.
+  */
+
 #pragma once
 
 #include <stdint.h>

@@ -70,10 +70,23 @@ typedef struct spi_port{
 extern const spi_port SPI_PinDescription[];
 
     // Generic signals namings
-#define    LED1              PA5
-#define    LED2              PA5
-#define    BUTTON            PC13
+#define    LED1     PA5
+#define    LED2     PA5
+#define    BUTTON   PC13
 
+#define    A0       PA0
+#define    A1       PA1
+#define    A2       PA2
+#define    A3       PA3
+#define    A4       PA4
+#define    A5       PA5
+#define    A6       PA6
+#define    A7       PA7
+#define    A8       PB0
+#define    A9       PB1
+#define    A10      PC0
+#define    A11      PC1
+#define    A12      PC2
 /*----------------------------------------------------------------------------
  *        Define Uarts Enables and Pins
  *----------------------------------------------------------------------------*/
