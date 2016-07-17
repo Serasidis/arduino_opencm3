@@ -22,6 +22,11 @@ This repository is a testbed for combining the libopencm3 libray with Arduino ID
 
   
 ##Roadmap
+`17 July 2016 ` **[ ADC support  ]**
+  
+* Initial ADC support (writeAnalog)
+
+---
 `11 July 2016 ` **[ STM32F401RE support  ]**
   
 * Initial F401RE support (Digital I/O, Timing and Uarts functions)
