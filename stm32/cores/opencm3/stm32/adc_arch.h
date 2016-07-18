@@ -9,6 +9,8 @@ BEGIN_DECLS
 void adc_setPrescale(uint32_t apb2);
 void adc_init(void);
 uint32_t adc_read(void);
+float adc_getTemperature();
+float adc_getVref();
 
 END_DECLS
 

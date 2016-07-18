@@ -34,6 +34,8 @@ extern "C" {
 #include <libopencm3/cm3/nvic.h>
 #include <libopencm3/cm3/systick.h>
 
+#include <stm32/sys_arch.h>
+
 #define NA   0xFF
 
 typedef struct _PinDescription
@@ -47,8 +49,6 @@ typedef struct _PinDescription
 
 /* Pins table to be instantiated into variant.cpp */
 extern const PinDescription g_PinDescription[] ;
-
-float getTemperature();
 
 #ifdef __cplusplus
 } // extern "C"

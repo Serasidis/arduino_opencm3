@@ -22,13 +22,44 @@
 
 #include "sys_arch.h"
 
-void nanodelay(uint32_t ns)
+inline uint32_t sysclk()
 {
-    uint32_t               clock;
-    uint32_t               delay;     /* ticks per ms */
-    uint32_t               scale;
+    return rcc_ahb_frequency;
+}
 
-    clock = rcc_ahb_frequency;
-	delay = (uint32_t)(clock / 1000);
-	scale = (uint32_t)(((uint64_t)1000000000 * (uint64_t)4096) / (uint64_t)clock);
+inline uint32_t pb1clk()
+{
+    return rcc_apb1_frequency;
+}
+
+inline uint32_t pb2clk()
+{
+    return rcc_apb2_frequency;
+}
+
+void delay_nano(uint32_t ns)
+{
+    uint32_t               _clock;
+    uint32_t               _delay;     /* ticks per ms */
+    uint32_t               _scale;
+
+    uint32_t ticks, delay, ms;
+
+    _clock = sysclk();
+	_delay = (uint32_t)(_clock / 1000);
+	_scale = (uint32_t)(((uint64_t)1000000000 * (uint64_t)4096) / (uint64_t)_clock);
+
+	dwt_enable_cycle_counter();
+    if (ns > 1000000) {
+	        ms = ns / 1000000;
+	        ns -= ms * 1000000;
+	        delay = ms * _delay;
+	        ticks = dwt_read_cycle_counter();
+	        while ((uint32_t)(dwt_read_cycle_counter() - ticks) < delay);
+	        {}
+    }
+    delay = (ns * 4096) / _scale;
+    ticks = dwt_read_cycle_counter();
+    while ((uint32_t)(dwt_read_cycle_counter() - ticks) < delay);
+    {}
 }

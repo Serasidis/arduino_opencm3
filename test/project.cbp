@@ -326,8 +326,8 @@
 			</Target>
 		</Build>
 		<VirtualTargets>
-			<Add alias="ALL" targets="arduino-f103;arduino-f401re;blink-f103;blink-f401re;blink2-f103;blink2-f401re;uart-f103;uart-f401re;uart-speed-f103;uart-speed-f401re;analog-serial-f103;analog-serial-f401re;" />
-			<Add alias="ALL-F1" targets="arduino-f103;blink-f103;blink2-f103;uart-f103;uart-speed-f103;analog-serial-f103;" />
+			<Add alias="ALL" targets="arduino-f103;arduino-f401re;blink-f103;blink-f401re;blink2-f103;blink2-f401re;uart-f103;uart-f401re;uart-speed-f103;uart-speed-f401re;analog-serial-f103;analog-serial-f401re;adc-test-f103;" />
+			<Add alias="ALL-F1" targets="arduino-f103;blink-f103;blink2-f103;uart-f103;uart-speed-f103;analog-serial-f103;adc-test-f103;" />
 			<Add alias="ALL-F4" targets="arduino-f401re;blink-f401re;blink2-f401re;uart-f401re;uart-speed-f401re;analog-serial-f401re;" />
 		</VirtualTargets>
 		<Compiler>

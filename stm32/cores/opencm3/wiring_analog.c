@@ -61,13 +61,11 @@ static inline uint32_t mapResolution( uint32_t value, uint32_t from, uint32_t to
 
 uint32_t analogRead( uint32_t ulPin ) {
 // USE ADC1
-    adc_init();
     gpio_setup_pin_analog( digitalPinToPort(ulPin), digitalPinToBitMask(ulPin));
-    uint8_t channel_array[1];
-	channel_array[0] = g_PinDescription[ulPin].AdcChan;
-	adc_set_regular_sequence(ADC1, 1, channel_array);
-	uint16_t valueRead = adc_read();
-	valueRead = adc_read();
+    adc_init();
+    uint8_t channel = g_PinDescription[ulPin].AdcChan;
+	adc_set_regular_sequence(ADC1, 1, &channel);
+    uint32_t valueRead = adc_read();
 	adc_power_off(ADC1);
     return mapResolution(valueRead, 12, _readResolution);
 }
