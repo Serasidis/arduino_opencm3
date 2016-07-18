@@ -1,5 +1,7 @@
 /*
-  Copyright (c) 2015 Arduino LLC.  All right reserved.
+  Copyright (C)2016 Evangelos Arkalis
+
+  This file is part of arduino_opencm3.
 
   This library is free software; you can redistribute it and/or
   modify it under the terms of the GNU Lesser General Public
@@ -14,42 +16,19 @@
   You should have received a copy of the GNU Lesser General Public
   License along with this library; if not, write to the Free Software
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-*/
-
-#pragma once
-
-#include <stdint.h>
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
+ */
 #include <libopencm3/stm32/rcc.h>
-#include <libopencm3/stm32/gpio.h>
-#include <libopencm3/stm32/usart.h>
-#include <libopencm3/stm32/flash.h>
-#include <libopencm3/stm32/gpio.h>
-#include <libopencm3/stm32/spi.h>
-#include <libopencm3/stm32/adc.h>
-#include <libopencm3/cm3/nvic.h>
-#include <libopencm3/cm3/systick.h>
+#include <libopencm3/cm3/dwt.h>
 
-#define NA   0xFF
+#include "sys_arch.h"
 
-typedef struct _PinDescription
+void nanodelay(uint32_t ns)
 {
-   uint32_t  Port;
-   uint16_t  Pin;
-   uint8_t   AdcChan ;
-   uint8_t   Timer;
-   uint8_t   TimerChan;
-} PinDescription ;
+    uint32_t               clock;
+    uint32_t               delay;     /* ticks per ms */
+    uint32_t               scale;
 
-/* Pins table to be instantiated into variant.cpp */
-extern const PinDescription g_PinDescription[] ;
-
-float getTemperature();
-
-#ifdef __cplusplus
-} // extern "C"
-#endif
+    clock = rcc_ahb_frequency;
+	delay = (uint32_t)(clock / 1000);
+	scale = (uint32_t)(((uint64_t)1000000000 * (uint64_t)4096) / (uint64_t)clock);
+}

@@ -66,9 +66,8 @@ uint32_t analogRead( uint32_t ulPin ) {
     uint8_t channel_array[1];
 	channel_array[0] = g_PinDescription[ulPin].AdcChan;
 	adc_set_regular_sequence(ADC1, 1, channel_array);
-	adc_start_conversion_regular(ADC1);
-	while (!adc_eoc(ADC1));
-	uint16_t valueRead = adc_read_regular(ADC1);
+	uint16_t valueRead = adc_read();
+	valueRead = adc_read();
 	adc_power_off(ADC1);
     return mapResolution(valueRead, 12, _readResolution);
 }

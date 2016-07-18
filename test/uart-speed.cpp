@@ -1,8 +1,11 @@
 #include <Arduino.h>
 
 // written by simonf @ stm32duino.com
-
+#ifdef STM32F1
+#define SerialOUT Serial2
+#elif defined STM32F4
 #define SerialOUT Serial1
+#endif // STM32F1
 
 byte nodeID = 10;
 byte packetNum = 11;
