@@ -79,10 +79,16 @@ extern const PinDescription g_PinDescription[]=
 
 extern const spi_port SPI_PinDescription[]
 {
-    { PA4, PA5, PA6, PA7  }    // SPI1 - NSS pin, SCK pin, MISO pin, MOSI pin
-    ,{ PB12, PB13, PB14, PB15 } // SPI2 - NSS pin, SCK pin, MISO pin, MOSI pin
+    { PA4,  PA5,  PA6,  PA7  },    // SPI1 - NSS pin, SCK pin, MISO pin, MOSI pin
+    { PB12, PB13, PB14, PB15 } // SPI2 - NSS pin, SCK pin, MISO pin, MOSI pin
     /* The SPI3 is not  used in this variant
       ,{ PA15, PB3 , PB4 , PB5  } // SPI3 - NSS pin, SCK pin, MISO pin, MOSI pin */
+};
+
+extern const i2c_port I2C_PinDescription[]
+{
+    { PB6,  PB7  }, // I2C_1 - SCL pin, SDA pin
+    { PB10, PB11 }  // I2C_2 - SCL pin, SDA pin
 };
 
 #ifdef __cplusplus

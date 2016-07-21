@@ -66,7 +66,13 @@ typedef struct spi_port{
   uint16_t  sck_pin;
 }spi_port;
 
+typedef struct i2c_port{
+  uint16_t  scl_pin;
+  uint16_t  sda_pin;
+}i2c_port;
+
 extern const spi_port SPI_PinDescription[];
+extern const i2c_port I2C_PinDescription[];
 
     // Generic signals namings
 #define    LED1     PC13
@@ -103,6 +109,8 @@ extern const spi_port SPI_PinDescription[];
 
 #define SPI_INTERFACES_COUNT  2   //The STM32F103C8T6 has 2 SPI ports.
 #define SPI_MIN_CLOCK_DIVIDER 4   //Maximum SPI clock speed (72MHz / 4 = 18 MHz)
+
+#define WIRE_INTERFACES_COUNT 2   //The number of I2C interfaces that has this MCU.
 
 #ifdef __cplusplus
 }

@@ -33,6 +33,7 @@ extern "C" {
 #include <libopencm3/stm32/adc.h>
 #include <libopencm3/cm3/nvic.h>
 #include <libopencm3/cm3/systick.h>
+#include <libopencm3/stm32/i2c.h>
 
 #include <stm32/sys_arch.h>
 

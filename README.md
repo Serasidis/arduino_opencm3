@@ -22,6 +22,11 @@ This repository is a testbed for combining the libopencm3 libray with Arduino ID
 
   
 ##Roadmap
+`21 July 2016 ` **[ I2C support  ]**
+  
+* Initial I2C support (Wire library). At this moment only **Master mode** is supported.
+
+---
 `17 July 2016 ` **[ ADC support  ]**
   
 * Initial ADC support (writeAnalog)
