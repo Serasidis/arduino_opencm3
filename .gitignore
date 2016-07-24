@@ -1,0 +1,11 @@
+*.bin
+*.disasm
+*.elf
+*.hex
+*.map
+*.o
+*.d
+*.layout
+*.save
+/tests/_bin/
+/tests/_obj/
