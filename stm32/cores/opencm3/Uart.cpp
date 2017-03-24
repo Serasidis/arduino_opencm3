@@ -80,9 +80,9 @@ void Uart::begin(unsigned long baudrate, uint16_t config)
             ;
     }
     usart_set_baudrate(usart, baudrate);
-    //usart_set_databits(usart, bits);
-    //usart_set_stopbits(usart, stopbits);
-    //usart_set_parity(usart, parity);
+    usart_set_databits(usart, HARDSER_DATA_8);
+    usart_set_stopbits(usart, USART_STOPBITS_1);
+    usart_set_parity(usart, USART_PARITY_EVEN);
     usart_set_flow_control(usart, USART_FLOWCONTROL_NONE);
     usart_set_mode(usart, USART_MODE_TX_RX);
     rxBuffer.clear();
